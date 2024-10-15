@@ -1,5 +1,5 @@
 [project]
-name = "peakrdl-cocotb-raltest"
+name = "peakrdl-cocotb-ralgen"
 version = "0.1.0"
 description = "Generate RAL tests from systemRDL depends on peakrdl-python to create the class for frontend access"
 authors = [
@@ -18,7 +18,7 @@ requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
 [project.entry-points."peakrdl.exporters"]
-cocotb_raltest = "peakrdl_cocotb_raltest.__peakrdl__:Exporter"
+cocotb_ralgen = "peakrdl_cocotb_ralgen.__peakrdl__:Exporter"
 
 [tool.pdm]
 distribution = true

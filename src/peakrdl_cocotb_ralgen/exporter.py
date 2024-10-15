@@ -1,4 +1,4 @@
-"""PeakRDL cocotb_raltest exporter."""
+"""PeakRDL cocotb_ralgen exporter."""
 
 __authors__ = [
     "Vijayvithal Jahagirdar <jahagirdar.vs@gmail.com>",
@@ -25,7 +25,7 @@ from systemrdl.node import (  # type: ignore
 )
 
 from systemrdl import RDLCompiler, RDLCompileError, RDLWalker
-from .raltest import RALTEST
+from .ralgen import RALGEN
 
 
 class CocotbRALExporter:  # pylint: disable=too-few-public-methods
@@ -46,7 +46,7 @@ class CocotbRALExporter:  # pylint: disable=too-few-public-methods
                 root=rdlc.elaborate()
         except:
             sys.exit()
-        with open(f"{outputpath}/{top_node.inst.inst_name}_cocotb_raltest.py",'w') as file:
+        with open(f"{outputpath}/{top_node.inst.inst_name}_RAL.py",'w') as file:
             walker=RDLWalker(unroll=True)
-            listener=RALTEST(file)
+            listener=RALGEN(file)
             walker.walk(root,listener)

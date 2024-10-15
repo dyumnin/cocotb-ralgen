@@ -1,13 +1,8 @@
 import sys
-import os
-import pprint
 from pprint import PrettyPrinter
-import re
-from systemrdl import RDLCompiler, RDLCompileError, RDLWalker
-
-
+from systemrdl import RDLCompiler
 from systemrdl import RDLListener
-from systemrdl.node import FieldNode, RegNode, AddressableNode
+
 
 '''
 # RAL Test
@@ -40,7 +35,7 @@ class HexPP(PrettyPrinter):
         return super().format(object, context, maxlevels, level)
 
 # Define a listener that will print out the register model hierarchy
-class RALTEST(RDLListener):
+class RALGEN(RDLListener):
     def __init__(self,file):
         self.file=file
         self.registers={}
@@ -79,7 +74,7 @@ logging.basicConfig(format=FORMAT)
     def exit_Reg(self,node):
         # {'regwidth': 32}
         self.registers[self.current_register]['regwidth']=node.get_property('regwidth')
-        print(node.inst.__dict__)
+        # print(node.inst.__dict__)
         if not node.has_sw_writable:
             self.registers[self.current_register]['disable'].append('rw')
         if   not node.has_sw_readable:
@@ -93,7 +88,6 @@ logging.basicConfig(format=FORMAT)
     def exit_Addrmap(self,node):
         preg=HexPP().pformat(self.registers)
         print(f'''
-        ...{node.__dict__}
 class {node.get_path_segment()}_RAL_Test:
     masks={preg}
     def __init__(self,regmodel):
