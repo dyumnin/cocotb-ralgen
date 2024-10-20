@@ -1,0 +1,44 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+    - id: check-added-large-files
+    - id: check-merge-conflict
+    - id: no-commit-to-branch
+    - id: trailing-whitespace
+    - id: end-of-file-fixer
+    - id: check-yaml
+    - id: check-json
+      args: ['--branch', 'master','--branch','dev','--branch','release']
+    - id: name-tests-test
+    - id: requirements-txt-fixer
+- repo: https://github.com/psf/black
+  rev: 23.1.0
+  hooks:
+    - id: black
+# - repo: https://github.com/PyCQA/flake8
+#   hooks:
+#   - id: flake8
+#   rev: 6.0.0
+- repo: https://github.com/jumanjihouse/pre-commit-hooks
+  rev: 3.0.0
+  hooks:
+  - id: forbid-binary
+- repo: https://github.com/mrtazz/checkmake.git
+  rev: main
+  hooks:
+  - id: checkmake
+- repo: "https://github.com/pre-commit/mirrors-clang-format"
+  rev: "v16.0.6"
+  hooks:
+  - id: "clang-format"
+
+
+-   repo: local
+    hooks:
+    -   id: verible-format
+        name: Verible verilog format
+        entry: verible-verilog-format
+        language: system
+        types_or: [verilog, system-verilog]
+        args: [--flagfile, .rules.verible_format]
