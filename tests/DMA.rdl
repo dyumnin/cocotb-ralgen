@@ -1,0 +1,75 @@
+property randomize {
+    type = boolean ;
+default=true;
+    component = field | signal;
+};
+addrmap DMA_Reg {
+  name="DMA CSR Registers";
+  alignment=4;
+  default regwidth=32;
+reg {
+    field {sw=r; hw=r;desc="IP ID";} ip_id[31:16]=1;
+    field {sw=r; hw=r;desc="IP Version Max Number";} version_max[15:8]=0;
+    field {sw=r; hw=r;desc="IP Version Min Number";} version_min[7:0]=0;
+desc="Unique ID to identify different revisions on IP.";
+  } Version;
+
+reg { 
+field {sw=r; hwclr;hwset;
+desc="This field is set when the DMA operation is in progress and cleared when DMA is finished";} busy[0:0]=0;
+field {rclr; hw=w;
+desc="Indicates a bus error during data transfer in A Domain";} a_error[1:1]=0;
+field {rclr; hw=w;
+desc="Indicates a bus error during data transfer in B Domain";} b_error[2:2]=0;
+field {sw=r; hw=w;
+desc="If PD mode of transfer is used then this field will contain the PD for which a transfer is ongoing";} current_pd_id[31:16]=0;
+} Status;
+
+reg { 
+field {singlepulse; hw=r;donttest;
+desc="Set to initiate DMA transfer or PD processing";} start[1]=0;
+field {sw=rw; hw=r;desc="If set an interrupt will be generated at error, data transfer start/done, PD chain done";} gen_interrupt[1]=0;
+field {sw=rw; hw=r;desc="If set PD should be fetched from B region else from A region";} pd_in_b[1]=0;
+field {sw=rw; hw=r;desc="If set data source is in B else data source in in A";} from_b[1]=0;
+field {sw=rw; hw=r;desc="If set data dest is in B else data dest in in A";} to_a[1]=0;
+field {sw=rw; hw=r;desc="If set transfers will be loaded from a linked list of packet descriptor, else transfers will be written by SW to the registers after previous transfer is done.";} use_pd[1]=0;
+} Ctrl;
+reg {
+	field {sw=r;hw=r;counter;desc="count of  pending transactions";
+	} pd_count[16]=0;
+	field {singlepulse;sw=w;hw=r;desc="Write 1 to increment pd_count by 1";} incr_count[1]=0;
+	field {sw=r;hw=w;desc="HW Writes 1 to decrement the count by 1";} decr_count[1]=0;
+	pd_count->incr=incr_count;
+	pd_count->decr=decr_count;
+}PD_Count;
+
+reg {
+field {sw=rw;hw=r;desc="Burst length for Txn on A domain";} a_burst_length[7:0]=1;
+field {sw=rw;hw=r;desc="Burst length for Txn on B domain";} b_burst_length[15:8]=1;
+field {sw=rw; hw=r;desc="Src Burst Type";} src_burst_type[2]=0;
+field {sw=rw; hw=r;desc="Dest Burst Type";} dest_burst_type[2]=0;
+} Cfg;
+
+reg {field {sw=rw;hw=r;desc="Src start address for DMA transation";} address[31:0];} Src_Address;
+reg {field {sw=rw;hw=r; desc="Dest Start address for DMA transation";} address[31:0];} Dest_Address;
+reg {field {sw=rw;hw=r;desc="Number of bytes"; } length[31:0];} Length;
+reg {field {sw=rw;hw=r;desc="Address of next packet descriptor";} pd[31:0];} PacketDescriptor_Address;
+reg {
+field {intr; sw=rw;woclr;hw=w;} int_a_error=0;
+field {intr; sw=rw;woclr;hw=w;} int_b_error=0;
+field {intr; sw=rw;woclr;hw=w;} int_xfer_done=0;
+} Interrupt;
+reg {
+field { sw=rw;hw=na;} mask_a_error=0;
+field { sw=rw;hw=na;} mask_b_error=0;
+field { sw=rw;hw=na;} mask_xfer_done=0;
+} Interrupt_Mask;
+reg {
+field { sw=rw;hw=na;} mask_a_error=0;
+field { sw=rw;hw=na;} mask_b_error=0;
+field { sw=rw;hw=na;} mask_xfer_done=0;
+} Interrupt_Test;
+ Interrupt.int_a_error->mask=Interrupt_Mask.mask_a_error;
+ Interrupt.int_b_error->mask=Interrupt_Mask.mask_b_error;
+ Interrupt.int_xfer_done->mask=Interrupt_Mask.mask_xfer_done;
+};

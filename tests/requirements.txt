@@ -1,0 +1,5 @@
+cocotbext_axi
+cocotb
+peakrdl_python
+#peakrdl_cocotb_ralgen
+cocotbext_dyulib

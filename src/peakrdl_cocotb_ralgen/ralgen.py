@@ -57,11 +57,19 @@ logging.basicConfig(format=FORMAT)
                 'reset_mask':0,
                 'write_mask':0,
                 'read_mask':0,
+                'donttest':0,
+                'signals':[],
                 'disable':[]
                 }
+
         #print(node.__dict__,file=self.file)
 
     def enter_Field(self,node):
+        self.registers[self.current_register]['signals'].append({
+            'reg':self.current_register,
+            'sig':node.get_path_segment(),
+            'shift':node.low
+            })
         if 'reset' in node.inst.properties:
             # print(f"{self.current_register}:{node.get_path_segment()}:::{self.registers[self.current_register]['reset_value']} |={node.get_property('reset')} << {node.high}")
             self.registers[self.current_register]['reset_value'] |= node.get_property('reset')<<node.low
@@ -70,6 +78,17 @@ logging.basicConfig(format=FORMAT)
             self.registers[self.current_register]['write_mask'] |=int('1'*(node.high -node.low +1),2) <<node.low
         if node.is_sw_readable:
             self.registers[self.current_register]['read_mask'] |=int('1'*(node.high -node.low +1),2) <<node.low
+        if 'donttest' in node.inst.properties:
+            self.registers[self.current_register]['donttest'] |=int('1'*(node.high -node.low +1),2) <<node.low
+        if 'woclr' in node.inst.properties:
+            print("Error: Not testing woclr bits")
+            self.registers[self.current_register]['donttest'] |=int('1'*(node.high -node.low +1),2) <<node.low
+        if 'rclr' in node.inst.properties:
+            print("Error: Not testing rclr bits")
+            self.registers[self.current_register]['donttest'] |=int('1'*(node.high -node.low +1),2) <<node.low
+        if 'singlepulse' in node.inst.properties:
+            print("Error: Not testing SinglePulse bits")
+            self.registers[self.current_register]['donttest'] |=int('1'*(node.high -node.low +1),2) <<node.low
         #print(node.inst.__dict__,file=self.file)
     def exit_Reg(self,node):
         # {'regwidth': 32}
@@ -90,8 +109,9 @@ logging.basicConfig(format=FORMAT)
         print(f'''
 class {node.get_path_segment()}_RAL_Test:
     masks={preg}
-    def __init__(self,regmodel):
+    def __init__(self,regmodel,bg_sigfn=None):
         self.regmodel=regmodel
+        self.get_signal_value=bg_sigfn
         pass
     def reset_test(self,verbose=False):
         for key,val in self.masks.items():
@@ -103,7 +123,7 @@ class {node.get_path_segment()}_RAL_Test:
             if verbose:
                 logger.info("Reset Read Reg:%s, Value %s"%(key,rv))
 
-    def rw_test(self,foreground_write=True,foreground_read=True,count=10,default_value=None,verbose=False):
+    async def rw_test(self,foreground_write=True,foreground_read=True,count=10,default_value=None,verbose=False):
         # TODO Handle background oprations
         assert foreground_write and foreground_read, "Error Background operations are not yet defined"
         for key,val in self.masks.items():
@@ -111,14 +131,25 @@ class {node.get_path_segment()}_RAL_Test:
                 continue
             r=self.regmodel.__getattribute__(key)
             rv=None
+            donttest=val['donttest']
             for _ in range(count):
                 if default_value:
                     wrval=default_value
                 else:
                     wrval=random.randint(0,2**val['regwidth'])
-                r.write(wrval)
-                rv=r.read()
-                assert rv==(wrval& val['write_mask'])|(val['reset_value']& ~val['write_mask'])  & val['read_mask'],"%s:: Read Write Written %x, Read %x, Expected %x, wrMask %x rdmask %x"%(key,wrval,rv,wrval & val['write_mask'] & val['read_mask'],val['write_mask'],val['read_mask'])
+                wval=wrval & ~val['donttest']
+                await r.write(wval)
+                if foreground_read:
+                    rv=await r.read()
+                else:
+                    rv=0
+                    for hsh in val['signals']:
+                       rv|=self.get_signal_value(hsh)
+                wmask=val['write_mask']
+                rmask=val['read_mask']
+                actual=rv&wmask&~donttest
+                expected= wval& wmask &rmask
+                assert actual==expected,"%s:: Read Write Written %x, Read %x, Expected %x, wrMask %x rdmask %x, donttest = %x"%(key,wrval,actual,expected,wmask,rmask, donttest)
             if verbose:
                 logger.info("Read Write Test Reg:%s, Value %s"%(key,rv))
             ''',file=self.file)
