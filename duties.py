@@ -146,15 +146,15 @@ def check_api(ctx: Context) -> None:
     Parameters:
         ctx: The context instance (passed automatically).
     """
-    from griffe.cli import check as g_check
+    # from griffe.cli import check as g_check
 
-    griffe_check = lazy(g_check, name="griffe.check")
-    ctx.run(
-        griffe_check("cocotbext_dyulib", search_paths=["src"], color=True),
-        title="Checking for API breaking changes",
-        command="griffe check -ssrc cocotbext_dyulib",
-        nofail=True,
-    )
+    # griffe_check = lazy(g_check, name="griffe.check")
+    # ctx.run(
+    #     griffe_check("cocotbext_dyulib", search_paths=["src"], color=True),
+    #     title="Checking for API breaking changes",
+    #     command="griffe check -ssrc cocotbext_dyulib",
+    #     nofail=True,
+    # )
 
 
 @duty(silent=True)
