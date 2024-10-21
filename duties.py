@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING, Iterator
 
 from duty import duty
-from duty.callables import coverage, lazy, mkdocs, mypy, pytest, ruff
+from duty.callables import coverage, mkdocs, mypy, pytest, ruff
 
 if TYPE_CHECKING:
     from duty.context import Context
