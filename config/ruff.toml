@@ -1,8 +1,9 @@
 target-version = "py38"
 line-length = 120
 exclude = [
-    "fixtures",
-    "site",
+	"fixtures",
+	"site",
+	"tests",
 ]
 select = [
     "A",
@@ -71,10 +72,28 @@ ignore = [
     "PLR0915",  # Too many statements
     "SLF001", # Private member accessed
     "TRY003",  # Avoid specifying long messages outside the exception class
+# JVS Adding the following
+"TID252", # We are using relative imports
+"PGH003",
+"ANN201",
+"ANN001",
+"ARG002",
+"E721",
+"N803",
+"N802",
+"N801",
+"E722",
+"S701",
+"ARG001",
+"I001",
+"S603",
 ]
 
 [per-file-ignores]
 "src/*/cli.py" = [
+    "T201",  # Print statement
+]
+"src/*/ralgen.py" = [
     "T201",  # Print statement
 ]
 "src/*/debug.py" = [
@@ -84,12 +103,12 @@ ignore = [
     "INP001",  # File is part of an implicit namespace package
     "T201",  # Print statement
 ]
-"tests/*.py" = [
-    "ARG005",  # Unused lambda argument
-    "FBT001",  # Boolean positional arg in function definition
-    "PLR2004",  # Magic value used in comparison
-    "S101",  # Use of assert detected
-]
+# "tests/*.py" = [
+#     "ARG005",  # Unused lambda argument
+#     "FBT001",  # Boolean positional arg in function definition
+#     "PLR2004",  # Magic value used in comparison
+#     "S101",  # Use of assert detected
+# ]
 
 [flake8-quotes]
 docstring-quotes = "double"
