@@ -94,10 +94,12 @@ def _render_credits() -> str:
     template_data = {
         "project_name": project_name,
         "prod_dependencies": sorted(
-            prod_dependencies.values(), key=lambda dep: dep["name"]
+            prod_dependencies.values(),
+            key=lambda dep: dep["name"],
         ),
         "dev_dependencies": sorted(
-            dev_dependencies.values(), key=lambda dep: dep["name"]
+            dev_dependencies.values(),
+            key=lambda dep: dep["name"],
         ),
         "more_credits": "",
     }

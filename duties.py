@@ -63,9 +63,9 @@ def changelog(ctx: Context) -> None:
         "check_docs",
         "check_dependencies",
         "check-api",
-    ]
+    ],
 )
-def check(ctx: Context) -> None:  # noqa: ARG001
+def check(ctx: Context) -> None:
     """Check it all!
 
     Parameters:
@@ -220,12 +220,16 @@ def format(ctx: Context) -> None:
     """
     ctx.run(
         ruff.check(
-            *PY_SRC_LIST, config="config/ruff.toml", fix_only=True, exit_zero=True
+            *PY_SRC_LIST,
+            config="config/ruff.toml",
+            fix_only=True,
+            exit_zero=True,
         ),
         title="Auto-fixing code",
     )
     ctx.run(
-        ruff.format(*PY_SRC_LIST, config="config/ruff.toml"), title="Formatting code"
+        ruff.format(*PY_SRC_LIST, config="config/ruff.toml"),
+        title="Formatting code",
     )
 
 

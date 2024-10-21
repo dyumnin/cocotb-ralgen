@@ -5,9 +5,9 @@ A SystemRDL to Raltest converter for cocotb.
 # Installation
 
 ```
-pip3 install peakrdl-python peakrdl-cocotb-raltest
+pip3 install peakrdl-cocotb-ralgen
 ```
-# Usage 
+# Usage
 
 ```
 peakrdl cocotb_ralgen <SystemRDL File> -o <output folder>
@@ -19,7 +19,7 @@ Then in your cocotb test file
 from <AddrMap Name>_RAL import <AddrMap Name>_RAL_Test
 ...
 ral=<AddrMap Name>_RAL_Test(regmodel)
-from DMA_Reg_RAL import DMA_Reg_RAL_Test as RAL
+from <AddrMap_Name>_RAL import <AddrMap_Name>_RAL_Test as RAL
 @cocotb.test
 async def test_ral(dut):
     env=Env(dut)
@@ -29,20 +29,20 @@ async def test_ral(dut):
 
 And in your cocotb env file
 ```
-from DMA_Reg.reg_model.DMA_Reg import DMA_Reg_cls
-from DMA_Reg.lib  import AsyncCallbackSet
-from DMA_Reg_RAL import DMA_Reg_RAL_Test as RAL
+from <AddrMap_Name>.reg_model.<AddrMap_Name> import <AddrMap_Name>_cls
+from <AddrMap_Name>.lib  import AsyncCallbackSet
+from <AddrMap_Name>_RAL import <AddrMap_Name>_RAL_Test as RAL
 class Env:
      def __init__(dut,...):
-	self.reg=DMA_Reg_cls(                                                                                                        
-		 callbacks=AsyncCallbackSet(                                                                                          
-		    read_callback=self.readReg,                                                                                      
-		    write_callback=self.writeReg                                                                                     
-		    ))     
+	self.reg=<AddrMap_Name>_cls(
+		 callbacks=AsyncCallbackSet(
+		    read_callback=self.readReg,
+		    write_callback=self.writeReg
+		    ))
         self.ral=RAL(self.reg)
     async def ral_rw(self):
         self.ral.rw_test()
 ...
 
 ```
-for a complete working example check the test folder.
+for a complete working example check the tests folder.

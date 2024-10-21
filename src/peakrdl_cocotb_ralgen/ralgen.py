@@ -1,9 +1,8 @@
 import sys
-from jinja2 import Environment, PackageLoader
 from pprint import PrettyPrinter
-from systemrdl import RDLCompiler
-from systemrdl import RDLListener
 
+from jinja2 import Environment, PackageLoader
+from systemrdl import RDLCompiler, RDLListener
 
 """
 # RAL Test
@@ -35,7 +34,7 @@ For every register we need to create
 class HexPP(PrettyPrinter):
     def format(self, object, context, maxlevels, level):
         if isinstance(object, int):
-            return "0x{:_X}".format(object), True, False
+            return f"0x{object:_X}", True, False
         return super().format(object, context, maxlevels, level)
 
 
@@ -46,7 +45,7 @@ class RALGEN(RDLListener):
         self.registers = {}
         self.current_register = ""
         print(
-            f"""
+            """
 import random
 import logging
 logger = logging.getLogger(__name__)
@@ -80,7 +79,7 @@ logging.basicConfig(format=FORMAT)
                 "sig": node.get_path_segment(),
                 "low": node.low,
                 "high": node.high,
-            }
+            },
         )
         if "reset" in node.inst.properties:
             # print(f"{self.current_register}:{node.get_path_segment()}:::{self.registers[self.current_register]['reset_value']} |={node.get_property('reset')} << {node.high}")
@@ -122,14 +121,13 @@ logging.basicConfig(format=FORMAT)
     def exit_Reg(self, node):
         # {'regwidth': 32}
         self.registers[self.current_register]["regwidth"] = node.get_property(
-            "regwidth"
+            "regwidth",
         )
         # print(node.inst.__dict__)
         if not node.has_sw_writable:
             self.registers[self.current_register]["disable"].append("rw")
         if not node.has_sw_readable:
             self.registers[self.current_register]["disable"].extend(["rw", "reset"])
-        pass
 
     def exit_Addrmap(self, node):
         preg = HexPP().pformat(self.registers)

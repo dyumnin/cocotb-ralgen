@@ -10,8 +10,8 @@ Nothing easier!
 Fork and clone the repository, then:
 
 ```bash
-cd cocotbext-dyulib
-make setup
+cd cocotb-ralgen
+pdm install
 ```
 
 > NOTE:
@@ -27,14 +27,12 @@ make setup
 > pipx install pdm
 > ```
 >
-> Now you can try running `make setup` again,
-> or simply `pdm install`.
+> Now you can try running `pdm install`.
 
 You now have the dependencies installed.
 
-You can run the application with `pdm run dyu [ARGS...]`.
+You can run the application with `pdm run peakrdl cocotb_ralgen [ARGS...]`.
 
-Run `make help` to see all the available actions!
 
 ## Tasks
 
@@ -46,9 +44,6 @@ on multiple Python versions, you run the task directly with `pdm run duty TASK`.
 The Makefile detects if a virtual environment is activated,
 so `make` will work the same with the virtualenv activated or not.
 
-If you work in VSCode, we provide
-[an action to configure VSCode](https://pawamoy.github.io/copier-pdm/work/#vscode-setup)
-for the project.
 
 ## Development
 
@@ -59,11 +54,11 @@ As usual:
 
 **Before committing:**
 
-1. run `make format` to auto-format the code
-1. run `make check` to check everything (fix any warning)
-1. run `make test` to run the tests (fix any issue)
+1. run `pdm run duty format` to auto-format the code
+1. run `pdm run duty check` to check everything (fix any warning)
+1. run `make C tests` to run the tests (fix any issue)
 1. if you updated the documentation or the project dependencies:
-    1. run `make docs`
+    1. run `pdm run duty docs`
     1. go to http://localhost:8000 and check that everything looks good
 1. follow our [commit message convention](#commit-message-convention)
 

@@ -26,8 +26,8 @@ distribution = true
 
 [tool.pdm.dev-dependencies]
 duty = ["duty>=0.10"]
-ci-quality = ["cocotbext-dyulib[duty,docs,quality,typing,security]"]
-ci-tests = ["cocotbext-dyulib[duty,tests]"]
+ci-quality = ["peakrdl-cocotb-ralgen[duty,docs,quality,typing,security]"]
+ci-tests = ["peakrdl-cocotb-ralgen[duty,tests]"]
 docs = [
     "black>=23.9",
     "markdown-callouts>=0.3",

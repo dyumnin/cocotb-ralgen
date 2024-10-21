@@ -4,27 +4,15 @@ __authors__ = [
     "Vijayvithal Jahagirdar <jahagirdar.vs@gmail.com>",
 ]
 
-from collections import OrderedDict
-from dataclasses import dataclass
-from functools import reduce
-from operator import mul
-from pathlib import Path
-from typing import List, Optional, Union
 import sys
+from typing import List, Optional, Union
 
-from systemrdl.messages import MessageHandler  # type: ignore
+from systemrdl import RDLCompiler, RDLWalker
 from systemrdl.node import (  # type: ignore
-    AddressableNode,
     AddrmapNode,
-    FieldNode,
-    MemNode,
-    Node,
-    RegfileNode,
-    RegNode,
     RootNode,
 )
 
-from systemrdl import RDLCompiler, RDLCompileError, RDLWalker
 from .ralgen import RALGEN
 
 

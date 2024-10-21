@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "dyulib"
+project = "cocotb-ralgen"
 copyright = "2023, Vijayvithal"
 author = "Vijayvithal"
 release = "0.1"

@@ -32,7 +32,9 @@ class Exporter(ExporterSubcommandPlugin):  # pylint: disable=too-few-public-meth
         )
 
     def do_export(
-        self, top_node: "Union[AddrmapNode, RootNode]", options: "argparse.Namespace"
+        self,
+        top_node: "Union[AddrmapNode, RootNode]",
+        options: "argparse.Namespace",
     ):
         """Perform the export of SystemRDL node to RAL.
 

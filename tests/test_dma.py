@@ -1,7 +1,7 @@
 import cocotb
-from env import Env
 from cocotb.triggers import RisingEdge
 from DMA_Reg_RAL import DMA_Reg_RAL_Test as RAL
+from env import Env
 
 
 @cocotb.test

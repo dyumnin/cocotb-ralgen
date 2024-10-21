@@ -1,9 +1,9 @@
-.. dyulib documentation master file, created by
+.. ralgen documentation master file, created by
    sphinx-quickstart on Thu Nov 23 11:00:35 2023.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to dyulib's documentation!
+Welcome to cocotb ralgen's documentation!
 =================================================
 
 .. toctree::
