@@ -51,7 +51,7 @@ class Env:
         """Wrapper over the  read function for use by reg model."""
         rv = await self.default_ifc.read(addr, 4)
         cocotb.log.info(
-            f"RegRead addr={addr:x} rdata={hex(int.from_bytes(rv.data,'little'))}"
+            f"RegRead addr={addr:x} rdata={hex(int.from_bytes(rv.data,'little',))}",
         )
         return int.from_bytes(rv.data, "little")
 
