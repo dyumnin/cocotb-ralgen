@@ -21,6 +21,8 @@ e.g.
 | Front | Back |
 | Back | Back |
 
+For using backdoor access you need to create two functions for reading and writing to hdl signals and pass it to this class
+
 A check function can only check the modified register, or check all registers to ensure that only the desired bit in the desired register is modified.
 
 For every register we need to create
