@@ -28,7 +28,7 @@ distribution = true
 
 [tool.pdm.version]
 source = "scm"
-version_format = "peakrdl_cocotb_ralgen.version:format_version"
+version_format = "version:format_version"
 fallback_version = "0.0.0"
 
 [tool.pdm.dev-dependencies]
