@@ -104,7 +104,7 @@ def check_dependencies(ctx: Context) -> None:
     ctx.run(
         safety.check(requirements),
         title="Checking dependencies",
-        command="pdm export -f requirements --without-hashes | safety check --stdin",
+        command="pdm export -f requirements --without-hashes | safety check --ignore 70612 --stdin",
     )
 
 
