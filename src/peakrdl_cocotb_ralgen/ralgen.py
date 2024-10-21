@@ -1,11 +1,13 @@
+"""RAL Generator."""
+
 import sys
 from pprint import PrettyPrinter
 
-from jinja2 import Environment, PackageLoader
-from systemrdl import RDLCompiler, RDLListener
+from jinja2 import Environment, PackageLoader, select_autoescape
+from systemrdl import RDLCompiler, RDLListener, RDLWalker
 
 """
-# RAL Test
+# RAL Test.
 RAL Test consists of
 1. Reset read test
 2. Random Read Write tests
@@ -32,15 +34,21 @@ For every register we need to create
 
 
 class HexPP(PrettyPrinter):
-    def format(self, object, context, maxlevels, level):
-        if isinstance(object, int):
-            return f"0x{object:_X}", True, False
-        return super().format(object, context, maxlevels, level)
+    """Formats integers as Hex."""
+
+    def format(self, obj, context, maxlevels, level):
+        """Extends PrettyPrinter's format to support printing numbers in hex."""
+        if isinstance(obj, int):
+            return f"0x{obj:_X}", True, False
+        return super().format(obj, context, maxlevels, level)
 
 
 # Define a listener that will print out the register model hierarchy
 class RALGEN(RDLListener):
+    """RAL Generator."""
+
     def __init__(self, file):
+        """Constructor."""
         self.file = file
         self.registers = {}
         self.current_register = ""
@@ -56,9 +64,11 @@ logging.basicConfig(format=FORMAT)
         )
 
     def enter_Addrmap(self, node):
+        """Overriding builtin method."""
         self.registers = {}
 
     def enter_Reg(self, node):
+        """Overriding builtin method."""
         self.current_register = node.get_path_segment()
         self.registers[node.get_path_segment()] = {
             "reset_value": 0,
@@ -73,6 +83,7 @@ logging.basicConfig(format=FORMAT)
         # print(node.__dict__,file=self.file)
 
     def enter_Field(self, node):
+        """Overriding builtin method."""
         self.registers[self.current_register]["signals"].append(
             {
                 "reg": self.current_register,
@@ -119,6 +130,7 @@ logging.basicConfig(format=FORMAT)
         # print(node.inst.__dict__,file=self.file)
 
     def exit_Reg(self, node):
+        """Overriding builtin method."""
         # {'regwidth': 32}
         self.registers[self.current_register]["regwidth"] = node.get_property(
             "regwidth",
@@ -130,8 +142,12 @@ logging.basicConfig(format=FORMAT)
             self.registers[self.current_register]["disable"].extend(["rw", "reset"])
 
     def exit_Addrmap(self, node):
+        """Overriding builtin method."""
         preg = HexPP().pformat(self.registers)
-        env = Environment(loader=PackageLoader("peakrdl_cocotb_ralgen"))
+        env = Environment(
+            loader=PackageLoader("peakrdl_cocotb_ralgen"),
+            autoescape=select_autoescape(),
+        )
         template = env.get_template("ralgen.j2")
         print(template.render(preg=preg, node=node), file=self.file)
 
@@ -147,5 +163,5 @@ if __name__ == "__main__":
         sys.exit(1)
     walker = RDLWalker(unroll=True)
     with open("out.txt", "w") as of:
-        listener = RALTEST(of)
+        listener = RALGEN(of)
         walker.walk(root, listener)
