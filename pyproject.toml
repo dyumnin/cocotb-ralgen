@@ -1,6 +1,7 @@
 [project]
 name = "peakrdl-cocotb-ralgen"
-version = "0.1.0"
+#fallback-version = "0.1.0"
+dynamic = ["version"]
 description = "Generate RAL tests from systemRDL depends on peakrdl-python to create the class for frontend access"
 authors = [
     {name = "Vijayvithal Jahagirdar", email = "jahagirdar.vs@gmail.com"},
@@ -23,6 +24,10 @@ cocotb_ralgen = "peakrdl_cocotb_ralgen.__peakrdl__:Exporter"
 
 [tool.pdm]
 distribution = true
+
+[tool.pdm.version]
+source = "scm"
+fallback_version = "0.0.0"
 
 [tool.pdm.dev-dependencies]
 duty = ["duty>=0.10"]
