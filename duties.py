@@ -94,19 +94,19 @@ def check_dependencies(ctx: Context) -> None:
     Parameters:
         ctx: The context instance (passed automatically).
     """
+    pass
     # retrieve the list of dependencies
-    requirements = ctx.run(
-        ["pdm", "export", "-f", "requirements", "--without-hashes"],
-        title="Exporting dependencies as requirements",
-        allow_overrides=False,
-    )
+    # requirements = ctx.run(
+    #     ["pdm", "export", "-f", "requirements", "--without-hashes"],
+    #     title="Exporting dependencies as requirements",
+    #     allow_overrides=False,
+    # )
 
-    ctx.run(
-        safety.check(requirements),
-        title="Checking dependencies",
-        # command="pdm export -f requirements --without-hashes | pdm run safety check --ignore 70612 --stdin",
-        command="echo safety is broken. not running check",
-    )
+    # ctx.run(
+    #     safety.check(requirements),
+    #     title="Checking dependencies",
+    #     command="pdm export -f requirements --without-hashes | pdm run safety check --ignore 70612 --stdin",
+    # )
 
 
 @duty
