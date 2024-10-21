@@ -5,7 +5,7 @@
 groups = ["default", "ci-quality", "docs", "typing", "duty", "tests", "quality", "maintain", "ci-tests", "security"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.2"
-content_hash = "sha256:0794a4db81c93238c2d81149b0fa8e88047d71a39adf2d98baf6617a61192edc"
+content_hash = "sha256:7656c7b6b8d4264541d0ebd64833135d5282da41cf1cbc9e151bca038568a7ab"
 
 [[package]]
 name = "annotated-types"
@@ -580,11 +580,23 @@ files = [
 ]
 
 [[package]]
+name = "git-me-the-url"
+version = "2.1.0"
+summary = "Generate sharable links to your Git source"
+groups = ["ci-quality", "ci-tests", "default"]
+dependencies = [
+    "gitpython",
+]
+files = [
+    {file = "git-me-the-url-2.1.0.tar.gz", hash = "sha256:abf8f4b10de393fe869225e0cd66f40de1864806cd1da2974026b9e91112c038"},
+]
+
+[[package]]
 name = "gitdb"
 version = "4.0.11"
 requires_python = ">=3.7"
 summary = "Git Object Database"
-groups = ["ci-quality", "docs"]
+groups = ["ci-quality", "ci-tests", "default", "docs"]
 dependencies = [
     "smmap<6,>=3.0.1",
 ]
@@ -598,7 +610,7 @@ name = "gitpython"
 version = "3.1.43"
 requires_python = ">=3.7"
 summary = "GitPython is a Python library used to interact with Git repositories"
-groups = ["ci-quality", "docs"]
+groups = ["ci-quality", "ci-tests", "default", "docs"]
 dependencies = [
     "gitdb<5,>=4.0.1",
 ]
@@ -1125,6 +1137,72 @@ files = [
 ]
 
 [[package]]
+name = "peakrdl"
+version = "1.1.0"
+requires_python = ">=3.6"
+summary = "Command-line tool for control/status register automation and code generation."
+groups = ["ci-quality", "ci-tests", "default"]
+dependencies = [
+    "peakrdl-cheader<2,>=1.0.0",
+    "peakrdl-html<3,>=2.10.1",
+    "peakrdl-ipxact<4,>=3.4.1",
+    "peakrdl-regblock<2,>=0.19.0",
+    "peakrdl-systemrdl<2,>=0.3.0",
+    "peakrdl-uvm<3,>=2.3.0",
+    "systemrdl-compiler<2,>=1.27.1",
+    "tomli; python_version < \"3.11\"",
+]
+files = [
+    {file = "peakrdl-1.1.0-py3-none-any.whl", hash = "sha256:aa8832413782049d6153895fae11969d7ba3f4bc28efb8e96fdde5db1cdc8f56"},
+    {file = "peakrdl-1.1.0.tar.gz", hash = "sha256:662a9d5ce6a8bc59ceca6bd442f4fbe8e4b01e53fe14b9bf7ee8f91ff6d8d74c"},
+]
+
+[[package]]
+name = "peakrdl-cheader"
+version = "1.0.0"
+requires_python = ">=3.6"
+summary = "Generate C Header files from a SystemRDL register model"
+groups = ["ci-quality", "ci-tests", "default"]
+dependencies = [
+    "jinja2",
+    "systemrdl-compiler<2,>=1.21.0",
+]
+files = [
+    {file = "peakrdl-cheader-1.0.0.tar.gz", hash = "sha256:c0a27950f30bbe53701b59963802def14ae876eda4415278ad358411a563e4c8"},
+    {file = "peakrdl_cheader-1.0.0-py3-none-any.whl", hash = "sha256:8a5da6f29fde7e999cfb9ef530a483ce81499280a1d08273c223449d90b55221"},
+]
+
+[[package]]
+name = "peakrdl-html"
+version = "2.10.1"
+summary = "HTML documentation generator for SystemRDL-based register models"
+groups = ["ci-quality", "ci-tests", "default"]
+dependencies = [
+    "Jinja2>=2.9",
+    "git-me-the-url>=2.0.3",
+    "markdown",
+    "python-markdown-math",
+    "systemrdl-compiler>=1.13.0",
+]
+files = [
+    {file = "peakrdl-html-2.10.1.tar.gz", hash = "sha256:955eb1c575308d35293622df3aaec26355ce8e5cdf6c88fb6a8fde216ac82f1c"},
+]
+
+[[package]]
+name = "peakrdl-ipxact"
+version = "3.5.0"
+requires_python = ">=3.5.2"
+summary = "Import and export IP-XACT XML to/from the systemrdl-compiler register model"
+groups = ["ci-quality", "ci-tests", "default"]
+dependencies = [
+    "systemrdl-compiler<2,>=1.24.0",
+]
+files = [
+    {file = "peakrdl_ipxact-3.5.0-py3-none-any.whl", hash = "sha256:930460f2b95cf5be52d7fadad416f040b68defbc17c372a58c581ee7195be364"},
+    {file = "peakrdl_ipxact-3.5.0.tar.gz", hash = "sha256:183b9e5412cad7734c25c710ca3722f75f8776b8c20ed38c1d4b83ac409d92d8"},
+]
+
+[[package]]
 name = "peakrdl-python"
 version = "0.9.2"
 requires_python = ">=3.7"
@@ -1138,6 +1216,47 @@ dependencies = [
 files = [
     {file = "peakrdl_python-0.9.2-py3-none-any.whl", hash = "sha256:ff4d79da62fded9d19bea682e6f4b78bb02eb622dd6810d17d4462afc7408984"},
     {file = "peakrdl_python-0.9.2.tar.gz", hash = "sha256:4b372cd2203c5011a614f4542e5e8c928edc606f65f1805aaad9c9c1dbd44a3e"},
+]
+
+[[package]]
+name = "peakrdl-regblock"
+version = "0.22.0"
+requires_python = ">=3.6"
+summary = "Compile SystemRDL into a SystemVerilog control/status register (CSR) block"
+groups = ["ci-quality", "ci-tests", "default"]
+dependencies = [
+    "Jinja2>=2.11",
+    "systemrdl-compiler<2,>=1.27.0",
+]
+files = [
+    {file = "peakrdl-regblock-0.22.0.tar.gz", hash = "sha256:37e6194ae1dd4923029a0928e586696bbc038f7bcccb627ba6b3dd7e38f9dc60"},
+    {file = "peakrdl_regblock-0.22.0-py3-none-any.whl", hash = "sha256:5b2324618254097b414d4b284eafdf9b1ba7c6b78b2c73304cfc9c4df7b13097"},
+]
+
+[[package]]
+name = "peakrdl-systemrdl"
+version = "0.3.0"
+requires_python = ">=3.6"
+summary = "Write a register model to a SystemRDL file"
+groups = ["ci-quality", "ci-tests", "default"]
+dependencies = [
+    "systemrdl-compiler>=1.25.1",
+]
+files = [
+    {file = "peakrdl-systemrdl-0.3.0.tar.gz", hash = "sha256:a20369b70b00920a132327f9e49eaab6732a6ecd701e98ecb6ecbf2ab570457e"},
+]
+
+[[package]]
+name = "peakrdl-uvm"
+version = "2.3.0"
+summary = "Generate UVM register model from compiled SystemRDL input"
+groups = ["ci-quality", "ci-tests", "default"]
+dependencies = [
+    "jinja2",
+    "systemrdl-compiler>=1.12.0",
+]
+files = [
+    {file = "peakrdl-uvm-2.3.0.tar.gz", hash = "sha256:ec18a4fc87d0201fe03ebe0de259a6b7f22be3de1d6908f80bce1e1416bc9cf2"},
 ]
 
 [[package]]
@@ -1397,6 +1516,20 @@ dependencies = [
 files = [
     {file = "python-dateutil-2.9.0.post0.tar.gz", hash = "sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3"},
     {file = "python_dateutil-2.9.0.post0-py2.py3-none-any.whl", hash = "sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427"},
+]
+
+[[package]]
+name = "python-markdown-math"
+version = "0.8"
+requires_python = ">=3.6"
+summary = "Math extension for Python-Markdown"
+groups = ["ci-quality", "ci-tests", "default"]
+dependencies = [
+    "Markdown>=3.0",
+]
+files = [
+    {file = "python-markdown-math-0.8.tar.gz", hash = "sha256:8564212af679fc18d53f38681f16080fcd3d186073f23825c7ce86fadd3e3635"},
+    {file = "python_markdown_math-0.8-py3-none-any.whl", hash = "sha256:c685249d84b5b697e9114d7beb352bd8ca2e07fd268fd4057ffca888c14641e5"},
 ]
 
 [[package]]
@@ -1736,7 +1869,7 @@ name = "smmap"
 version = "5.0.1"
 requires_python = ">=3.7"
 summary = "A pure Python implementation of a sliding window memory map manager"
-groups = ["ci-quality", "docs"]
+groups = ["ci-quality", "ci-tests", "default", "docs"]
 files = [
     {file = "smmap-5.0.1-py3-none-any.whl", hash = "sha256:e6d8668fa5f93e706934a62d7b4db19c8d9eb8cf2adbb75ef1b675aa332b69da"},
     {file = "smmap-5.0.1.tar.gz", hash = "sha256:dceeb6c0028fdb6734471eb07c0cd2aae706ccaecab45965ee83f11c8d3b1f62"},
@@ -1783,7 +1916,7 @@ name = "tomli"
 version = "2.0.2"
 requires_python = ">=3.8"
 summary = "A lil' TOML parser"
-groups = ["ci-quality", "ci-tests", "docs", "maintain", "security", "tests", "typing"]
+groups = ["ci-quality", "ci-tests", "default", "docs", "maintain", "security", "tests", "typing"]
 marker = "python_version < \"3.11\""
 files = [
     {file = "tomli-2.0.2-py3-none-any.whl", hash = "sha256:2ebe24485c53d303f690b0ec092806a085f07af5a5aa1464f3931eec36caaa38"},
