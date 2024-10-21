@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = ["inherit_metadata"]
 lock_version = "4.4.2"
-content_hash = "sha256:870ddc11cc243b3af6751e8feff23463727867e5fc9a801a3478cdae16b0b9be"
+content_hash = "sha256:a8360344c3c5541464418222f93744dcc2860e48a0fb236491b17404ca5170fa"
 
 [[package]]
 name = "antlr4-python3-runtime"
@@ -44,69 +44,40 @@ files = [
 
 [[package]]
 name = "markdown"
-version = "3.6"
+version = "3.7"
 requires_python = ">=3.8"
 summary = "Python implementation of John Gruber's Markdown."
 groups = ["default"]
 files = [
-    {file = "Markdown-3.6-py3-none-any.whl", hash = "sha256:48f276f4d8cfb8ce6527c8f79e2ee29708508bf4d40aa410fbc3b4ee832c850f"},
-    {file = "Markdown-3.6.tar.gz", hash = "sha256:ed4f41f6daecbeeb96e576ce414c41d2d876daa9a16cb35fa8ed8c2ddfad0224"},
+    {file = "Markdown-3.7-py3-none-any.whl", hash = "sha256:7eb6df5690b81a1d7942992c97fad2938e956e79df20cbc6186e9c3a77b1c803"},
+    {file = "markdown-3.7.tar.gz", hash = "sha256:2ae2471477cfd02dbbf038d5d9bc226d40def84b4fe2986e49b59b6b472bbed2"},
 ]
 
 [[package]]
 name = "markupsafe"
-version = "2.1.5"
-requires_python = ">=3.7"
+version = "3.0.2"
+requires_python = ">=3.9"
 summary = "Safely add untrusted strings to HTML/XML markup."
 groups = ["default"]
 files = [
-    {file = "MarkupSafe-2.1.5-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:a17a92de5231666cfbe003f0e4b9b3a7ae3afb1ec2845aadc2bacc93ff85febc"},
-    {file = "MarkupSafe-2.1.5-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:72b6be590cc35924b02c78ef34b467da4ba07e4e0f0454a2c5907f473fc50ce5"},
-    {file = "MarkupSafe-2.1.5-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:e61659ba32cf2cf1481e575d0462554625196a1f2fc06a1c777d3f48e8865d46"},
-    {file = "MarkupSafe-2.1.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:2174c595a0d73a3080ca3257b40096db99799265e1c27cc5a610743acd86d62f"},
-    {file = "MarkupSafe-2.1.5-cp310-cp310-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:ae2ad8ae6ebee9d2d94b17fb62763125f3f374c25618198f40cbb8b525411900"},
-    {file = "MarkupSafe-2.1.5-cp310-cp310-musllinux_1_1_aarch64.whl", hash = "sha256:075202fa5b72c86ad32dc7d0b56024ebdbcf2048c0ba09f1cde31bfdd57bcfff"},
-    {file = "MarkupSafe-2.1.5-cp310-cp310-musllinux_1_1_i686.whl", hash = "sha256:598e3276b64aff0e7b3451b72e94fa3c238d452e7ddcd893c3ab324717456bad"},
-    {file = "MarkupSafe-2.1.5-cp310-cp310-musllinux_1_1_x86_64.whl", hash = "sha256:fce659a462a1be54d2ffcacea5e3ba2d74daa74f30f5f143fe0c58636e355fdd"},
-    {file = "MarkupSafe-2.1.5-cp310-cp310-win32.whl", hash = "sha256:d9fad5155d72433c921b782e58892377c44bd6252b5af2f67f16b194987338a4"},
-    {file = "MarkupSafe-2.1.5-cp310-cp310-win_amd64.whl", hash = "sha256:bf50cd79a75d181c9181df03572cdce0fbb75cc353bc350712073108cba98de5"},
-    {file = "MarkupSafe-2.1.5-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:629ddd2ca402ae6dbedfceeba9c46d5f7b2a61d9749597d4307f943ef198fc1f"},
-    {file = "MarkupSafe-2.1.5-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:5b7b716f97b52c5a14bffdf688f971b2d5ef4029127f1ad7a513973cfd818df2"},
-    {file = "MarkupSafe-2.1.5-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:6ec585f69cec0aa07d945b20805be741395e28ac1627333b1c5b0105962ffced"},
-    {file = "MarkupSafe-2.1.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b91c037585eba9095565a3556f611e3cbfaa42ca1e865f7b8015fe5c7336d5a5"},
-    {file = "MarkupSafe-2.1.5-cp311-cp311-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:7502934a33b54030eaf1194c21c692a534196063db72176b0c4028e140f8f32c"},
-    {file = "MarkupSafe-2.1.5-cp311-cp311-musllinux_1_1_aarch64.whl", hash = "sha256:0e397ac966fdf721b2c528cf028494e86172b4feba51d65f81ffd65c63798f3f"},
-    {file = "MarkupSafe-2.1.5-cp311-cp311-musllinux_1_1_i686.whl", hash = "sha256:c061bb86a71b42465156a3ee7bd58c8c2ceacdbeb95d05a99893e08b8467359a"},
-    {file = "MarkupSafe-2.1.5-cp311-cp311-musllinux_1_1_x86_64.whl", hash = "sha256:3a57fdd7ce31c7ff06cdfbf31dafa96cc533c21e443d57f5b1ecc6cdc668ec7f"},
-    {file = "MarkupSafe-2.1.5-cp311-cp311-win32.whl", hash = "sha256:397081c1a0bfb5124355710fe79478cdbeb39626492b15d399526ae53422b906"},
-    {file = "MarkupSafe-2.1.5-cp311-cp311-win_amd64.whl", hash = "sha256:2b7c57a4dfc4f16f7142221afe5ba4e093e09e728ca65c51f5620c9aaeb9a617"},
-    {file = "MarkupSafe-2.1.5-cp312-cp312-macosx_10_9_universal2.whl", hash = "sha256:8dec4936e9c3100156f8a2dc89c4b88d5c435175ff03413b443469c7c8c5f4d1"},
-    {file = "MarkupSafe-2.1.5-cp312-cp312-macosx_10_9_x86_64.whl", hash = "sha256:3c6b973f22eb18a789b1460b4b91bf04ae3f0c4234a0a6aa6b0a92f6f7b951d4"},
-    {file = "MarkupSafe-2.1.5-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:ac07bad82163452a6884fe8fa0963fb98c2346ba78d779ec06bd7a6262132aee"},
-    {file = "MarkupSafe-2.1.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f5dfb42c4604dddc8e4305050aa6deb084540643ed5804d7455b5df8fe16f5e5"},
-    {file = "MarkupSafe-2.1.5-cp312-cp312-manylinux_2_5_i686.manylinux1_i686.manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:ea3d8a3d18833cf4304cd2fc9cbb1efe188ca9b5efef2bdac7adc20594a0e46b"},
-    {file = "MarkupSafe-2.1.5-cp312-cp312-musllinux_1_1_aarch64.whl", hash = "sha256:d050b3361367a06d752db6ead6e7edeb0009be66bc3bae0ee9d97fb326badc2a"},
-    {file = "MarkupSafe-2.1.5-cp312-cp312-musllinux_1_1_i686.whl", hash = "sha256:bec0a414d016ac1a18862a519e54b2fd0fc8bbfd6890376898a6c0891dd82e9f"},
-    {file = "MarkupSafe-2.1.5-cp312-cp312-musllinux_1_1_x86_64.whl", hash = "sha256:58c98fee265677f63a4385256a6d7683ab1832f3ddd1e66fe948d5880c21a169"},
-    {file = "MarkupSafe-2.1.5-cp312-cp312-win32.whl", hash = "sha256:8590b4ae07a35970728874632fed7bd57b26b0102df2d2b233b6d9d82f6c62ad"},
-    {file = "MarkupSafe-2.1.5-cp312-cp312-win_amd64.whl", hash = "sha256:823b65d8706e32ad2df51ed89496147a42a2a6e01c13cfb6ffb8b1e92bc910bb"},
-    {file = "MarkupSafe-2.1.5.tar.gz", hash = "sha256:d283d37a890ba4c1ae73ffadf8046435c76e7bc2247bbb63c00bd1a709c6544b"},
+    {file = "MarkupSafe-3.0.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:bbcb445fa71794da8f178f0f6d66789a28d7319071af7a496d4d507ed566270d"},
+    {file = "markupsafe-3.0.2.tar.gz", hash = "sha256:ee55d3edf80167e48ea11a923c7386f4669df67d7994554387f84e7d8b0a2bf0"},
 ]
 
 [[package]]
 name = "peakrdl-python"
-version = "0.8.1"
+version = "0.9.2"
 requires_python = ">=3.7"
 summary = "Generate Python Register Access Layer (RAL) from SystemRDL"
 groups = ["default"]
 dependencies = [
     "jinja2",
-    "systemrdl-compiler>=1.24.0",
+    "systemrdl-compiler>=1.25.0",
     "typing-extensions; python_version < \"3.11\"",
 ]
 files = [
-    {file = "peakrdl_python-0.8.1-py3-none-any.whl", hash = "sha256:270e4fa314badd62ef6db83e3f09318796b873438b464c55e0da05bb1304d0f9"},
-    {file = "peakrdl_python-0.8.1.tar.gz", hash = "sha256:5a52f01d7190b283c216048f3fe3d9b9822320f8376f0b8d21b0e16e6131f924"},
+    {file = "peakrdl_python-0.9.2-py3-none-any.whl", hash = "sha256:ff4d79da62fded9d19bea682e6f4b78bb02eb622dd6810d17d4462afc7408984"},
+    {file = "peakrdl_python-0.9.2.tar.gz", hash = "sha256:4b372cd2203c5011a614f4542e5e8c928edc606f65f1805aaad9c9c1dbd44a3e"},
 ]
 
 [[package]]
@@ -122,27 +93,7 @@ dependencies = [
 ]
 files = [
     {file = "systemrdl-compiler-1.27.3.tar.gz", hash = "sha256:db68354bff194cc7236ed68bac64c5bb81a9a17b5ba7b6f37b30078a50a53a3e"},
-    {file = "systemrdl_compiler-1.27.3-cp310-cp310-macosx_10_13_x86_64.whl", hash = "sha256:9c1906d51f429815b6065dae61784acb9353202c323f2a67ac3719a335544495"},
-    {file = "systemrdl_compiler-1.27.3-cp310-cp310-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:8a117e2db1b0ee2bd7fb77b48b2f4c6661bbb96f015df81f118484175d34181e"},
     {file = "systemrdl_compiler-1.27.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:eb0ea5d6ca33d93b1c5f1bd1658d5aefc315f3de9f9a11feb21ee39e01ea3669"},
-    {file = "systemrdl_compiler-1.27.3-cp310-cp310-musllinux_1_1_i686.whl", hash = "sha256:d25ebe163ef69c7af3e86e40b071d87548164ed11af1ee6a1722c104115f22f0"},
-    {file = "systemrdl_compiler-1.27.3-cp310-cp310-musllinux_1_1_x86_64.whl", hash = "sha256:a67697a2e077878db2c1b2247f48e7b73eab0b67181a9573f7a96c01f1a24c8c"},
-    {file = "systemrdl_compiler-1.27.3-cp310-cp310-win32.whl", hash = "sha256:dd2953c7c40c602e273db5a943750798a50c78ca5b953d3f561db21cbda2cd20"},
-    {file = "systemrdl_compiler-1.27.3-cp310-cp310-win_amd64.whl", hash = "sha256:f430780c158e3f48e45cda998ad767f807cc661c5a8a312cb2bb2af3735e0bbe"},
-    {file = "systemrdl_compiler-1.27.3-cp311-cp311-macosx_10_13_x86_64.whl", hash = "sha256:f76135c001454e55aff75c97f44d5fc53162455218ecd11bf817b106d7f4e649"},
-    {file = "systemrdl_compiler-1.27.3-cp311-cp311-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:acceab3b67ab59955069203b14881d72128993a5a3eba9c9baac96713f88b9e4"},
-    {file = "systemrdl_compiler-1.27.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:218e25567d6282bd6c1caf4ecfbcb5541aa46039bc94f4afd35a1ef83b7e4b2c"},
-    {file = "systemrdl_compiler-1.27.3-cp311-cp311-musllinux_1_1_i686.whl", hash = "sha256:da0f705ed485de68f82a4f8db8cabbcf701fef7ee4f188f4e224507854a7e56e"},
-    {file = "systemrdl_compiler-1.27.3-cp311-cp311-musllinux_1_1_x86_64.whl", hash = "sha256:a815fe6f70338b42173586324bb140ecf2e33f2189f336fc49ffda8aa12f02a4"},
-    {file = "systemrdl_compiler-1.27.3-cp311-cp311-win32.whl", hash = "sha256:2a145ebc54cdc2efe28e0c2b21135e5bc486d84b2203eb35b9fc73aecd7519ae"},
-    {file = "systemrdl_compiler-1.27.3-cp311-cp311-win_amd64.whl", hash = "sha256:4f0741fe131942a9b9cc09bca64791504a81c3a0244c094b3935d1b1c4fcff42"},
-    {file = "systemrdl_compiler-1.27.3-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:63f742b99b3ef966a641c2eddae73c6a5c6e372c62e79943aaec3721fa038b25"},
-    {file = "systemrdl_compiler-1.27.3-cp312-cp312-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:699c79f4619f8fb5adc3f58f951c65adbdb598777f9c3110a2e10cd9015bba07"},
-    {file = "systemrdl_compiler-1.27.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:13cf5fb47c19a51f61a17ffd46b24000aae9e865e8eb4a3d6b03813c5f9c5b29"},
-    {file = "systemrdl_compiler-1.27.3-cp312-cp312-musllinux_1_1_i686.whl", hash = "sha256:85db7a1ab191d14eaa8a88e7dce338d35b44550129590594183d8650070372f3"},
-    {file = "systemrdl_compiler-1.27.3-cp312-cp312-musllinux_1_1_x86_64.whl", hash = "sha256:693012be4a25ef348f33ac4401c46ed36e5932c31d0e667dd3b914d7a3389eb6"},
-    {file = "systemrdl_compiler-1.27.3-cp312-cp312-win32.whl", hash = "sha256:04a64bc3157aa25bc7822d0323687ee7140465d41c1a1896e7111eb5701278be"},
-    {file = "systemrdl_compiler-1.27.3-cp312-cp312-win_amd64.whl", hash = "sha256:3423b267b484f28f3e73b6b3024e39c79434be5d68b06c9e688a15044cef7df5"},
 ]
 
 [[package]]
