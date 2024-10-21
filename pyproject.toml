@@ -32,8 +32,10 @@ fallback_version = "0.0.0"
 
 [tool.pdm.dev-dependencies]
 duty = ["duty>=0.10"]
-ci-quality = ["peakrdl-cocotb-ralgen[duty,docs,quality,typing,security]"]
+ci-quality = ["peakrdl-cocotb-ralgen[duty,docs,quality,typing,security,api]"]
 ci-tests = ["peakrdl-cocotb-ralgen[duty,tests]"]
+api= [
+"griffe>=1.5.1",
 docs = [
     "black>=23.9",
     "markdown-callouts>=0.3",
