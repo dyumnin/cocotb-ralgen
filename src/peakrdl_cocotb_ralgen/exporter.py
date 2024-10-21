@@ -8,7 +8,7 @@ import sys
 from typing import List, Optional, Union
 
 from systemrdl import RDLCompiler, RDLWalker
-from systemrdl.node import (  # type: ignore
+from systemrdl.node import (
     AddrmapNode,
     RootNode,
 )
@@ -31,7 +31,7 @@ class CocotbRALExporter:  # pylint: disable=too-few-public-methods
         # print(f"{top_node.inst.inst_name} {input_files} {outputpath}")
         rdlc = RDLCompiler()
         try:
-            for input_file in input_files:
+            for input_file in input_files:  # type: ignore
                 rdlc.compile_file(input_file)
                 root = rdlc.elaborate()
         except:
