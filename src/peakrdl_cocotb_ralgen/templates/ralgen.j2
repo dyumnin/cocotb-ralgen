@@ -11,17 +11,21 @@ class {{node.get_path_segment()}}_RAL_Test:
         ''')
         pass
     def reset_test(self,verbose=False):
+        error_count=0
         for key,val in self.masks.items():
-            r=self.regmodel.__getattribute__(key)
             if 'reset' in val['disable']:
                 continue
-            # rv=r.read()
-	    rv=0
-	    for hsh in val['signals']:
-	       rv|=self.get_signal_value(hsh)<< hsh['low']
-            assert rv & val['reset_mask'] == val['reset_value'], "%s Resetvalue mismatch Actual %X,Expected %X," %(key,rv & val['reset_mask'], val['reset_value'])
+            rv=0
+            for hsh in val['signals']:
+               rv|=self.get_signal_value(hsh)<< hsh['low']
+            try:
+                assert rv & val['reset_mask'] == val['reset_value'], "%s Resetvalue mismatch Actual %X,Expected %X," %(key,rv & val['reset_mask'], val['reset_value'])
+            except:
+              cocotb.log.error("Error Reset Read Reg:%s, Value %s"%(key,rv))
+              error_count+=1
             if verbose:
                 logger.info("Reset Read Reg:%s, Value %s"%(key,rv))
+        assert error_count ==0, f"Test exited with {error_count} Error"
 
     async def rw_test(self,foreground_write=True,foreground_read=True,count=10,default_value=None,verbose=False):
         # TODO Handle background oprations
@@ -41,7 +45,8 @@ class {{node.get_path_segment()}}_RAL_Test:
                 if foreground_write:
                     await r.write(wval)
                 else:
-                    self.set_signal_value(hsh,wval)
+                    for hsh in val['signals']:
+                        self.set_signal_value(hsh,wval)
                 if foreground_read:
                     rv=await r.read()
                 else:
