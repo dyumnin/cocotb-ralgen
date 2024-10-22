@@ -4,20 +4,28 @@ class {{node.get_path_segment()}}_RAL_Test:
         self.regmodel=regmodel
         self.get_signal_value=bg_rdFn
         self.set_signal_value=bg_wrFn
+        logger.info(f'''
+        Cocotb RALGEN: SystemRDL to RALtest converter.
+        Copyright © 2024 Dyumnin Semiconductors.
+        https://dyumnin.com
+        ''')
         pass
     def reset_test(self,verbose=False):
         for key,val in self.masks.items():
             r=self.regmodel.__getattribute__(key)
             if 'reset' in val['disable']:
                 continue
-            rv=r.read()
+            # rv=r.read()
+	    rv=0
+	    for hsh in val['signals']:
+	       rv|=self.get_signal_value(hsh)<< hsh['low']
             assert rv & val['reset_mask'] == val['reset_value'], "%s Resetvalue mismatch Actual %X,Expected %X," %(key,rv & val['reset_mask'], val['reset_value'])
             if verbose:
                 logger.info("Reset Read Reg:%s, Value %s"%(key,rv))
 
     async def rw_test(self,foreground_write=True,foreground_read=True,count=10,default_value=None,verbose=False):
         # TODO Handle background oprations
-        assert foreground_write and foreground_read, "Error Background operations are not yet defined"
+        # assert foreground_write and foreground_read, "Error Background operations are not yet defined"
         for key,val in self.masks.items():
             if 'rw' in val['disable']:
                 continue
@@ -39,11 +47,11 @@ class {{node.get_path_segment()}}_RAL_Test:
                 else:
                     rv=0
                     for hsh in val['signals']:
-                       rv|=self.get_signal_value(hsh)
+                       rv|=self.get_signal_value(hsh)<< hsh['low']
                 wmask=val['write_mask']
                 rmask=val['read_mask']
                 actual=rv&wmask&~donttest
                 expected= wval& wmask &rmask
                 assert actual==expected,"%s:: Read Write Written %x, Read %x, Expected %x, wrMask %x rdmask %x, donttest = %x"%(key,wrval,actual,expected,wmask,rmask, donttest)
             if verbose:
-                logger.info("Read Write Test Reg:%s, Value %s"%(key,rv))
+                logger.info(f"Test RW: {key} wval {wval:x} rv {rv:x} expected {expected:x} actual {actual:x}")
