@@ -23,13 +23,16 @@ build-backend = "pdm.backend"
 [project.entry-points."peakrdl.exporters"]
 cocotb_ralgen = "peakrdl_cocotb_ralgen.__peakrdl__:Exporter"
 
+[project.urls]
+Homepage = "https://dyumnin.com/cocotb_ralgen"
+Repository = "https://github.com/dyumnin/cocotb-ralgen.git"
+Issues = "https://github.com/dyumnin/cocotb-ralgen/issues"
 [tool.pdm]
 distribution = true
 
 [tool.pdm.version]
 source = "scm"
 version_format = "version:format_version"
-fallback_version = "0.0.0"
 
 [tool.pdm.dev-dependencies]
 duty = ["duty>=0.10"]
