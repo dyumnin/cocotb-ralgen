@@ -87,6 +87,7 @@ ignore = [
 "ARG001",
 "I001",
 "S603",
+"E402",
 ]
 
 [per-file-ignores]

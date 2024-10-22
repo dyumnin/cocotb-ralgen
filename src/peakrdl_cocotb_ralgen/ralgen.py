@@ -71,11 +71,11 @@ logger = cocotb.log
             file=file,
         )
         logger.info(
-            f"""
+            """
         Cocotb RALGEN: SystemRDL to RALtest converter.
         Copyright © 2024 Dyumnin Semiconductors.
         https://dyumnin.com
-        """
+        """,
         )
 
     def enter_Addrmap(self, node):
