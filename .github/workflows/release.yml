@@ -55,7 +55,7 @@ jobs:
 
       - name: build documentation
         run: |
-          pdm install -E doc
+          pdm install -G doc
           pdm run mkdocs build
 
       - name: publish documentation
