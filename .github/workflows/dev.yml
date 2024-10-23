@@ -36,7 +36,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pdm cocotb peakrdl cocotbext.axi
+          pip install pdm cocotb peakrdl cocotbext.axi cocotbext.dyulib
           pip install .
           sudo apt install -y verilog make
           make -C tests
