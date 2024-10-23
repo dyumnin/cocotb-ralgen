@@ -1104,38 +1104,53 @@
 <div class="highlight"><pre><span></span><code>pip3 install peakrdl-cocotb-ralgen
 </code></pre></div>
 <h1 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h1>
-<p><div class="highlight"><pre><span></span><code>peakrdl cocotb_ralgen &lt;SystemRDL File&gt; -o &lt;output folder&gt;
+<div class="highlight"><pre><span></span><code>peakrdl cocotb_ralgen &lt;SystemRDL File&gt; -o &lt;output folder&gt;
 peakrdl python &lt;SystemRDL File&gt; -o &lt;output folder&gt;
 </code></pre></div>
-Then in your cocotb test file
-<div class="highlight"><pre><span></span><code>from &lt;AddrMap Name&gt;_RAL import &lt;AddrMap Name&gt;_RAL_Test
+<p>Then in your cocotb test file
+<div class="highlight"><pre><span></span><code>...
+from peakrdl_cocotb_ralgen.callbacks.bsv import Callback
+from peakrdl_cocotb_ralgen.testcases import rw_test, reset_test
+from &lt;AddrMap Name&gt;_RAL import &lt;AddrMap_Name&gt;_RAL_Test as RAL
 ...
-ral=&lt;AddrMap Name&gt;_RAL_Test(regmodel)
-from &lt;AddrMap_Name&gt;_RAL import &lt;AddrMap_Name&gt;_RAL_Test as RAL
-@cocotb.test
-async def test_ral(dut):
-    env=Env(dut)
-    await env.ral.rw_test()
-...
+</code></pre></div>
+To read and check the value of all registers at Reset.
+<div class="highlight"><pre><span></span><code>@cocotb.test
+async def test_ral_reset(dut):
+    &quot;&quot;&quot;Ral test reset.&quot;&quot;&quot;
+    env = Env(dut)
+    ral = RAL(env.reg, callback=Callback(dut))
+    env.start()
+    await FallingEdge(dut.rst_n)
+    await ReadOnly()
+    await reset_test.reset_test(ral, verbose=True)
 </code></pre></div></p>
-<p>And in your cocotb env file
-<div class="highlight"><pre><span></span><code>from &lt;AddrMap_Name&gt;.reg_model.&lt;AddrMap_Name&gt; import &lt;AddrMap_Name&gt;_cls
-from &lt;AddrMap_Name&gt;.lib  import AsyncCallbackSet
-from &lt;AddrMap_Name&gt;_RAL import &lt;AddrMap_Name&gt;_RAL_Test as RAL
-class Env:
-     def __init__(dut,...):
-    self.reg=&lt;AddrMap_Name&gt;_cls(
-         callbacks=AsyncCallbackSet(
-            read_callback=self.readReg,
-            write_callback=self.writeReg
-            ))
-        self.ral=RAL(self.reg)
-    async def ral_rw(self):
-        self.ral.rw_test()
+<p>To Perform Read write checks:</p>
+<div class="highlight"><pre><span></span><code>@cocotb.test
+async def test_ral_readwrite(dut):
+    &quot;&quot;&quot;Ral test reset.&quot;&quot;&quot;
+    env = Env(dut)
+    ral = RAL(env.reg, callback=Callback(dut))
+    await RisingEdge(dut.rst_n)
+    await ReadOnly()
+    await rw_test.rw_test(ral,
+    verbose=True
+        foreground_read=True,
+        foreground_write=False,
+        count=1,
+        verbose=True,
+    )
 ...
-</code></pre></div></p>
-<p>To support background read and writes you need to create callbacks which will return the signal value
-for a complete working example <a href="https://github.com/dyumnin/cocotb-ralgen/blob/main/tests/cocotbtest_dma.py">check the tests folder</a>.</p>
+</code></pre></div>
+<h1 id="supporting-different-rtl-generators">supporting different RTL Generators.<a class="headerlink" href="#supporting-different-rtl-generators" title="Permanent link">&para;</a></h1>
+<p>For interfacing your RTL Generator generated code, ralgen needs to know the pattern used by you for signal naming.
+You can provide this information by passing a Callback function which maps the signal from systemRDL to RTL and provides methods to read &amp; write to it.</p>
+<h1 id="adding-new-tests">Adding new tests.<a class="headerlink" href="#adding-new-tests" title="Permanent link">&para;</a></h1>
+<p>New tests can be added to the testcases folder.</p>
+<h1 id="contribution">Contribution<a class="headerlink" href="#contribution" title="Permanent link">&para;</a></h1>
+<p>PR's for supporting different RTL generators or test strategies are welcome.</p>
+<h1 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h1>
+<p>For a complete working example <a href="https://github.com/dyumnin/cocotb-ralgen/blob/main/tests/cocotbtest_dma.py">check the tests folder</a>.</p>
 
 
 
