@@ -61,6 +61,10 @@ jobs:
       - name: publish documentation
         uses: peaceiris/actions-gh-pages@v3
         with:
+          permissions:
+            contents: read
+            pages: write
+            id-token: write
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
 
