@@ -3,6 +3,30 @@
 Contributions are welcome, and they are greatly appreciated!
 Every little bit helps, and credit will always be given.
 
+## Areas for contribution
+The project follows a modular approach to make it easier to support new RTL Generators and Testcases.
+
+### Adding support for a new RTL Coding style.
+
+There are dozens of proprietary and opensource tools for generating RTL code from IP-XACT, SystemRDL, CSV or other inhouse formats.
+These tools will define their fields in a fixed pattern, e.g. `<prefix>_<RegisterName>_<signalName>` or `<signalName>` or ...
+
+To add support to a particular style of signal naming,
+
+1. create a new file under `src/peakrdl_cocotb_ralgen/callbacks/bsv.py`
+	2.  Preferably name the file as <toolname>.py
+3. define your class and define the read and write functions in it.
+4. submit a PR.
+
+### Adding support for a new TestCases.
+The current version of cocotb-ralgen supports reset check and simple rw_test with foreground and background read/write combinations.
+There are a bunch of additional tests that are normally written for checking registers.
+To contribute a new test:
+1. Add your test to `src/peakrdl_cocotb_ralgen/testcases` folder
+2. Submit a PR.
+
+
+
 ## Environment setup
 
 Nothing easier!

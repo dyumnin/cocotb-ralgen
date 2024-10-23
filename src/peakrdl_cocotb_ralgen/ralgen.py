@@ -3,6 +3,7 @@
 # This software is licensed under the MIT License.
 # For more information, please visit https://dyumnin.com
 import logging
+import pkg_resources
 
 logging.basicConfig(
     level=logging.INFO,
@@ -15,32 +16,6 @@ from pprint import PrettyPrinter
 
 from jinja2 import Environment, PackageLoader, select_autoescape
 from systemrdl import RDLCompiler, RDLListener, RDLWalker
-
-"""
-# RAL Test.
-RAL Test consists of
-1. Reset read test
-2. Random Read Write tests
-
-These tests use a mix of front door/backdoor access.
-e.g.
-
-|Write |Read|
-| --- | ---|
-| Front | Front |
-| Back | Front |
-| Front | Back |
-| Back | Back |
-
-For using backdoor access you need to create two functions for reading and writing to hdl signals and pass it to this class
-
-A check function can only check the modified register, or check all registers to ensure that only the desired bit in the desired register is modified.
-
-For every register we need to create
-1. A Reset value and Reset mask
-2. Write mask
-3. Read mask
-"""
 
 
 class HexPP(PrettyPrinter):
@@ -55,7 +30,32 @@ class HexPP(PrettyPrinter):
 
 # Define a listener that will print out the register model hierarchy
 class RALGEN(RDLListener):
-    """RAL Generator."""
+    """RAL Generator.
+
+    # RAL Test.
+    RAL Test consists of
+    1. Reset read test
+    2. Random Read Write tests
+
+    These tests use a mix of front door/backdoor access.
+    e.g.
+
+    |Write |Read|
+    | --- | ---|
+    | Front | Front |
+    | Back | Front |
+    | Front | Back |
+    | Back | Back |
+
+    For using backdoor access you need to create two functions for reading and writing to hdl signals and pass it to this class
+
+    A check function can only check the modified register, or check all registers to ensure that only the desired bit in the desired register is modified.
+
+    For every register we need to create
+    1. A Reset value and Reset mask
+    2. Write mask
+    3. Read mask
+    """
 
     def __init__(self, file):
         """Constructor."""
@@ -70,9 +70,11 @@ logger = cocotb.log
               """,
             file=file,
         )
-        logger.info(
+        print(
+            f" Cocotb RALGEN: SystemRDL to RALtest converter version {pkg_resources.get_distribution('peakrdl_cocotb_ralgen').version}.",
+        )
+        print(
             """
-        Cocotb RALGEN: SystemRDL to RALtest converter.
         Copyright © 2024 Dyumnin Semiconductors.
         https://dyumnin.com
         """,
