@@ -91,6 +91,13 @@ ignore = [
 ]
 
 [per-file-ignores]
+"src/peakrdl_cocotb_ralgen/testcases/*.py"=[
+"S101",
+"S311",
+"FBT002",
+"G002"
+
+]
 "src/*/cli.py" = [
     "T201",  # Print statement
 ]
