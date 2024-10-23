@@ -3,7 +3,7 @@
 # This software is licensed under the MIT License.
 # For more information, please visit https://dyumnin.com
 import logging
-import pkg_resources
+import importlib.metadata as il
 
 logging.basicConfig(
     level=logging.INFO,
@@ -71,7 +71,7 @@ logger = cocotb.log
             file=file,
         )
         print(
-            f" Cocotb RALGEN: SystemRDL to RALtest converter version {pkg_resources.get_distribution('peakrdl_cocotb_ralgen').version}.",
+            f" Cocotb RALGEN: SystemRDL to RALtest converter version {il.distribution('peakrdl_cocotb_ralgen').version}.",
         )
         print(
             """
