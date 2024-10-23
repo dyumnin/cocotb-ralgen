@@ -45,10 +45,19 @@ class Callback:
         return rv
 
     def sig(self, sigHash):
+        """Finds the signal in dut and returns a reference to it.
+
+        params:
+            sigHash (dict): A dictionary of signal parameters "
+                {"reg": register,
+                "sig": signal_name,
+                "low": signal's low index in the register,
+                "high": signal's high index in the register,
+                 }
+        """
         sig = f"s{sigHash['reg'].lower()}{sigHash['sig']}"
-        rv = (
+        return (
             getattr(self.dut, sig)
             if hasattr(self.dut, sig)
             else getattr(self.dut, sig + "_wget")
         )
-        return rv
