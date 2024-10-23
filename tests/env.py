@@ -43,6 +43,10 @@ class Env:
         await Timer(10, "ns")
         cocotb.start_soon(Clock(self.dut.CLK, 5, "ns").start())
 
+    async def clk_in_reset(self):
+        """Wrapper over the reset_end event."""
+        await clock_in_reset_start.wait()
+
     async def reset_done(self):
         """Wrapper over the reset_end event."""
         await reset_end.wait()

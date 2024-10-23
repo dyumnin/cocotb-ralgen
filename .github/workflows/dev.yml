@@ -15,13 +15,14 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  # 83.15
   # This workflow contains a single job called "test"
   test:
     # The type of runner that the job will run on
     strategy:
       matrix:
-        python-versions: [ 3.8, 3.9]
-        os: [ubuntu-18.04]
+        python-versions: [ 3.10, 3.9]
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job

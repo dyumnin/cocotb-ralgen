@@ -1,4 +1,14 @@
 """RAL Generator."""
+# Copyright © 2024 Dyumnin Semiconductors. All rights reserved.
+# This software is licensed under the MIT License.
+# For more information, please visit https://dyumnin.com
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(module)s %(funcName)s %(lineno)d %(levelname)s:: %(message)s",
+)
+logger = logging.getLogger()
 
 import sys
 from pprint import PrettyPrinter
@@ -55,12 +65,17 @@ class RALGEN(RDLListener):
         print(
             """
 import random
-import logging
-logger = logging.getLogger(__name__)
-FORMAT = "[%(filename)s:%(lineno)s - %(funcName)20s() ] %(message)s"
-logging.basicConfig(format=FORMAT)
+import cocotb
+logger = cocotb.log
               """,
             file=file,
+        )
+        logger.info(
+            """
+        Cocotb RALGEN: SystemRDL to RALtest converter.
+        Copyright © 2024 Dyumnin Semiconductors.
+        https://dyumnin.com
+        """,
         )
 
     def enter_Addrmap(self, node):
