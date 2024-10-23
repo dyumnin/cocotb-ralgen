@@ -45,6 +45,26 @@
          <lastmod>2024-10-23</lastmod>
     </url>
     <url>
+         <loc>https://dyumnin.github.io/cocotb-ralgen/reference/peakrdl_cocotb_ralgen/callbacks/</loc>
+         <lastmod>2024-10-23</lastmod>
+    </url>
+    <url>
+         <loc>https://dyumnin.github.io/cocotb-ralgen/reference/peakrdl_cocotb_ralgen/callbacks/bsv/</loc>
+         <lastmod>2024-10-23</lastmod>
+    </url>
+    <url>
+         <loc>https://dyumnin.github.io/cocotb-ralgen/reference/peakrdl_cocotb_ralgen/testcases/</loc>
+         <lastmod>2024-10-23</lastmod>
+    </url>
+    <url>
+         <loc>https://dyumnin.github.io/cocotb-ralgen/reference/peakrdl_cocotb_ralgen/testcases/reset_test/</loc>
+         <lastmod>2024-10-23</lastmod>
+    </url>
+    <url>
+         <loc>https://dyumnin.github.io/cocotb-ralgen/reference/peakrdl_cocotb_ralgen/testcases/rw_test/</loc>
+         <lastmod>2024-10-23</lastmod>
+    </url>
+    <url>
          <loc>https://dyumnin.github.io/cocotb-ralgen/coverage/</loc>
          <lastmod>2024-10-23</lastmod>
     </url>
