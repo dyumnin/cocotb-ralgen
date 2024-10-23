@@ -1,10 +1,10 @@
 """Test for verilog simulation."""
 import cocotb
 from cocotb.triggers import RisingEdge
-from DMA_Reg_RAL import DMA_Reg_RAL_Test as RAL
 from env import Env
 from peakrdl_cocotb_ralgen.callbacks.bsv import Callback
 from peakrdl_cocotb_ralgen.testcases import rw_test, reset_test
+from DMA_Reg_RAL import DMA_Reg_RAL_Test as RAL
 
 
 @cocotb.test

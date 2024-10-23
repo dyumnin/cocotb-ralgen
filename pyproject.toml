@@ -27,6 +27,7 @@ cocotb_ralgen = "peakrdl_cocotb_ralgen.__peakrdl__:Exporter"
 Homepage = "https://dyumnin.com/cocotb_ralgen"
 Repository = "https://github.com/dyumnin/cocotb-ralgen.git"
 Issues = "https://github.com/dyumnin/cocotb-ralgen/issues"
+Documentation = "https://dyumnin.github.io/cocotb-ralgen"
 [tool.pdm]
 distribution = true
 
