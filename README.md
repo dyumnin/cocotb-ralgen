@@ -12,39 +12,59 @@ pip3 install peakrdl-cocotb-ralgen
 ```
 peakrdl cocotb_ralgen <SystemRDL File> -o <output folder>
 peakrdl python <SystemRDL File> -o <output folder>
-
 ```
+
 Then in your cocotb test file
 ```
-from <AddrMap Name>_RAL import <AddrMap Name>_RAL_Test
 ...
-ral=<AddrMap Name>_RAL_Test(regmodel)
-from <AddrMap_Name>_RAL import <AddrMap_Name>_RAL_Test as RAL
+from peakrdl_cocotb_ralgen.callbacks.bsv import Callback
+from peakrdl_cocotb_ralgen.testcases import rw_test, reset_test
+from <AddrMap Name>_RAL import <AddrMap_Name>_RAL_Test as RAL
+...
+```
+To read and check the value of all registers at Reset.
+```
 @cocotb.test
-async def test_ral(dut):
-    env=Env(dut)
-    await env.ral.rw_test()
+async def test_ral_reset(dut):
+    """Ral test reset."""
+    env = Env(dut)
+    ral = RAL(env.reg, callback=Callback(dut))
+    env.start()
+    await FallingEdge(dut.rst_n)
+    await ReadOnly()
+    await reset_test.reset_test(ral, verbose=True)
+```
+
+To Perform Read write checks:
+
+```
+@cocotb.test
+async def test_ral_readwrite(dut):
+    """Ral test reset."""
+    env = Env(dut)
+    ral = RAL(env.reg, callback=Callback(dut))
+    await RisingEdge(dut.rst_n)
+    await ReadOnly()
+    await rw_test.rw_test(ral,
+    verbose=True
+        foreground_read=True,
+        foreground_write=False,
+        count=1,
+        verbose=True,
+    )
 ...
 ```
+# supporting different RTL Generators.
+For interfacing your RTL Generator generated code, ralgen needs to know the pattern used by you for signal naming.
+You can provide this information by passing a Callback function which maps the signal from systemRDL to RTL and provides methods to read & write to it.
 
-And in your cocotb env file
-```
-from <AddrMap_Name>.reg_model.<AddrMap_Name> import <AddrMap_Name>_cls
-from <AddrMap_Name>.lib  import AsyncCallbackSet
-from <AddrMap_Name>_RAL import <AddrMap_Name>_RAL_Test as RAL
-class Env:
-     def __init__(dut,...):
-	self.reg=<AddrMap_Name>_cls(
-		 callbacks=AsyncCallbackSet(
-		    read_callback=self.readReg,
-		    write_callback=self.writeReg
-		    ))
-        self.ral=RAL(self.reg)
-    async def ral_rw(self):
-        self.ral.rw_test()
-...
+# Adding new tests.
 
-```
+New tests can be added to the testcases folder.
 
-To support background read and writes you need to create callbacks which will return the signal value
-for a complete working example [check the tests folder](https://github.com/dyumnin/cocotb-ralgen/blob/main/tests/cocotbtest_dma.py).
+# Contribution
+PR's for supporting different RTL generators or test strategies are welcome.
+
+#Example
+
+For a complete working example [check the tests folder](https://github.com/dyumnin/cocotb-ralgen/blob/main/tests/cocotbtest_dma.py).
