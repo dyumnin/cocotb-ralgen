@@ -16,12 +16,12 @@ async def rw_test(
     """Read Write Test.
 
     params:
-     - RAL: Instance of ral model generated using peakrdl_cocotb_ralgen
-     - foreground_write: Boolean True/False
-     - background_write: Boolean True/False
-     - count: The number of time read/write operation has to be done to a register.
-     - default_value: If None, a random value will be used, else this value will be used for read/write.
-     - verbose: Print results of each operation.
+     RAL (RAL_Test): Instance of ral model generated using peakrdl_cocotb_ralgen
+     foreground_write (bool): Boolean True/False
+     foreground_read (bool): Boolean True/False
+     count (int): The number of time read/write operation has to be done to a register.
+     default_value (int): If None, a random value will be used, else this value will be used for read/write.
+     verbose (bool): Print results of each operation.
     """
     # TODO Handle background oprations
     # assert foreground_write and foreground_read, "Error Background operations are not yet defined"

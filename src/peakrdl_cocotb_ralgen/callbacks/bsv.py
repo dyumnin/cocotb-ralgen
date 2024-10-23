@@ -11,7 +11,7 @@ class Callback:
         """Initialize.
 
         params:
-          - dut: cocotb dut reference.
+          dut (Any): cocotb dut reference.
         """
         self.dut = dut
 
@@ -19,13 +19,13 @@ class Callback:
         """Finds the actual signal in RTL and sets its value.
 
         params:
-            - sigHash: A dictionary of signal parameters "
+            sigHash (dict): A dictionary of signal parameters "
                 {"reg": register,
                 "sig": signal_name,
                 "low": signal's low index in the register,
                 "high": signal's high index in the register,
                  }
-            - wr: Integer value to write to the signal
+            wr (int): Integer value to write to the signal
         """
         self.sig(sigHash).value = Force(wr)
 
@@ -33,7 +33,7 @@ class Callback:
         """Finds the actual signal in RTL and returns its value.
 
         params:
-            - sigHash: A dictionary of signal parameters "
+            sigHash (dict): A dictionary of signal parameters "
                 {"reg": register,
                 "sig": signal_name,
                 "low": signal's low index in the register,
