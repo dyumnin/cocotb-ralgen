@@ -5,29 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 
-## [0.1.7.a8] - 2024-10-27
-## Modified
-- v0.1.7.a8 Fidelling with semver.
-## [0.1.7.dev7] - 2024-10-27
-
-### Modified
-
-- chore: Shifted from alpha to dev.
-
-## [0.1.7a6] - 2024-10-27
-
-### Modified
-- chore: removed semver from changelog bacause pypi is against it.
--
-## [0.1.7a5] - 2024-10-27
+## [0.1.7] - 2024-10-27
 ### Added
-Support for Hierarchial RAL
-
-## [0.1.7a] - 2024-10-27
-
-### Features
-
-- Support for hierarchial RAL. ([7a15460](https://github.com/dyumnin/cocotb-ralgen/commit/7a15460afdd1a0ba07a45e668b301e02b941d7be) by Vijayvithal Jahagirdar).
+- v0.1.7 Support for Hierarchial RAL
 
 ## [0.1.6] - 2024-10-23
 ### Changed
@@ -53,5 +33,3 @@ Support for Hierarchial RAL
 
 ### Removed
 - v0.1.4 Disabled safety and griffe duties
-
-<!-- insertion marker -->
