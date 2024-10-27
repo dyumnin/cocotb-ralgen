@@ -112,7 +112,7 @@ logger = cocotb.log
             "disable": [],
         }
 
-        print(f"{self.map_offset} + {node.inst.addr_offset} {self.current_register}\n")
+        # print(f"{self.map_offset} + {node.inst.addr_offset} {self.current_register}\n")
 
     def enter_Field(self, node):
         """Overriding builtin method."""
