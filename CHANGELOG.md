@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 
+## [0.1.7.a8] - 2024-10-27
+## Modified
+- v0.1.7.a8 Fidelling with semver.
 ## [0.1.7.dev7] - 2024-10-27
 
 ### Modified
