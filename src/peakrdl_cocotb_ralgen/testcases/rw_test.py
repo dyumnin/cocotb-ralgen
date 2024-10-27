@@ -28,7 +28,6 @@ async def rw_test(
     for key, reg in RAL.masks.items():
         if "rw" in reg["disable"]:
             continue
-        print(f"{reg}\n")
         r = RAL.ifc
         addr = reg["address"]
         rv = None
@@ -51,18 +50,18 @@ async def rw_test(
                     wval,
                 )
             else:
-                for sigHash in reg["signals"]:
+                for sighash in reg["signals"]:
                     RAL.background.write(
-                        sigHash,
-                        (wval >> sigHash["low"])
-                        & int("1" * (sigHash["high"] - sigHash["low"] + 1), 2),
+                        sighash,
+                        (wval >> sighash["low"])
+                        & int("1" * (sighash["high"] - sighash["low"] + 1), 2),
                     )
             if foreground_read:
                 rv = await r.read(addr, reg["width"], reg["width"])
             else:
                 rv = 0
-                for sigHash in reg["signals"]:
-                    rv |= RAL.background.read(sigHash) << sigHash["low"]
+                for sighash in reg["signals"]:
+                    rv |= RAL.background.read(sighash) << sighash["low"]
             actual = rv & wmask & ~donttest
             assert (
                 actual == expected

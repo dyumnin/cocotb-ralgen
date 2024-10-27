@@ -96,10 +96,8 @@ logger = cocotb.log
 
     def enter_Reg(self, node):
         """Overriding builtin method."""
-        self.current_register = (
-            "_".join(self.addressmap) + "_" + node.get_path_segment()
-        )
-        self.hier_path = self.addressmap + [node.get_path_segment()]
+        self.current_register = "_".join([*self.addressmap, node.get_path_segment()])
+        self.hier_path = [*self.addressmap, node.get_path_segment()]
         self.registers[self.current_register] = {
             "name": node.get_path_segment(),
             "width": node.inst.properties["regwidth"],
@@ -122,7 +120,7 @@ logger = cocotb.log
             {
                 "low": node.low,
                 "high": node.high,
-                "path": self.hier_path + [node.get_path_segment()],
+                "path": [*self.hier_path, node.get_path_segment()],
             },
         )
         if "reset" in node.inst.properties:

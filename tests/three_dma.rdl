@@ -1,4 +1,4 @@
-`include "DMA.rdl"
+`include "dma.rdl"
 
 addrmap three_DMA{
 name = "3 instances of dma";

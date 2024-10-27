@@ -24,7 +24,7 @@ def reset_test(RAL, *, verbose=False):
             ), f"{key} Resetvalue mismatch Actual {actual:x},Expected {expected:x},"
         except:
             cocotb.log.error(
-                f"Reset Read Reg:{key}, actual {rv:x} expected {expected:x}"
+                f"Reset Read Reg:{key}, actual {rv:x} expected {expected:x}",
             )
             error_count += 1
         if verbose:

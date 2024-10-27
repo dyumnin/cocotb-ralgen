@@ -4,11 +4,9 @@ from cocotb.clock import Clock
 from cocotb.triggers import Timer
 from cocotbext.axi import AxiLiteBus, AxiLiteMaster
 from cocotbext.dyulib.reset import clock_in_reset_start, reset_end, reset_n
-from DMA_Reg.lib import AsyncCallbackSet
-from DMA_Reg.reg_model.DMA_Reg import DMA_Reg_cls
 
 
-class Env:
+class DMAEnv:
     """Environment for cocotb testcases."""
 
     def __init__(self, dut):
@@ -22,12 +20,6 @@ class Env:
         )
         self.default_ifc = self.axi_cfg
         self.cfg = Cfg_ifc(self.axi_cfg)
-        self.reg = DMA_Reg_cls(
-            callbacks=AsyncCallbackSet(
-                read_callback=self.cfg.read,
-                write_callback=self.cfg.write,
-            ),
-        )
 
     def start(self):
         """Start verification, Launches Clock and Reset threads."""
@@ -54,7 +46,10 @@ class Env:
 
 
 class Cfg_ifc:
+    """Wrapper on Interfaces Read Write Function."""
+
     def __init__(self, ifc):
+        """Constructor."""
         self.ifc = ifc
 
     async def read(self, addr: int, width: int, accesswidth: int):

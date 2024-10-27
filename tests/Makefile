@@ -12,12 +12,12 @@ VERILOG_SOURCES+=verilog/mkSdma.v
 TOPLEVEL=mkDMACsr_6_32
 MODULE=cocotbtest_dma
 
-runtop:
-	peakrdl cocotb_ralgen top.rdl -o .
-	$(MAKE) sim WAVES=1 TOPLEVEL=mkMDMA MODULE=cocotbtest_mdma
-run:
-	peakrdl cocotb_ralgen DMA.rdl -o .
-	$(MAKE) sim WAVES=1
+soc:
+	peakrdl cocotb_ralgen soc.rdl -o .
+	$(MAKE) sim WAVES=1 TOPLEVEL=mkMDMA MODULE=cocotbtest_soc
+dma:
+	peakrdl cocotb_ralgen dma.rdl -o .
+	$(MAKE) sim WAVES=1 TOPLEVEL=mkDMACsr_6_32 MODULE=cocotbtest_dma
 include $(shell cocotb-config --makefiles)/Makefile.sim
 .venv:
 	python3 -m venv .venv

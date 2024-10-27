@@ -7,6 +7,11 @@ class CallbackBase:
     """Base class for all callbacks."""
 
     def __init__(self, dut):
+        """Initialize.
+
+        params:
+          dut (Any): cocotb dut reference.
+        """
         self.dut = dut
 
     def write(self, sigHash, wr):
