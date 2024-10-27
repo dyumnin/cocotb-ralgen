@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.1.7a5] - 2024-10-27
+### Added
+Support for Hierarchial RAL
+
 ## [0.1.7a] - 2024-10-27
 
 ### Features
