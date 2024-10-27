@@ -10,28 +10,28 @@
       
       
       
-        <link rel="canonical" href="https://dyumnin.github.io/cocotb-ralgen/code_of_conduct/">
+        <link rel="canonical" href="https://dyumnin.github.io/cocotb-ralgen/reference/peakrdl_cocotb_ralgen/callbacks/callback_base/">
       
       
-        <link rel="prev" href="../contributing/">
+        <link rel="prev" href="../bsv/">
       
       
-        <link rel="next" href="../coverage/">
+        <link rel="next" href="../../cli/">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.42">
     
     
       
-        <title>Code of Conduct - peakrdl-cocotb-ralgen</title>
+        <title>callback_base - peakrdl-cocotb-ralgen</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.0253249f.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,15 +50,15 @@
       
     
     
-      <link rel="stylesheet" href="../assets/_markdown_exec_pyodide.css">
+      <link rel="stylesheet" href="../../../../assets/_markdown_exec_pyodide.css">
     
-      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../../../assets/_mkdocstrings.css">
     
-      <link rel="stylesheet" href="../css/material.css">
+      <link rel="stylesheet" href="../../../../css/material.css">
     
-      <link rel="stylesheet" href="../css/mkdocstrings.css">
+      <link rel="stylesheet" href="../../../../css/mkdocstrings.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -84,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#contributor-covenant-code-of-conduct" class="md-skip">
+        <a href="#peakrdl_cocotb_ralgen.callbacks.callback_base" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +100,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="peakrdl-cocotb-ralgen" class="md-header__button md-logo" aria-label="peakrdl-cocotb-ralgen" data-md-component="logo">
+    <a href="../../../.." title="peakrdl-cocotb-ralgen" class="md-header__button md-logo" aria-label="peakrdl-cocotb-ralgen" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -120,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Code of Conduct
+              <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> callback_base
             
           </span>
         </div>
@@ -235,7 +235,7 @@
     
     
       <li class="md-tabs__item">
-        <a href=".." class="md-tabs__link">
+        <a href="../../../.." class="md-tabs__link">
           
   
     
@@ -251,23 +251,29 @@
         
   
   
+    
+  
   
     
     
       
   
   
+    
+  
   
     
     
       
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../reference/peakrdl_cocotb_ralgen/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
           
   
     
@@ -289,13 +295,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../contributing/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../../../contributing/" class="md-tabs__link">
           
   
     
@@ -336,7 +340,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="peakrdl-cocotb-ralgen" class="md-nav__button md-logo" aria-label="peakrdl-cocotb-ralgen" data-md-component="logo">
+    <a href="../../../.." title="peakrdl-cocotb-ralgen" class="md-nav__button md-logo" aria-label="peakrdl-cocotb-ralgen" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -397,7 +401,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href=".." class="md-nav__link ">
+            <a href="../../../.." class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -430,7 +434,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../changelog/" class="md-nav__link">
+      <a href="../../../../changelog/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -451,7 +455,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../credits/" class="md-nav__link">
+      <a href="../../../../credits/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -472,7 +476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../license/" class="md-nav__link">
+      <a href="../../../../license/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -493,7 +497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ai/" class="md-nav__link">
+      <a href="../../../../ai/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -518,8 +522,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -528,19 +534,22 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -551,7 +560,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             API reference
@@ -562,8 +571,10 @@
                 
   
   
+    
   
   
+  
     
     
       
@@ -573,18 +584,21 @@
     
       
       
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
         
           
-          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -595,7 +609,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_1">
             <span class="md-nav__icon md-icon"></span>
             peakrdl-cocotb-ralgen
@@ -606,6 +620,8 @@
                 
   
   
+    
+  
   
   
     
@@ -633,16 +649,16 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../reference/peakrdl_cocotb_ralgen/" class="md-nav__link ">
+            <a href="../../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -659,7 +675,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_1_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_1_1">
             <span class="md-nav__icon md-icon"></span>
             <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> peakrdl_cocotb_ralgen
@@ -672,6 +688,8 @@
                 
   
   
+    
+  
   
   
     
@@ -693,16 +711,16 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_1_2" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../reference/peakrdl_cocotb_ralgen/callbacks/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -719,7 +737,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_1_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_1_1_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_1_1_2">
             <span class="md-nav__icon md-icon"></span>
             <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> callbacks
@@ -735,7 +753,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/peakrdl_cocotb_ralgen/callbacks/bsv/" class="md-nav__link">
+      <a href="../bsv/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -753,10 +771,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../reference/peakrdl_cocotb_ralgen/callbacks/callback_base/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> callback_base
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -765,6 +803,59 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#peakrdl_cocotb_ralgen.callbacks.callback_base.CallbackBase" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;CallbackBase
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label=" CallbackBase">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#peakrdl_cocotb_ralgen.callbacks.callback_base.CallbackBase.read" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;read
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peakrdl_cocotb_ralgen.callbacks.callback_base.CallbackBase.write" class="md-nav__link">
+    <span class="md-ellipsis">
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;write
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -785,7 +876,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/peakrdl_cocotb_ralgen/cli/" class="md-nav__link">
+      <a href="../../cli/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -806,7 +897,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/peakrdl_cocotb_ralgen/exporter/" class="md-nav__link">
+      <a href="../../exporter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -827,7 +918,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/peakrdl_cocotb_ralgen/ralgen/" class="md-nav__link">
+      <a href="../../ralgen/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -875,7 +966,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../reference/peakrdl_cocotb_ralgen/testcases/" class="md-nav__link ">
+            <a href="../../testcases/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -908,7 +999,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/peakrdl_cocotb_ralgen/testcases/reset_test/" class="md-nav__link">
+      <a href="../../testcases/reset_test/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -929,7 +1020,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reference/peakrdl_cocotb_ralgen/testcases/rw_test/" class="md-nav__link">
+      <a href="../../testcases/rw_test/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -978,10 +1069,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -994,22 +1083,19 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1020,7 +1106,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Development
@@ -1034,7 +1120,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../contributing/" class="md-nav__link">
+      <a href="../../../../contributing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1052,30 +1138,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Code of Conduct
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../../code_of_conduct/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1084,131 +1150,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#our-pledge" class="md-nav__link">
-    <span class="md-ellipsis">
-      Our Pledge
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#our-standards" class="md-nav__link">
-    <span class="md-ellipsis">
-      Our Standards
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enforcement-responsibilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enforcement Responsibilities
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
-    <span class="md-ellipsis">
-      Scope
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enforcement" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enforcement
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enforcement-guidelines" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enforcement Guidelines
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Enforcement Guidelines">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-correction" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Correction
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-warning" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Warning
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-temporary-ban" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Temporary Ban
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-permanent-ban" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Permanent Ban
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#attribution" class="md-nav__link">
-    <span class="md-ellipsis">
-      Attribution
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1221,7 +1162,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../coverage/" class="md-nav__link">
+      <a href="../../../../coverage/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1269,91 +1210,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#our-pledge" class="md-nav__link">
+  <a href="#peakrdl_cocotb_ralgen.callbacks.callback_base.CallbackBase" class="md-nav__link">
     <span class="md-ellipsis">
-      Our Pledge
+      <code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;CallbackBase
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#our-standards" class="md-nav__link">
-    <span class="md-ellipsis">
-      Our Standards
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enforcement-responsibilities" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enforcement Responsibilities
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#scope" class="md-nav__link">
-    <span class="md-ellipsis">
-      Scope
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enforcement" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enforcement
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enforcement-guidelines" class="md-nav__link">
-    <span class="md-ellipsis">
-      Enforcement Guidelines
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Enforcement Guidelines">
+    <nav class="md-nav" aria-label=" CallbackBase">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-correction" class="md-nav__link">
+  <a href="#peakrdl_cocotb_ralgen.callbacks.callback_base.CallbackBase.read" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Correction
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;read
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-warning" class="md-nav__link">
+  <a href="#peakrdl_cocotb_ralgen.callbacks.callback_base.CallbackBase.write" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Warning
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-temporary-ban" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Temporary Ban
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-permanent-ban" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Permanent Ban
+      <code class="doc-symbol doc-symbol-toc doc-symbol-method"></code>&nbsp;write
     </span>
   </a>
   
@@ -1361,15 +1239,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#attribution" class="md-nav__link">
-    <span class="md-ellipsis">
-      Attribution
-    </span>
-  </a>
   
 </li>
       
@@ -1388,7 +1257,7 @@
                   
 
   
-    <a href="https://github.com/dyumnin/cocotb-ralgen/edit/main/docs/code_of_conduct.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/dyumnin/cocotb-ralgen/edit/main/src/peakrdl_cocotb_ralgen/callbacks/callback_base.py" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1397,109 +1266,306 @@
     
       
     
-    <a href="https://github.com/dyumnin/cocotb-ralgen/raw/main/docs/code_of_conduct.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/dyumnin/cocotb-ralgen/raw/main/src/peakrdl_cocotb_ralgen/callbacks/callback_base.py" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="contributor-covenant-code-of-conduct">Contributor Covenant Code of Conduct<a class="headerlink" href="#contributor-covenant-code-of-conduct" title="Permanent link">&para;</a></h1>
-<h2 id="our-pledge">Our Pledge<a class="headerlink" href="#our-pledge" title="Permanent link">&para;</a></h2>
-<p>We as members, contributors, and leaders pledge to make participation in our
-community a harassment-free experience for everyone, regardless of age, body
-size, visible or invisible disability, ethnicity, sex characteristics, gender
-identity and expression, level of experience, education, socio-economic status,
-nationality, personal appearance, race, caste, color, religion, or sexual
-identity and orientation.</p>
-<p>We pledge to act and interact in ways that contribute to an open, welcoming,
-diverse, inclusive, and healthy community.</p>
-<h2 id="our-standards">Our Standards<a class="headerlink" href="#our-standards" title="Permanent link">&para;</a></h2>
-<p>Examples of behavior that contributes to a positive environment for our
-community include:</p>
-<ul>
-<li>Demonstrating empathy and kindness toward other people</li>
-<li>Being respectful of differing opinions, viewpoints, and experiences</li>
-<li>Giving and gracefully accepting constructive feedback</li>
-<li>Accepting responsibility and apologizing to those affected by our mistakes,
-  and learning from the experience</li>
-<li>Focusing on what is best not just for us as individuals, but for the overall
-  community</li>
-</ul>
-<p>Examples of unacceptable behavior include:</p>
-<ul>
-<li>The use of sexualized language or imagery, and sexual attention or advances of
-  any kind</li>
-<li>Trolling, insulting or derogatory comments, and personal or political attacks</li>
-<li>Public or private harassment</li>
-<li>Publishing others' private information, such as a physical or email address,
-  without their explicit permission</li>
-<li>Other conduct which could reasonably be considered inappropriate in a
-  professional setting</li>
-</ul>
-<h2 id="enforcement-responsibilities">Enforcement Responsibilities<a class="headerlink" href="#enforcement-responsibilities" title="Permanent link">&para;</a></h2>
-<p>Community leaders are responsible for clarifying and enforcing our standards of
-acceptable behavior and will take appropriate and fair corrective action in
-response to any behavior that they deem inappropriate, threatening, offensive,
-or harmful.</p>
-<p>Community leaders have the right and responsibility to remove, edit, or reject
-comments, commits, code, wiki edits, issues, and other contributions that are
-not aligned to this Code of Conduct, and will communicate reasons for moderation
-decisions when appropriate.</p>
-<h2 id="scope">Scope<a class="headerlink" href="#scope" title="Permanent link">&para;</a></h2>
-<p>This Code of Conduct applies within all community spaces, and also applies when
-an individual is officially representing the community in public spaces.
-Examples of representing our community include using an official e-mail address,
-posting via an official social media account, or acting as an appointed
-representative at an online or offline event.</p>
-<h2 id="enforcement">Enforcement<a class="headerlink" href="#enforcement" title="Permanent link">&para;</a></h2>
-<p>Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at
-<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#106;&#97;&#104;&#97;&#103;&#105;&#114;&#100;&#97;&#114;&#46;&#118;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#106;&#97;&#104;&#97;&#103;&#105;&#114;&#100;&#97;&#114;&#46;&#118;&#115;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>.
-All complaints will be reviewed and investigated promptly and fairly.</p>
-<p>All community leaders are obligated to respect the privacy and security of the
-reporter of any incident.</p>
-<h2 id="enforcement-guidelines">Enforcement Guidelines<a class="headerlink" href="#enforcement-guidelines" title="Permanent link">&para;</a></h2>
-<p>Community leaders will follow these Community Impact Guidelines in determining
-the consequences for any action they deem in violation of this Code of Conduct:</p>
-<h3 id="1-correction">1. Correction<a class="headerlink" href="#1-correction" title="Permanent link">&para;</a></h3>
-<p><strong>Community Impact</strong>: Use of inappropriate language or other behavior deemed
-unprofessional or unwelcome in the community.</p>
-<p><strong>Consequence</strong>: A private, written warning from community leaders, providing
-clarity around the nature of the violation and an explanation of why the
-behavior was inappropriate. A public apology may be requested.</p>
-<h3 id="2-warning">2. Warning<a class="headerlink" href="#2-warning" title="Permanent link">&para;</a></h3>
-<p><strong>Community Impact</strong>: A violation through a single incident or series of
-actions.</p>
-<p><strong>Consequence</strong>: A warning with consequences for continued behavior. No
-interaction with the people involved, including unsolicited interaction with
-those enforcing the Code of Conduct, for a specified period of time. This
-includes avoiding interactions in community spaces as well as external channels
-like social media. Violating these terms may lead to a temporary or permanent
-ban.</p>
-<h3 id="3-temporary-ban">3. Temporary Ban<a class="headerlink" href="#3-temporary-ban" title="Permanent link">&para;</a></h3>
-<p><strong>Community Impact</strong>: A serious violation of community standards, including
-sustained inappropriate behavior.</p>
-<p><strong>Consequence</strong>: A temporary ban from any sort of interaction or public
-communication with the community for a specified period of time. No public or
-private interaction with the people involved, including unsolicited interaction
-with those enforcing the Code of Conduct, is allowed during this period.
-Violating these terms may lead to a permanent ban.</p>
-<h3 id="4-permanent-ban">4. Permanent Ban<a class="headerlink" href="#4-permanent-ban" title="Permanent link">&para;</a></h3>
-<p><strong>Community Impact</strong>: Demonstrating a pattern of violation of community
-standards, including sustained inappropriate behavior, harassment of an
-individual, or aggression toward or disparagement of classes of individuals.</p>
-<p><strong>Consequence</strong>: A permanent ban from any sort of public interaction within the
-community.</p>
-<h2 id="attribution">Attribution<a class="headerlink" href="#attribution" title="Permanent link">&para;</a></h2>
-<p>This Code of Conduct is adapted from the <a href="https://www.contributor-covenant.org">Contributor Covenant</a>,
-version 2.1, available at
-<a href="https://www.contributor-covenant.org/version/2/1/code_of_conduct.html">https://www.contributor-covenant.org/version/2/1/code_of_conduct.html</a>.</p>
-<p>Community Impact Guidelines were inspired by
-<a href="https://github.com/mozilla/diversity">Mozilla's code of conduct enforcement ladder</a>.</p>
-<p>For answers to common questions about this code of conduct, see the FAQ at
-<a href="https://www.contributor-covenant.org/faq">https://www.contributor-covenant.org/faq</a>. Translations are available at
-<a href="https://www.contributor-covenant.org/translations">https://www.contributor-covenant.org/translations</a>.</p>
+<div class="doc doc-object doc-module">
+
+
+
+<h1 id="peakrdl_cocotb_ralgen.callbacks.callback_base" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-module"></code>            <span class="doc doc-object-name doc-module-name">callback_base</span>
+
+
+<a href="#peakrdl_cocotb_ralgen.callbacks.callback_base" class="headerlink" title="Permanent link">&para;</a></h1>
+
+    <div class="doc doc-contents first">
+
+        <p>Base class for all callbacks.</p>
+
+
+
+
+
+
+
+<p><span class="doc-section-title">Classes:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+          <b><code><a class="autorefs autorefs-internal" title="peakrdl_cocotb_ralgen.callbacks.callback_base.CallbackBase" href="#peakrdl_cocotb_ralgen.callbacks.callback_base.CallbackBase">CallbackBase</a></code></b>
+          –
+          <div class="doc-md-description">
+            <p>Base class for all callbacks.</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="peakrdl_cocotb_ralgen.callbacks.callback_base.CallbackBase" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-class"></code>            <span class="doc doc-object-name doc-class-name">CallbackBase</span>
+
+
+<a href="#peakrdl_cocotb_ralgen.callbacks.callback_base.CallbackBase" class="headerlink" title="Permanent link">&para;</a></h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">CallbackBase</span><span class="p">(</span><span class="n">dut</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+
+        <p>Base class for all callbacks.</p>
+
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>dut</code></b>
+              (<code>Any</code>)
+          –
+          <div class="doc-md-description">
+            <p>cocotb dut reference.</p>
+          </div>
+        </li>
+    </ul>
+
+
+
+
+
+
+
+
+
+<p><span class="doc-section-title">Methods:</span></p>
+    <ul>
+          <li class="doc-section-item field-body">
+            <b><code><a class="autorefs autorefs-internal" title="peakrdl_cocotb_ralgen.callbacks.callback_base.CallbackBase.read" href="#peakrdl_cocotb_ralgen.callbacks.callback_base.CallbackBase.read">read</a></code></b>
+            –
+            <div class="doc-md-description">
+              <p>Finds the actual signal in RTL and returns its value.</p>
+            </div>
+          </li>
+          <li class="doc-section-item field-body">
+            <b><code><a class="autorefs autorefs-internal" title="peakrdl_cocotb_ralgen.callbacks.callback_base.CallbackBase.write" href="#peakrdl_cocotb_ralgen.callbacks.callback_base.CallbackBase.write">write</a></code></b>
+            –
+            <div class="doc-md-description">
+              <p>Finds the actual signal in RTL and sets its value.</p>
+            </div>
+          </li>
+    </ul>
+
+
+
+                  <details class="quote">
+                    <summary>Source code in <code>src/peakrdl_cocotb_ralgen/callbacks/callback_base.py</code></summary>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dut</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initialize.</span>
+
+<span class="sd">    params:</span>
+<span class="sd">      dut (Any): cocotb dut reference.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">dut</span> <span class="o">=</span> <span class="n">dut</span>
+</code></pre></div></td></tr></table></div>
+                  </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="peakrdl_cocotb_ralgen.callbacks.callback_base.CallbackBase.read" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">read</span>
+
+
+<a href="#peakrdl_cocotb_ralgen.callbacks.callback_base.CallbackBase.read" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">read</span><span class="p">(</span><span class="n">sigHash</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Finds the actual signal in RTL and returns its value.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>sigHash</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>A dictionary of signal parameters "
+{"reg": register,
+"sig": signal_name,
+"low": signal's low index in the register,
+"high": signal's high index in the register,
+ }</p>
+          </div>
+        </li>
+    </ul>
+
+            <details class="quote">
+              <summary>Source code in <code>src/peakrdl_cocotb_ralgen/callbacks/callback_base.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sigHash</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds the actual signal in RTL and returns its value.</span>
+
+<span class="sd">    params:</span>
+<span class="sd">        sigHash (dict): A dictionary of signal parameters &quot;</span>
+<span class="sd">            {&quot;reg&quot;: register,</span>
+<span class="sd">            &quot;sig&quot;: signal_name,</span>
+<span class="sd">            &quot;low&quot;: signal&#39;s low index in the register,</span>
+<span class="sd">            &quot;high&quot;: signal&#39;s high index in the register,</span>
+<span class="sd">             }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sig</span><span class="p">(</span><span class="n">sigHash</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+    <span class="n">cocotb</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sigHash</span><span class="si">}</span><span class="s2"> rv=</span><span class="si">{</span><span class="n">rv</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rv</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="peakrdl_cocotb_ralgen.callbacks.callback_base.CallbackBase.write" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-method"></code>            <span class="doc doc-object-name doc-function-name">write</span>
+
+
+<a href="#peakrdl_cocotb_ralgen.callbacks.callback_base.CallbackBase.write" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">write</span><span class="p">(</span><span class="n">sigHash</span><span class="p">,</span> <span class="n">wr</span><span class="p">)</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>Finds the actual signal in RTL and sets its value.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <ul>
+        <li class="doc-section-item field-body">
+            <b><code>sigHash</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#dict">dict</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>A dictionary of signal parameters "
+{"reg": register,
+"sig": signal_name,
+"low": signal's low index in the register,
+"high": signal's high index in the register,
+ }</p>
+          </div>
+        </li>
+        <li class="doc-section-item field-body">
+            <b><code>wr</code></b>
+              (<code><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/functions.html#int">int</a></code>)
+          –
+          <div class="doc-md-description">
+            <p>Integer value to write to the signal</p>
+          </div>
+        </li>
+    </ul>
+
+            <details class="quote">
+              <summary>Source code in <code>src/peakrdl_cocotb_ralgen/callbacks/callback_base.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sigHash</span><span class="p">,</span> <span class="n">wr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Finds the actual signal in RTL and sets its value.</span>
+
+<span class="sd">    params:</span>
+<span class="sd">        sigHash (dict): A dictionary of signal parameters &quot;</span>
+<span class="sd">            {&quot;reg&quot;: register,</span>
+<span class="sd">            &quot;sig&quot;: signal_name,</span>
+<span class="sd">            &quot;low&quot;: signal&#39;s low index in the register,</span>
+<span class="sd">            &quot;high&quot;: signal&#39;s high index in the register,</span>
+<span class="sd">             }</span>
+<span class="sd">        wr (int): Integer value to write to the signal</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sig</span><span class="p">(</span><span class="n">sigHash</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">Force</span><span class="p">(</span><span class="n">wr</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
 
 
 
@@ -1535,7 +1601,7 @@ version 2.1, available at
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../contributing/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Contributing">
+          <a href="../bsv/" class="md-footer__link md-footer__link--prev" aria-label="Previous: &lt;code class=&#34;doc-symbol doc-symbol-nav doc-symbol-module&#34;&gt;&lt;/code&gt; bsv">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1545,20 +1611,20 @@ version 2.1, available at
                 Previous
               </span>
               <div class="md-ellipsis">
-                Contributing
+                <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> bsv
               </div>
             </div>
           </a>
         
         
           
-          <a href="../coverage/" class="md-footer__link md-footer__link--next" aria-label="Next: Coverage report">
+          <a href="../../cli/" class="md-footer__link md-footer__link--next" aria-label="Next: &lt;code class=&#34;doc-symbol doc-symbol-nav doc-symbol-module&#34;&gt;&lt;/code&gt; cli">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Coverage report
+                <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> cli
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -1633,12 +1699,12 @@ version 2.1, available at
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.highlight", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.highlight", "search.suggest", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
-        <script src="../assets/_markdown_exec_pyodide.js"></script>
+        <script src="../../../../assets/_markdown_exec_pyodide.js"></script>
       
     
   </body>

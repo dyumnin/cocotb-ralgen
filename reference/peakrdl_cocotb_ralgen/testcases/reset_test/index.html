@@ -382,6 +382,8 @@
       
         
       
+        
+      
     
     
       
@@ -479,6 +481,27 @@
   
   <span class="md-ellipsis">
     License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plan
   </span>
   
 
@@ -676,6 +699,8 @@
       
         
       
+        
+      
     
     
       
@@ -731,6 +756,27 @@
   
   <span class="md-ellipsis">
     <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> bsv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../callbacks/callback_base/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> callback_base
   </span>
   
 
@@ -1267,7 +1313,9 @@
 <span class="normal">27</span>
 <span class="normal">28</span>
 <span class="normal">29</span>
-<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">reset_test</span><span class="p">(</span><span class="n">RAL</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">reset_test</span><span class="p">(</span><span class="n">RAL</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Reset Testcase.</span>
 
 <span class="sd">    This testcase reads the value of all fields during reset and checks for match with the defined reset value.</span>
@@ -1278,18 +1326,20 @@
             <span class="k">continue</span>
         <span class="n">rv</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">hsh</span> <span class="ow">in</span> <span class="n">val</span><span class="p">[</span><span class="s2">&quot;signals&quot;</span><span class="p">]:</span>
-            <span class="n">rv</span> <span class="o">|=</span> <span class="n">RAL</span><span class="o">.</span><span class="n">callback</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">hsh</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">hsh</span><span class="p">[</span><span class="s2">&quot;low&quot;</span><span class="p">]</span>
+            <span class="n">rv</span> <span class="o">|=</span> <span class="n">RAL</span><span class="o">.</span><span class="n">background</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">hsh</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">hsh</span><span class="p">[</span><span class="s2">&quot;low&quot;</span><span class="p">]</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">actual</span> <span class="o">=</span> <span class="n">rv</span> <span class="o">&amp;</span> <span class="n">val</span><span class="p">[</span><span class="s2">&quot;reset_mask&quot;</span><span class="p">]</span>
             <span class="n">expected</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="s2">&quot;reset_value&quot;</span><span class="p">]</span>
             <span class="k">assert</span> <span class="p">(</span>
                 <span class="n">actual</span> <span class="o">==</span> <span class="n">expected</span>
-            <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> Resetvalue mismatch Actual </span><span class="si">{</span><span class="n">actual</span><span class="si">}</span><span class="s2">,Expected </span><span class="si">{</span><span class="n">expected</span><span class="si">}</span><span class="s2">,&quot;</span>
+            <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> Resetvalue mismatch Actual </span><span class="si">{</span><span class="n">actual</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">,Expected </span><span class="si">{</span><span class="n">expected</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">,&quot;</span>
         <span class="k">except</span><span class="p">:</span>
-            <span class="n">cocotb</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Error Reset Read Reg:</span><span class="si">{key}</span><span class="s2">, Value </span><span class="si">{rv}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">cocotb</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Reset Read Reg:</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">, actual </span><span class="si">{</span><span class="n">rv</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2"> expected </span><span class="si">{</span><span class="n">expected</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="p">)</span>
             <span class="n">error_count</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Reset Read Reg:</span><span class="si">{key}</span><span class="s2">, Value </span><span class="si">{rv}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reset Read Reg:</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">, Value </span><span class="si">{</span><span class="n">rv</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">assert</span> <span class="n">error_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Test exited with </span><span class="si">{</span><span class="n">error_count</span><span class="si">}</span><span class="s2"> Error&quot;</span>
 </code></pre></div></td></tr></table></div>
             </details>

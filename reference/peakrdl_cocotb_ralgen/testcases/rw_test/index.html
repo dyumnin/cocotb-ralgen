@@ -382,6 +382,8 @@
       
         
       
+        
+      
     
     
       
@@ -479,6 +481,27 @@
   
   <span class="md-ellipsis">
     License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plan
   </span>
   
 
@@ -676,6 +699,8 @@
       
         
       
+        
+      
     
     
       
@@ -731,6 +756,27 @@
   
   <span class="md-ellipsis">
     <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> bsv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../callbacks/callback_base/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> callback_base
   </span>
   
 
@@ -1375,7 +1421,13 @@
 <span class="normal">63</span>
 <span class="normal">64</span>
 <span class="normal">65</span>
-<span class="normal">66</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">rw_test</span><span class="p">(</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">async</span> <span class="k">def</span> <span class="nf">rw_test</span><span class="p">(</span>
     <span class="n">RAL</span><span class="p">,</span>
     <span class="n">foreground_write</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">foreground_read</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -1395,41 +1447,47 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># TODO Handle background oprations</span>
     <span class="c1"># assert foreground_write and foreground_read, &quot;Error Background operations are not yet defined&quot;</span>
-    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">RAL</span><span class="o">.</span><span class="n">masks</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="k">if</span> <span class="s2">&quot;rw&quot;</span> <span class="ow">in</span> <span class="n">val</span><span class="p">[</span><span class="s2">&quot;disable&quot;</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">reg</span> <span class="ow">in</span> <span class="n">RAL</span><span class="o">.</span><span class="n">masks</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="s2">&quot;rw&quot;</span> <span class="ow">in</span> <span class="n">reg</span><span class="p">[</span><span class="s2">&quot;disable&quot;</span><span class="p">]:</span>
             <span class="k">continue</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="n">RAL</span><span class="o">.</span><span class="n">regmodel</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">RAL</span><span class="o">.</span><span class="n">ifc</span>
+        <span class="n">addr</span> <span class="o">=</span> <span class="n">reg</span><span class="p">[</span><span class="s2">&quot;address&quot;</span><span class="p">]</span>
         <span class="n">rv</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">donttest</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="s2">&quot;donttest&quot;</span><span class="p">]</span>
+        <span class="n">donttest</span> <span class="o">=</span> <span class="n">reg</span><span class="p">[</span><span class="s2">&quot;donttest&quot;</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
             <span class="n">wrval</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="n">default_value</span>
                 <span class="k">if</span> <span class="n">default_value</span>
-                <span class="k">else</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">val</span><span class="p">[</span><span class="s2">&quot;regwidth&quot;</span><span class="p">])</span>
+                <span class="k">else</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">reg</span><span class="p">[</span><span class="s2">&quot;regwidth&quot;</span><span class="p">])</span>
             <span class="p">)</span>
-            <span class="n">wval</span> <span class="o">=</span> <span class="n">wrval</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">val</span><span class="p">[</span><span class="s2">&quot;donttest&quot;</span><span class="p">]</span>
+            <span class="n">wval</span> <span class="o">=</span> <span class="n">wrval</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">reg</span><span class="p">[</span><span class="s2">&quot;donttest&quot;</span><span class="p">]</span>
+            <span class="n">wmask</span> <span class="o">=</span> <span class="n">reg</span><span class="p">[</span><span class="s2">&quot;write_mask&quot;</span><span class="p">]</span>
+            <span class="n">rmask</span> <span class="o">=</span> <span class="n">reg</span><span class="p">[</span><span class="s2">&quot;read_mask&quot;</span><span class="p">]</span>
+            <span class="n">expected</span> <span class="o">=</span> <span class="n">wval</span> <span class="o">&amp;</span> <span class="n">wmask</span> <span class="o">&amp;</span> <span class="n">rmask</span>
             <span class="k">if</span> <span class="n">foreground_write</span><span class="p">:</span>
-                <span class="k">await</span> <span class="n">r</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">wval</span><span class="p">)</span>
+                <span class="k">await</span> <span class="n">r</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                    <span class="n">addr</span><span class="p">,</span>
+                    <span class="n">reg</span><span class="p">[</span><span class="s2">&quot;width&quot;</span><span class="p">],</span>
+                    <span class="n">reg</span><span class="p">[</span><span class="s2">&quot;width&quot;</span><span class="p">],</span>
+                    <span class="n">wval</span><span class="p">,</span>
+                <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">for</span> <span class="n">hsh</span> <span class="ow">in</span> <span class="n">val</span><span class="p">[</span><span class="s2">&quot;signals&quot;</span><span class="p">]:</span>
-                    <span class="n">RAL</span><span class="o">.</span><span class="n">callback</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
-                        <span class="n">hsh</span><span class="p">,</span>
-                        <span class="p">(</span><span class="n">wval</span> <span class="o">&gt;&gt;</span> <span class="n">hsh</span><span class="p">[</span><span class="s2">&quot;low&quot;</span><span class="p">])</span>
-                        <span class="o">&amp;</span> <span class="nb">int</span><span class="p">(</span><span class="s2">&quot;1&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="n">hsh</span><span class="p">[</span><span class="s2">&quot;high&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">hsh</span><span class="p">[</span><span class="s2">&quot;low&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">2</span><span class="p">),</span>
+                <span class="k">for</span> <span class="n">sighash</span> <span class="ow">in</span> <span class="n">reg</span><span class="p">[</span><span class="s2">&quot;signals&quot;</span><span class="p">]:</span>
+                    <span class="n">RAL</span><span class="o">.</span><span class="n">background</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+                        <span class="n">sighash</span><span class="p">,</span>
+                        <span class="p">(</span><span class="n">wval</span> <span class="o">&gt;&gt;</span> <span class="n">sighash</span><span class="p">[</span><span class="s2">&quot;low&quot;</span><span class="p">])</span>
+                        <span class="o">&amp;</span> <span class="nb">int</span><span class="p">(</span><span class="s2">&quot;1&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="n">sighash</span><span class="p">[</span><span class="s2">&quot;high&quot;</span><span class="p">]</span> <span class="o">-</span> <span class="n">sighash</span><span class="p">[</span><span class="s2">&quot;low&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">2</span><span class="p">),</span>
                     <span class="p">)</span>
             <span class="k">if</span> <span class="n">foreground_read</span><span class="p">:</span>
-                <span class="n">rv</span> <span class="o">=</span> <span class="k">await</span> <span class="n">r</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+                <span class="n">rv</span> <span class="o">=</span> <span class="k">await</span> <span class="n">r</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">reg</span><span class="p">[</span><span class="s2">&quot;width&quot;</span><span class="p">],</span> <span class="n">reg</span><span class="p">[</span><span class="s2">&quot;width&quot;</span><span class="p">])</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">rv</span> <span class="o">=</span> <span class="mi">0</span>
-                <span class="k">for</span> <span class="n">hsh</span> <span class="ow">in</span> <span class="n">val</span><span class="p">[</span><span class="s2">&quot;signals&quot;</span><span class="p">]:</span>
-                    <span class="n">rv</span> <span class="o">|=</span> <span class="n">RAL</span><span class="o">.</span><span class="n">callback</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">hsh</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">hsh</span><span class="p">[</span><span class="s2">&quot;low&quot;</span><span class="p">]</span>
-            <span class="n">wmask</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="s2">&quot;write_mask&quot;</span><span class="p">]</span>
-            <span class="n">rmask</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="s2">&quot;read_mask&quot;</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">sighash</span> <span class="ow">in</span> <span class="n">reg</span><span class="p">[</span><span class="s2">&quot;signals&quot;</span><span class="p">]:</span>
+                    <span class="n">rv</span> <span class="o">|=</span> <span class="n">RAL</span><span class="o">.</span><span class="n">background</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">sighash</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">sighash</span><span class="p">[</span><span class="s2">&quot;low&quot;</span><span class="p">]</span>
             <span class="n">actual</span> <span class="o">=</span> <span class="n">rv</span> <span class="o">&amp;</span> <span class="n">wmask</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">donttest</span>
-            <span class="n">expected</span> <span class="o">=</span> <span class="n">wval</span> <span class="o">&amp;</span> <span class="n">wmask</span> <span class="o">&amp;</span> <span class="n">rmask</span>
             <span class="k">assert</span> <span class="p">(</span>
                 <span class="n">actual</span> <span class="o">==</span> <span class="n">expected</span>
-            <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">:: Read Write Written </span><span class="si">{</span><span class="n">wval</span><span class="si">}</span><span class="s2">, actual(Read) </span><span class="si">{</span><span class="n">actual</span><span class="si">}</span><span class="s2">, Expected </span><span class="si">{</span><span class="n">expected</span><span class="si">}</span><span class="s2">, wrMask </span><span class="si">{</span><span class="n">wmask</span><span class="si">}</span><span class="s2">, rdmask </span><span class="si">{</span><span class="n">rmask</span><span class="si">}</span><span class="s2">, donttest = </span><span class="si">{</span><span class="n">donttest</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">:: Read Write Written </span><span class="si">{</span><span class="n">wval</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">, actual(Read) </span><span class="si">{</span><span class="n">actual</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">, Expected </span><span class="si">{</span><span class="n">expected</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">, wrMask </span><span class="si">{</span><span class="n">wmask</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">, rdmask </span><span class="si">{</span><span class="n">rmask</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">, donttest = </span><span class="si">{</span><span class="n">donttest</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;Test RW: </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> wval </span><span class="si">{</span><span class="n">wval</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2"> rv </span><span class="si">{</span><span class="n">rv</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2"> expected </span><span class="si">{</span><span class="n">expected</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2"> actual </span><span class="si">{</span><span class="n">actual</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>

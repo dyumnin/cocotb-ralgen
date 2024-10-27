@@ -378,6 +378,8 @@
       
         
       
+        
+      
     
     
       
@@ -478,6 +480,27 @@
   
   <span class="md-ellipsis">
     License
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plan
   </span>
   
 
@@ -663,6 +686,8 @@
       
         
       
+        
+      
     
     
       
@@ -718,6 +743,27 @@
   
   <span class="md-ellipsis">
     <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> bsv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/peakrdl_cocotb_ralgen/callbacks/callback_base/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> callback_base
   </span>
   
 
@@ -1099,7 +1145,8 @@
 
 
 <h1 id="peakrdl-cocotb-ralgen">peakrdl-cocotb-ralgen<a class="headerlink" href="#peakrdl-cocotb-ralgen" title="Permanent link">&para;</a></h1>
-<p>A SystemRDL to Raltest converter for cocotb.</p>
+<p>A SystemRDL to raltest converter for cocotb.</p>
+<p>This VIP confirms to sysrdl 1.2 and ral 1.0 format.</p>
 <h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
 <div class="highlight"><pre><span></span><code>pip3 install peakrdl-cocotb-ralgen
 </code></pre></div>
@@ -1125,7 +1172,7 @@ async def test_ral_reset(dut):
     await ReadOnly()
     await reset_test.reset_test(ral, verbose=True)
 </code></pre></div></p>
-<p>To Perform Read write checks:</p>
+<p>To perform read write checks:</p>
 <div class="highlight"><pre><span></span><code>@cocotb.test
 async def test_ral_readwrite(dut):
     &quot;&quot;&quot;Ral test reset.&quot;&quot;&quot;
@@ -1142,7 +1189,7 @@ async def test_ral_readwrite(dut):
     )
 ...
 </code></pre></div>
-<h1 id="supporting-different-rtl-generators">supporting different RTL Generators.<a class="headerlink" href="#supporting-different-rtl-generators" title="Permanent link">&para;</a></h1>
+<h1 id="supporting-different-rtl-generators">Supporting different RTL generators.<a class="headerlink" href="#supporting-different-rtl-generators" title="Permanent link">&para;</a></h1>
 <p>For interfacing your RTL Generator generated code, ralgen needs to know the pattern used by you for signal naming.
 You can provide this information by passing a Callback function which maps the signal from systemRDL to RTL and provides methods to read &amp; write to it.</p>
 <h1 id="adding-new-tests">Adding new tests.<a class="headerlink" href="#adding-new-tests" title="Permanent link">&para;</a></h1>
