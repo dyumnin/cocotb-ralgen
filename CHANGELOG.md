@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.1.7a] - 2024-10-27
+
+### Features
+
+- Support for hierarchial RAL. ([7a15460](https://github.com/dyumnin/cocotb-ralgen/commit/7a15460afdd1a0ba07a45e668b301e02b941d7be) by Vijayvithal Jahagirdar).
+
 ## [0.1.6] - 2024-10-23
 ### Changed
 - v0.1.6 Cleaned up documentation.

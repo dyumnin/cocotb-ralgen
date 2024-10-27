@@ -1,6 +1,5 @@
 [project]
 name = "peakrdl-cocotb-ralgen"
-#fallback-version = "0.1.0"
 dynamic = ["version"]
 description = "Generate RAL tests from systemRDL."
 authors = [

@@ -39,4 +39,5 @@ jobs:
           pip install pdm cocotb peakrdl cocotbext.axi cocotbext.dyulib
           pip install .
           sudo apt install -y verilog make
-          make -C tests
+          make -C tests soc
+          make -C tests dma
