@@ -2,10 +2,13 @@
 # It is not intended for manual editing.
 
 [metadata]
-groups = ["default", "ci-quality", "docs", "typing", "duty", "tests", "quality", "maintain", "ci-tests", "security", "dev"]
+groups = ["default", "ci-quality", "ci-tests", "docs", "duty", "maintain", "quality", "security", "tests", "typing"]
 strategy = ["cross_platform", "inherit_metadata"]
-lock_version = "4.4.2"
-content_hash = "sha256:1cf5853aecfc2700ebeb5f9912261c991d6201223b7195a04d75aa681b771695"
+lock_version = "4.5.0"
+content_hash = "sha256:a6f8f06d6db47e98eda17e00c48f14c7c3b77bcbe417d3402f10248e0b14bf3d"
+
+[[metadata.targets]]
+requires_python = ">=3.10"
 
 [[package]]
 name = "annotated-types"
@@ -13,6 +16,9 @@ version = "0.7.0"
 requires_python = ">=3.8"
 summary = "Reusable constraint types to use with typing.Annotated"
 groups = ["ci-quality", "security"]
+dependencies = [
+    "typing-extensions>=4.0.0; python_version < \"3.9\"",
+]
 files = [
     {file = "annotated_types-0.7.0-py3-none-any.whl", hash = "sha256:1f02e8b43a8fbbc3f3e0d4f0f4bfc8131bcb4eebe8849b8e5c773f3a1c582a53"},
     {file = "annotated_types-0.7.0.tar.gz", hash = "sha256:aff07c09a53a08bc8cfccb9c85b05f1aa9a2a6f23728d790723543408344ce89"},
@@ -35,7 +41,10 @@ files = [
 name = "antlr4-python3-runtime"
 version = "4.13.2"
 summary = "ANTLR 4.13.2 runtime for Python 3"
-groups = ["ci-quality", "ci-tests", "default"]
+groups = ["default"]
+dependencies = [
+    "typing; python_version < \"3.5\"",
+]
 files = [
     {file = "antlr4_python3_runtime-4.13.2-py3-none-any.whl", hash = "sha256:fe3835eb8d33daece0e799090eda89719dbccee7aa39ef94eed3818cafa5a7e8"},
     {file = "antlr4_python3_runtime-4.13.2.tar.gz", hash = "sha256:909b647e1d2fc2b70180ac586df3933e38919c85f98ccc656a96cd3f25ef3916"},
@@ -71,6 +80,9 @@ version = "2.16.0"
 requires_python = ">=3.8"
 summary = "Internationalization utilities"
 groups = ["ci-quality", "docs"]
+dependencies = [
+    "pytz>=2015.7; python_version < \"3.9\"",
+]
 files = [
     {file = "babel-2.16.0-py3-none-any.whl", hash = "sha256:368b5b98b37c06b7daf6696391c3240c938b37767d4584413e8438c5c435fa8b"},
     {file = "babel-2.16.0.tar.gz", hash = "sha256:d1f3554ca26605fe173f3de0c65f750f5a42f924499bf134de6423582298e316"},
@@ -276,6 +288,7 @@ summary = "Composable command line interface toolkit"
 groups = ["ci-quality", "docs", "maintain", "security"]
 dependencies = [
     "colorama; platform_system == \"Windows\"",
+    "importlib-metadata; python_version < \"3.8\"",
 ]
 files = [
     {file = "click-8.1.7-py3-none-any.whl", hash = "sha256:ae74fb96c20a0277a1d615f1e4d73c8414f5a98db8b799a7931d1582f3390c28"},
@@ -287,7 +300,7 @@ name = "colorama"
 version = "0.4.6"
 requires_python = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
 summary = "Cross-platform colored terminal text."
-groups = ["ci-quality", "ci-tests", "default", "docs", "duty", "maintain", "security", "tests"]
+groups = ["default", "ci-quality", "ci-tests", "docs", "duty", "maintain", "security", "tests"]
 files = [
     {file = "colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"},
     {file = "colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"},
@@ -490,6 +503,7 @@ requires_python = ">=3.9"
 summary = "A simple task runner."
 groups = ["ci-quality", "ci-tests", "duty"]
 dependencies = [
+    "eval-type-backport; python_version < \"3.10\"",
     "failprint!=1.0.0,>=0.11",
     "typing-extensions>=4.0; python_version < \"3.11\"",
 ]
@@ -531,6 +545,7 @@ dependencies = [
     "ansimarkup~=1.4",
     "jinja2<4,>=2.11",
     "ptyprocess~=0.6; sys_platform != \"win32\"",
+    "typing-extensions>=4.1; python_version < \"3.10\"",
 ]
 files = [
     {file = "failprint-1.0.3-py3-none-any.whl", hash = "sha256:5c2c211b09d31cc5366ce0b65879f84e33b367d245c7f91d51d9ce9e998a4ff7"},
@@ -583,7 +598,7 @@ files = [
 name = "git-me-the-url"
 version = "2.1.0"
 summary = "Generate sharable links to your Git source"
-groups = ["ci-quality", "ci-tests", "default"]
+groups = ["default"]
 dependencies = [
     "gitpython",
 ]
@@ -596,7 +611,7 @@ name = "gitdb"
 version = "4.0.11"
 requires_python = ">=3.7"
 summary = "Git Object Database"
-groups = ["ci-quality", "ci-tests", "default", "docs"]
+groups = ["default", "ci-quality", "docs"]
 dependencies = [
     "smmap<6,>=3.0.1",
 ]
@@ -610,9 +625,10 @@ name = "gitpython"
 version = "3.1.43"
 requires_python = ">=3.7"
 summary = "GitPython is a Python library used to interact with Git repositories"
-groups = ["ci-quality", "ci-tests", "default", "docs"]
+groups = ["default", "ci-quality", "docs"]
 dependencies = [
     "gitdb<5,>=4.0.1",
+    "typing-extensions>=3.7.4.3; python_version < \"3.8\"",
 ]
 files = [
     {file = "GitPython-3.1.43-py3-none-any.whl", hash = "sha256:eec7ec56b92aad751f9912a73404bc02ba212a23adb2c7098ee668417051a1ff"},
@@ -626,6 +642,7 @@ requires_python = ">=3.9"
 summary = "Signatures for entire Python programs. Extract the structure, the frame, the skeleton of your project, to generate API documentation or find breaking changes in your API."
 groups = ["ci-quality", "docs"]
 dependencies = [
+    "astunparse>=1.6; python_version < \"3.9\"",
     "colorama>=0.4",
 ]
 files = [
@@ -669,7 +686,7 @@ name = "jinja2"
 version = "3.1.4"
 requires_python = ">=3.7"
 summary = "A very fast and expressive template engine."
-groups = ["ci-quality", "ci-tests", "default", "docs", "duty", "maintain", "security"]
+groups = ["default", "ci-quality", "ci-tests", "docs", "duty", "maintain", "security"]
 dependencies = [
     "MarkupSafe>=2.0",
 ]
@@ -692,7 +709,10 @@ name = "markdown"
 version = "3.7"
 requires_python = ">=3.8"
 summary = "Python implementation of John Gruber's Markdown."
-groups = ["ci-quality", "ci-tests", "default", "docs"]
+groups = ["default", "ci-quality", "docs"]
+dependencies = [
+    "importlib-metadata>=4.4; python_version < \"3.10\"",
+]
 files = [
     {file = "Markdown-3.7-py3-none-any.whl", hash = "sha256:7eb6df5690b81a1d7942992c97fad2938e956e79df20cbc6186e9c3a77b1c803"},
     {file = "markdown-3.7.tar.gz", hash = "sha256:2ae2471477cfd02dbbf038d5d9bc226d40def84b4fe2986e49b59b6b472bbed2"},
@@ -745,7 +765,7 @@ name = "markupsafe"
 version = "3.0.2"
 requires_python = ">=3.9"
 summary = "Safely add untrusted strings to HTML/XML markup."
-groups = ["ci-quality", "ci-tests", "default", "docs", "duty", "maintain", "security"]
+groups = ["default", "ci-quality", "ci-tests", "docs", "duty", "maintain", "security"]
 files = [
     {file = "MarkupSafe-3.0.2-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:7e94c425039cde14257288fd61dcfb01963e658efbc0ff54f5306b06054700f8"},
     {file = "MarkupSafe-3.0.2-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:9e2d922824181480953426608b81967de705c3cef4d1af983af849d7bd619158"},
@@ -846,6 +866,7 @@ dependencies = [
     "click>=7.0",
     "colorama>=0.4; platform_system == \"Windows\"",
     "ghp-import>=1.0",
+    "importlib-metadata>=4.4; python_version < \"3.10\"",
     "jinja2>=2.11.1",
     "markdown>=3.3.6",
     "markupsafe>=2.0.1",
@@ -913,6 +934,7 @@ requires_python = ">=3.8"
 summary = "MkDocs extension that lists all dependencies according to a mkdocs.yml file"
 groups = ["ci-quality", "docs"]
 dependencies = [
+    "importlib-metadata>=4.3; python_version < \"3.10\"",
     "mergedeep>=1.3.4",
     "platformdirs>=2.2.0",
     "pyyaml>=5.1",
@@ -1015,10 +1037,12 @@ dependencies = [
     "Markdown>=3.6",
     "MarkupSafe>=1.1",
     "click>=7.0",
+    "importlib-metadata>=4.6; python_version < \"3.10\"",
     "mkdocs-autorefs>=1.2",
     "mkdocs>=1.4",
     "platformdirs>=2.2",
     "pymdown-extensions>=6.3",
+    "typing-extensions>=4.1; python_version < \"3.10\"",
 ]
 files = [
     {file = "mkdocstrings-0.26.2-py3-none-any.whl", hash = "sha256:1248f3228464f3b8d1a15bd91249ce1701fe3104ac517a5f167a0e01ca850ba5"},
@@ -1141,7 +1165,7 @@ name = "peakrdl"
 version = "1.1.0"
 requires_python = ">=3.6"
 summary = "Command-line tool for control/status register automation and code generation."
-groups = ["ci-quality", "ci-tests", "default"]
+groups = ["default"]
 dependencies = [
     "peakrdl-cheader<2,>=1.0.0",
     "peakrdl-html<3,>=2.10.1",
@@ -1162,7 +1186,7 @@ name = "peakrdl-cheader"
 version = "1.0.0"
 requires_python = ">=3.6"
 summary = "Generate C Header files from a SystemRDL register model"
-groups = ["ci-quality", "ci-tests", "default"]
+groups = ["default"]
 dependencies = [
     "jinja2",
     "systemrdl-compiler<2,>=1.21.0",
@@ -1176,7 +1200,7 @@ files = [
 name = "peakrdl-html"
 version = "2.10.1"
 summary = "HTML documentation generator for SystemRDL-based register models"
-groups = ["ci-quality", "ci-tests", "default"]
+groups = ["default"]
 dependencies = [
     "Jinja2>=2.9",
     "git-me-the-url>=2.0.3",
@@ -1193,7 +1217,7 @@ name = "peakrdl-ipxact"
 version = "3.5.0"
 requires_python = ">=3.5.2"
 summary = "Import and export IP-XACT XML to/from the systemrdl-compiler register model"
-groups = ["ci-quality", "ci-tests", "default"]
+groups = ["default"]
 dependencies = [
     "systemrdl-compiler<2,>=1.24.0",
 ]
@@ -1203,27 +1227,11 @@ files = [
 ]
 
 [[package]]
-name = "peakrdl-python"
-version = "0.9.2"
-requires_python = ">=3.7"
-summary = "Generate Python Register Access Layer (RAL) from SystemRDL"
-groups = ["ci-quality", "ci-tests", "default"]
-dependencies = [
-    "jinja2",
-    "systemrdl-compiler>=1.25.0",
-    "typing-extensions; python_version < \"3.11\"",
-]
-files = [
-    {file = "peakrdl_python-0.9.2-py3-none-any.whl", hash = "sha256:ff4d79da62fded9d19bea682e6f4b78bb02eb622dd6810d17d4462afc7408984"},
-    {file = "peakrdl_python-0.9.2.tar.gz", hash = "sha256:4b372cd2203c5011a614f4542e5e8c928edc606f65f1805aaad9c9c1dbd44a3e"},
-]
-
-[[package]]
 name = "peakrdl-regblock"
 version = "0.22.0"
 requires_python = ">=3.6"
 summary = "Compile SystemRDL into a SystemVerilog control/status register (CSR) block"
-groups = ["ci-quality", "ci-tests", "default"]
+groups = ["default"]
 dependencies = [
     "Jinja2>=2.11",
     "systemrdl-compiler<2,>=1.27.0",
@@ -1238,7 +1246,7 @@ name = "peakrdl-systemrdl"
 version = "0.3.0"
 requires_python = ">=3.6"
 summary = "Write a register model to a SystemRDL file"
-groups = ["ci-quality", "ci-tests", "default"]
+groups = ["default"]
 dependencies = [
     "systemrdl-compiler>=1.25.1",
 ]
@@ -1250,7 +1258,7 @@ files = [
 name = "peakrdl-uvm"
 version = "2.3.0"
 summary = "Generate UVM register model from compiled SystemRDL input"
-groups = ["ci-quality", "ci-tests", "default"]
+groups = ["default"]
 dependencies = [
     "jinja2",
     "systemrdl-compiler>=1.12.0",
@@ -1482,6 +1490,7 @@ requires_python = ">=3.8"
 summary = "Pytest plugin to randomly order tests and control random.seed."
 groups = ["ci-tests", "tests"]
 dependencies = [
+    "importlib-metadata>=3.6.0; python_version < \"3.10\"",
     "pytest",
 ]
 files = [
@@ -1523,7 +1532,7 @@ name = "python-markdown-math"
 version = "0.8"
 requires_python = ">=3.6"
 summary = "Math extension for Python-Markdown"
-groups = ["ci-quality", "ci-tests", "default"]
+groups = ["default"]
 dependencies = [
     "Markdown>=3.0",
 ]
@@ -1869,7 +1878,7 @@ name = "smmap"
 version = "5.0.1"
 requires_python = ">=3.7"
 summary = "A pure Python implementation of a sliding window memory map manager"
-groups = ["ci-quality", "ci-tests", "default", "docs"]
+groups = ["default", "ci-quality", "docs"]
 files = [
     {file = "smmap-5.0.1-py3-none-any.whl", hash = "sha256:e6d8668fa5f93e706934a62d7b4db19c8d9eb8cf2adbb75ef1b675aa332b69da"},
     {file = "smmap-5.0.1.tar.gz", hash = "sha256:dceeb6c0028fdb6734471eb07c0cd2aae706ccaecab45965ee83f11c8d3b1f62"},
@@ -1880,7 +1889,7 @@ name = "systemrdl-compiler"
 version = "1.27.3"
 requires_python = ">=3.5.2"
 summary = "Parse and elaborate front-end for SystemRDL 2.0"
-groups = ["ci-quality", "ci-tests", "default"]
+groups = ["default"]
 dependencies = [
     "antlr4-python3-runtime<4.14,>=4.11",
     "colorama",
@@ -1916,7 +1925,7 @@ name = "tomli"
 version = "2.0.2"
 requires_python = ">=3.8"
 summary = "A lil' TOML parser"
-groups = ["ci-quality", "ci-tests", "default", "docs", "maintain", "security", "tests", "typing"]
+groups = ["default", "ci-quality", "ci-tests", "docs", "maintain", "security", "tests", "typing"]
 marker = "python_version < \"3.11\""
 files = [
     {file = "tomli-2.0.2-py3-none-any.whl", hash = "sha256:2ebe24485c53d303f690b0ec092806a085f07af5a5aa1464f3931eec36caaa38"},
@@ -1967,7 +1976,7 @@ name = "typing-extensions"
 version = "4.12.2"
 requires_python = ">=3.8"
 summary = "Backported and Experimental Type Hints for Python 3.8+"
-groups = ["ci-quality", "ci-tests", "default", "docs", "duty", "maintain", "security", "typing"]
+groups = ["ci-quality", "ci-tests", "docs", "duty", "maintain", "security", "typing"]
 files = [
     {file = "typing_extensions-4.12.2-py3-none-any.whl", hash = "sha256:04e5ca0351e0f3f85c6853954072df659d0d13fac324d0072316b67d7794700d"},
     {file = "typing_extensions-4.12.2.tar.gz", hash = "sha256:1a7ead55c7e559dd4dee8856e3a88b41225abfe1ce8df57b7c13915fe121ffb8"},

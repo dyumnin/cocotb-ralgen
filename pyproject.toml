@@ -1,13 +1,11 @@
 [project]
 name = "peakrdl-cocotb-ralgen"
-#fallback-version = "0.1.0"
 dynamic = ["version"]
-description = "Generate RAL tests from systemRDL depends on peakrdl-python to create the class for frontend access"
+description = "Generate RAL tests from systemRDL."
 authors = [
     {name = "Vijayvithal Jahagirdar", email = "jahagirdar.vs@gmail.com"},
 ]
 dependencies = [
-    "peakrdl-python>=0.8.1",
     "systemrdl-compiler>=1.27.3",
     "jinja2>=3.1.4",
     "peakrdl>=1.1.0",

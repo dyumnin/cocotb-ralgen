@@ -4,11 +4,9 @@ from cocotb.clock import Clock
 from cocotb.triggers import Timer
 from cocotbext.axi import AxiLiteBus, AxiLiteMaster
 from cocotbext.dyulib.reset import clock_in_reset_start, reset_end, reset_n
-from DMA_Reg.lib import AsyncCallbackSet
-from DMA_Reg.reg_model.DMA_Reg import DMA_Reg_cls
 
 
-class Env:
+class DMAEnv:
     """Environment for cocotb testcases."""
 
     def __init__(self, dut):
@@ -21,12 +19,7 @@ class Env:
             reset_active_level=False,
         )
         self.default_ifc = self.axi_cfg
-        self.reg = DMA_Reg_cls(
-            callbacks=AsyncCallbackSet(
-                read_callback=self.readReg,
-                write_callback=self.writeReg,
-            ),
-        )
+        self.cfg = Cfg_ifc(self.axi_cfg)
 
     def start(self):
         """Start verification, Launches Clock and Reset threads."""
@@ -51,15 +44,23 @@ class Env:
         """Wrapper over the reset_end event."""
         await reset_end.wait()
 
-    async def readReg(self, addr: int, width: int, accesswidth: int):
+
+class Cfg_ifc:
+    """Wrapper on Interfaces Read Write Function."""
+
+    def __init__(self, ifc):
+        """Constructor."""
+        self.ifc = ifc
+
+    async def read(self, addr: int, width: int, accesswidth: int):
         """Wrapper over the  read function for use by reg model."""
-        rv = await self.default_ifc.read(addr, 4)
+        rv = await self.ifc.read(addr, 4)
         cocotb.log.info(
             f"RegRead addr={addr:x} rdata={hex(int.from_bytes(rv.data,'little',))}",
         )
         return int.from_bytes(rv.data, "little")
 
-    async def writeReg(self, addr: int, width: int, accesswidth: int, data: int):
+    async def write(self, addr: int, width: int, accesswidth: int, data: int):
         """Wrapper over the  write function for use by reg model."""
         cocotb.log.info(f"RegWrite, addr={hex(addr)} data={hex(data)}")
-        return await self.default_ifc.write(addr, int.to_bytes(data, 4, "little"))
+        return await self.ifc.write(addr, int.to_bytes(data, 4, "little"))

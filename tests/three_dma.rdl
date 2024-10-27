@@ -1,0 +1,8 @@
+`include "dma.rdl"
+
+addrmap three_DMA{
+name = "3 instances of dma";
+DMA_Reg dma0 @0x0;
+DMA_Reg dma1 @0x1000;
+DMA_Reg dma2 @0x2000;
+};
