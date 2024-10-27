@@ -25,41 +25,48 @@ async def rw_test(
     """
     # TODO Handle background oprations
     # assert foreground_write and foreground_read, "Error Background operations are not yet defined"
-    for key, val in RAL.masks.items():
-        if "rw" in val["disable"]:
+    for key, reg in RAL.masks.items():
+        if "rw" in reg["disable"]:
             continue
-        r = RAL.regmodel.__getattribute__(key)
+        print(f"{reg}\n")
+        r = RAL.ifc
+        addr = reg["address"]
         rv = None
-        donttest = val["donttest"]
+        donttest = reg["donttest"]
         for _ in range(count):
             wrval = (
                 default_value
                 if default_value
-                else random.randint(0, 2 ** val["regwidth"])
+                else random.randint(0, 2 ** reg["regwidth"])
             )
-            wval = wrval & ~val["donttest"]
+            wval = wrval & ~reg["donttest"]
+            wmask = reg["write_mask"]
+            rmask = reg["read_mask"]
+            expected = wval & wmask & rmask
             if foreground_write:
-                await r.write(wval)
+                await r.write(
+                    addr,
+                    reg["width"],
+                    reg["width"],
+                    wval,
+                )
             else:
-                for hsh in val["signals"]:
-                    RAL.callback.write(
-                        hsh,
-                        (wval >> hsh["low"])
-                        & int("1" * (hsh["high"] - hsh["low"] + 1), 2),
+                for sigHash in reg["signals"]:
+                    RAL.background.write(
+                        sigHash,
+                        (wval >> sigHash["low"])
+                        & int("1" * (sigHash["high"] - sigHash["low"] + 1), 2),
                     )
             if foreground_read:
-                rv = await r.read()
+                rv = await r.read(addr, reg["width"], reg["width"])
             else:
                 rv = 0
-                for hsh in val["signals"]:
-                    rv |= RAL.callback.read(hsh) << hsh["low"]
-            wmask = val["write_mask"]
-            rmask = val["read_mask"]
+                for sigHash in reg["signals"]:
+                    rv |= RAL.background.read(sigHash) << sigHash["low"]
             actual = rv & wmask & ~donttest
-            expected = wval & wmask & rmask
             assert (
                 actual == expected
-            ), f"{key}:: Read Write Written {wval}, actual(Read) {actual}, Expected {expected}, wrMask {wmask}, rdmask {rmask}, donttest = {donttest}"
+            ), f"{key}:: Read Write Written {wval:x}, actual(Read) {actual:x}, Expected {expected:x}, wrMask {wmask:x}, rdmask {rmask:x}, donttest = {donttest:x}"
         if verbose:
             logger.info(
                 f"Test RW: {key} wval {wval:x} rv {rv:x} expected {expected:x} actual {actual:x}",

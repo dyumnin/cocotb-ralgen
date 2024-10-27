@@ -1,7 +1,8 @@
 # peakrdl-cocotb-ralgen
 
-A SystemRDL to Raltest converter for cocotb.
+A SystemRDL to raltest converter for cocotb.
 
+This VIP confirms to sysrdl 1.2 and ral 1.0 format.
 # Installation
 
 ```
@@ -35,7 +36,7 @@ async def test_ral_reset(dut):
     await reset_test.reset_test(ral, verbose=True)
 ```
 
-To Perform Read write checks:
+To perform read write checks:
 
 ```
 @cocotb.test
@@ -54,7 +55,7 @@ async def test_ral_readwrite(dut):
     )
 ...
 ```
-# supporting different RTL Generators.
+# Supporting different RTL generators.
 For interfacing your RTL Generator generated code, ralgen needs to know the pattern used by you for signal naming.
 You can provide this information by passing a Callback function which maps the signal from systemRDL to RTL and provides methods to read & write to it.
 
@@ -65,6 +66,6 @@ New tests can be added to the testcases folder.
 # Contribution
 PR's for supporting different RTL generators or test strategies are welcome.
 
-#Example
+# Example
 
 For a complete working example [check the tests folder](https://github.com/dyumnin/cocotb-ralgen/blob/main/tests/cocotbtest_dma.py).

@@ -1,8 +1,8 @@
 class {{node.get_path_segment()}}_RAL_Test:
     masks={{preg}}
-    def __init__(self,regmodel,callback=None):
-        self.regmodel=regmodel
-        self.callback=callback
+    def __init__(self,ifc,callback=None):
+        self.ifc=ifc
+        self.background=callback
         logger.info(f'''
         Cocotb RALGEN: SystemRDL to RALtest converter.
         Copyright © 2024 Dyumnin Semiconductors.

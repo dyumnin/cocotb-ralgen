@@ -1,16 +1,16 @@
 """Test for verilog simulation."""
 import cocotb
 from cocotb.triggers import RisingEdge
-from unitEnv import DMAEnv
-from peakrdl_cocotb_ralgen.callbacks.bsv import BSVCallback
+from env import Env
+from peakrdl_cocotb_ralgen.callbacks.callback_base import CallbackBase
 from peakrdl_cocotb_ralgen.testcases import rw_test, reset_test
-from DMA_Reg_RAL import DMA_Reg_RAL_Test as RAL
+from top_RAL import top_RAL_Test as RAL
 
 
 @cocotb.test
 async def test_ral_reset(dut):
     """Ral test reset."""
-    env = DMAEnv(dut)
+    env = Env(dut)
     ral = RAL(env.cfg, callback=BSVCallback(dut))
     env.start()
     await run_ral_reset_check(env, ral)
@@ -19,7 +19,7 @@ async def test_ral_reset(dut):
 @cocotb.test
 async def test_ral_fgwr_fgrd(dut):
     """Ral test foreground rd and write."""
-    env = DMAEnv(dut)
+    env = Env(dut)
     env.start()
     ral = RAL(env.cfg)
     await run_ral_rw_check(env, ral)
@@ -28,7 +28,7 @@ async def test_ral_fgwr_fgrd(dut):
 @cocotb.test
 async def test_ral_fgwr_bgrd(dut):
     """Ral test foreground write background read."""
-    env = DMAEnv(dut)
+    env = Env(dut)
     env.start()
     ral = RAL(env.cfg, callback=BSVCallback(dut))
     await run_ral_rw_check(env, ral, rdfg=False)
@@ -37,7 +37,7 @@ async def test_ral_fgwr_bgrd(dut):
 @cocotb.test
 async def test_ral_bgwr_fgrd(dut):
     """Ral test Background wr foreground read."""
-    env = DMAEnv(dut)
+    env = Env(dut)
     env.start()
     ral = RAL(env.cfg, callback=BSVCallback(dut))
     await run_ral_rw_check(env, ral, wrfg=False)
@@ -61,3 +61,17 @@ async def run_ral_rw_check(env, ral, *, wrfg=True, rdfg=True):
         count=1,
         verbose=True,
     )
+
+
+class BSVCallback(CallbackBase):
+    def sig(self, sigHash):
+        print(sigHash)
+        path = sigHash["path"]
+        d = self.dut
+        print(path[1:3])
+        for i in path[1:3]:
+            d = getattr(d, i)
+        sig = f"s{path[3].lower()}{path[4]}"
+        return getattr(d, sig) if hasattr(d, sig) else getattr(d, sig + "_wget")
+
+        # {'high': 7, 'low': 0, 'path': ['top', 'sdma0', 'dma1', 'Cfg', 'a_burst_length']}

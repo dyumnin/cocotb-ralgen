@@ -62,6 +62,13 @@ class RALGEN(RDLListener):
         self.file = file
         self.registers = {}
         self.current_register = ""
+        self.map_count = 0
+        self.map_offset = []
+        self.addressmap = []
+        print(
+            '"""Generated using Cocotb RALGenerator.  Copyright © 2024 Dyumnin Semiconductors."""',
+            file=file,
+        )
         print(
             """
 import random
@@ -71,7 +78,7 @@ logger = cocotb.log
             file=file,
         )
         print(
-            f" Cocotb RALGEN: SystemRDL to RALtest converter version {il.distribution('peakrdl_cocotb_ralgen').version}.",
+            f" Cocotb RALGenerator: SystemRDL to RALtest converter version {il.distribution('peakrdl_cocotb_ralgen').version}.",
         )
         print(
             """
@@ -82,31 +89,40 @@ logger = cocotb.log
 
     def enter_Addrmap(self, node):
         """Overriding builtin method."""
-        self.registers = {}
+        self.map_count += 1
+        self.addressmap.append(node.get_path_segment())
+        self.map_offset.append(node.inst.addr_offset)
+        # print(f"{self.addressmap} {node.inst.__dict__}")
 
     def enter_Reg(self, node):
         """Overriding builtin method."""
-        self.current_register = node.get_path_segment()
-        self.registers[node.get_path_segment()] = {
+        self.current_register = (
+            "_".join(self.addressmap) + "_" + node.get_path_segment()
+        )
+        self.hier_path = self.addressmap + [node.get_path_segment()]
+        self.registers[self.current_register] = {
+            "name": node.get_path_segment(),
+            "width": node.inst.properties["regwidth"],
             "reset_value": 0,
             "reset_mask": 0,
             "write_mask": 0,
             "read_mask": 0,
             "donttest": 0,
+            "address": sum(self.map_offset) + node.inst.addr_offset,
+            "offset": node.inst.addr_offset,
             "signals": [],
             "disable": [],
         }
 
-        # print(node.__dict__,file=self.file)
+        print(f"{self.map_offset} + {node.inst.addr_offset} {self.current_register}\n")
 
     def enter_Field(self, node):
         """Overriding builtin method."""
         self.registers[self.current_register]["signals"].append(
             {
-                "reg": self.current_register,
-                "sig": node.get_path_segment(),
                 "low": node.low,
                 "high": node.high,
+                "path": self.hier_path + [node.get_path_segment()],
             },
         )
         if "reset" in node.inst.properties:
@@ -130,29 +146,26 @@ logger = cocotb.log
                 int("1" * (node.high - node.low + 1), 2) << node.low
             )
         if "woclr" in node.inst.properties:
-            print("Error: Not testing woclr bits")
+            print("Error: Unsupported feature. Not testing woclr bits")
             self.registers[self.current_register]["donttest"] |= (
                 int("1" * (node.high - node.low + 1), 2) << node.low
             )
         if "rclr" in node.inst.properties:
-            print("Error: Not testing rclr bits")
+            print("Error: Unsupported feature. Not testing rclr bits")
             self.registers[self.current_register]["donttest"] |= (
                 int("1" * (node.high - node.low + 1), 2) << node.low
             )
         if "singlepulse" in node.inst.properties:
-            print("Error: Not testing SinglePulse bits")
+            print("Error: Unsupported feature. Not testing SinglePulse bits")
             self.registers[self.current_register]["donttest"] |= (
                 int("1" * (node.high - node.low + 1), 2) << node.low
             )
-        # print(node.inst.__dict__,file=self.file)
 
     def exit_Reg(self, node):
         """Overriding builtin method."""
-        # {'regwidth': 32}
         self.registers[self.current_register]["regwidth"] = node.get_property(
             "regwidth",
         )
-        # print(node.inst.__dict__)
         if not node.has_sw_writable:
             self.registers[self.current_register]["disable"].append("rw")
         if not node.has_sw_readable:
@@ -160,13 +173,17 @@ logger = cocotb.log
 
     def exit_Addrmap(self, node):
         """Overriding builtin method."""
-        preg = HexPP().pformat(self.registers)
-        env = Environment(
-            loader=PackageLoader("peakrdl_cocotb_ralgen"),
-            autoescape=select_autoescape(),
-        )
-        template = env.get_template("ralgen.j2")
-        print(template.render(preg=preg, node=node), file=self.file)
+        self.map_count -= 1
+        self.addressmap.pop()
+        self.map_offset.pop()
+        if self.map_count == 0:
+            preg = HexPP().pformat(self.registers)
+            env = Environment(
+                loader=PackageLoader("peakrdl_cocotb_ralgen"),
+                autoescape=select_autoescape(),
+            )
+            template = env.get_template("ralgen.j2")
+            print(template.render(preg=preg, node=node), file=self.file)
 
 
 if __name__ == "__main__":

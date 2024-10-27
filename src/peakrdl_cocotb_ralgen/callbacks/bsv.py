@@ -1,48 +1,18 @@
 """Callback."""
 
-import cocotb
-from cocotb.handle import Force
+from .callback_base import CallbackBase
 
 
-class Callback:
-    """Callback function for Peakrdl Generated Bluespec verilog code."""
+class BSVCallback(CallbackBase):
+    """Callback function for Peakrdl Generated Bluespec verilog code.
 
-    def __init__(self, dut):
-        """Initialize.
+    The BSV generated RTL
+    1. Retains the signal name for Reg* types.
+    2. For Wire types the signal has a `_wget` suffix to indicate value and a `_whas` suffix to indicate the signal is driven in the current cycle.
+    3. The original Bluespec code uses s<RegName><signalName> as the pattern for the bleuspec variable name.
 
-        params:
-          dut (Any): cocotb dut reference.
-        """
-        self.dut = dut
-
-    def write(self, sigHash, wr):
-        """Finds the actual signal in RTL and sets its value.
-
-        params:
-            sigHash (dict): A dictionary of signal parameters "
-                {"reg": register,
-                "sig": signal_name,
-                "low": signal's low index in the register,
-                "high": signal's high index in the register,
-                 }
-            wr (int): Integer value to write to the signal
-        """
-        self.sig(sigHash).value = Force(wr)
-
-    def read(self, sigHash):
-        """Finds the actual signal in RTL and returns its value.
-
-        params:
-            sigHash (dict): A dictionary of signal parameters "
-                {"reg": register,
-                "sig": signal_name,
-                "low": signal's low index in the register,
-                "high": signal's high index in the register,
-                 }
-        """
-        rv = self.sig(sigHash).value
-        cocotb.log.debug(f"{sigHash['sig']} rv={rv}")
-        return rv
+    The override for the sig function takes care of this difference.
+    """
 
     def sig(self, sigHash):
         """Finds the signal in dut and returns a reference to it.
@@ -55,7 +25,7 @@ class Callback:
                 "high": signal's high index in the register,
                  }
         """
-        sig = f"s{sigHash['reg'].lower()}{sigHash['sig']}"
+        sig = f"s{sigHash['path'][-2].lower()}{sigHash['path'][-1]}"
         return (
             getattr(self.dut, sig)
             if hasattr(self.dut, sig)
