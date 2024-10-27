@@ -19,6 +19,7 @@ nav:
   - Changelog: changelog.md
   - Credits: credits.md
   - License: license.md
+  - Plan: ai.md
 # defer to gen-files + literate-nav
 - API reference:
   - peakrdl-cocotb-ralgen: reference/

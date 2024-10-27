@@ -15,16 +15,18 @@ def reset_test(RAL, *, verbose=False):
             continue
         rv = 0
         for hsh in val["signals"]:
-            rv |= RAL.callback.read(hsh) << hsh["low"]
+            rv |= RAL.background.read(hsh) << hsh["low"]
         try:
             actual = rv & val["reset_mask"]
             expected = val["reset_value"]
             assert (
                 actual == expected
-            ), f"{key} Resetvalue mismatch Actual {actual},Expected {expected},"
+            ), f"{key} Resetvalue mismatch Actual {actual:x},Expected {expected:x},"
         except:
-            cocotb.log.error("Error Reset Read Reg:{key}, Value {rv}")
+            cocotb.log.error(
+                f"Reset Read Reg:{key}, actual {rv:x} expected {expected:x}",
+            )
             error_count += 1
         if verbose:
-            logger.info("Reset Read Reg:{key}, Value {rv}")
+            logger.info(f"Reset Read Reg:{key}, Value {rv:x}")
     assert error_count == 0, f"Test exited with {error_count} Error"

@@ -14,7 +14,7 @@ reg {
 desc="Unique ID to identify different revisions on IP.";
   } Version;
 
-reg { 
+reg {
 field {sw=r; hwclr;hwset;
 desc="This field is set when the DMA operation is in progress and cleared when DMA is finished";} busy[0:0]=0;
 field {rclr; hw=w;
@@ -25,7 +25,7 @@ field {sw=r; hw=w;
 desc="If PD mode of transfer is used then this field will contain the PD for which a transfer is ongoing";} current_pd_id[31:16]=0;
 } Status;
 
-reg { 
+reg {
 field {singlepulse; hw=r;donttest;
 desc="Set to initiate DMA transfer or PD processing";} start[1]=0;
 field {sw=rw; hw=r;desc="If set an interrupt will be generated at error, data transfer start/done, PD chain done";} gen_interrupt[1]=0;

@@ -1,0 +1,6 @@
+`include "three_dma.rdl"
+addrmap soc {
+name="top";
+three_DMA sdma0 @0;
+three_DMA sdma1 @0x4000;
+};
