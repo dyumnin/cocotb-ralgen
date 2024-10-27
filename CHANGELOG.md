@@ -5,7 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 
+## [0.1.7.dev7] - 2024-10-27
+
+### Modified
+
+- chore: Shifted from alpha to dev.
+
 ## [0.1.7a6] - 2024-10-27
+
 ### Modified
 - chore: removed semver from changelog bacause pypi is against it.
 -
