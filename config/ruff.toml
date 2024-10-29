@@ -88,6 +88,7 @@ ignore = [
 "I001",
 "S603",
 "E402",
+"S607",
 ]
 
 [per-file-ignores]
@@ -100,6 +101,7 @@ ignore = [
 ]
 "src/*/cli.py" = [
     "T201",  # Print statement
+"INP001",
 ]
 "src/*/ralgen.py" = [
     "T201",  # Print statement
