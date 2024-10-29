@@ -77,15 +77,12 @@ logger = cocotb.log
               """,
             file=file,
         )
-        print(
-            f" Cocotb RALGenerator: SystemRDL to RALtest converter version {il.distribution('peakrdl_cocotb_ralgenerator').version}.",
+        version = il.distribution("peakrdl_cocotb_ralgenerator").version
+        logger.log(
+            f" Cocotb RALGenerator: SystemRDL to RALtest converter version {version}.\n"
         )
-        print(
-            """
-        Copyright © 2024 Dyumnin Semiconductors.
-        https://dyumnin.com
-        """,
-        )
+        logger.log("Copyright © 2024 Dyumnin Semiconductors.\n")
+        logger.log("https://dyumnin.com")
 
     def enter_Addrmap(self, node):
         """Overriding builtin method."""
@@ -116,11 +113,12 @@ logger = cocotb.log
 
     def enter_Field(self, node):
         """Overriding builtin method."""
+        name = node.get_path_segment()
         self.registers[self.current_register]["signals"].append(
             {
                 "low": node.low,
                 "high": node.high,
-                "path": [*self.hier_path, node.get_path_segment()],
+                "path": [*self.hier_path, name],
             },
         )
         if "reset" in node.inst.properties:
@@ -144,17 +142,21 @@ logger = cocotb.log
                 int("1" * (node.high - node.low + 1), 2) << node.low
             )
         if "woclr" in node.inst.properties:
-            print("Error: Unsupported feature. Not testing woclr bits")
+            logger.warning(
+                f"Error: Unsupported feature. Not testing woclr bits for {name}"
+            )
             self.registers[self.current_register]["donttest"] |= (
                 int("1" * (node.high - node.low + 1), 2) << node.low
             )
         if "rclr" in node.inst.properties:
-            print("Error: Unsupported feature. Not testing rclr bits")
+            logger.warning(f"Error: Unsupported feature. Not testing rclr bits {name}")
             self.registers[self.current_register]["donttest"] |= (
                 int("1" * (node.high - node.low + 1), 2) << node.low
             )
         if "singlepulse" in node.inst.properties:
-            print("Error: Unsupported feature. Not testing SinglePulse bits")
+            logger.warning(
+                f"Error: Unsupported feature. Not testing SinglePulse bits {name}"
+            )
             self.registers[self.current_register]["donttest"] |= (
                 int("1" * (node.high - node.low + 1), 2) << node.low
             )

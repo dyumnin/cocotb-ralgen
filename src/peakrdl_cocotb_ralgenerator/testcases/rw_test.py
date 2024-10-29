@@ -7,6 +7,7 @@ logger = cocotb.log
 
 async def rw_test(
     RAL,
+    *,
     foreground_write=True,
     foreground_read=True,
     count=10,
@@ -40,7 +41,7 @@ async def rw_test(
     # TODO Handle background oprations
     # assert foreground_write and foreground_read, "Error Background operations are not yet defined"
     default_read = read_all_reg(RAL)
-    for key, reg in RAL.masks.items():
+    for _, reg in RAL.masks.items():
         default_read[reg] = bg_read_reg(RAL, reg)
     for key, reg in RAL.masks.items():
         if "rw" in reg["disable"]:
@@ -76,7 +77,7 @@ async def rw_test(
                         & int("1" * (sighash["high"] - sighash["low"] + 1), 2),
                     )
             assert default_read == read_all_reg(
-                RAL
+                RAL,
             ), "Post write background read verification failed"
             if foreground_read:
                 rv = await r.read(addr, reg["width"], reg["width"])
@@ -101,7 +102,8 @@ def bg_read_reg(RAL, reg):
 
 
 def read_all_reg(RAL):
+    """Background read of all registers in the design."""
     all_reg = {}
-    for key, reg in RAL.masks.items():
+    for _, reg in RAL.masks.items():
         all_reg[reg] = bg_read_reg(RAL, reg)
     return all_reg

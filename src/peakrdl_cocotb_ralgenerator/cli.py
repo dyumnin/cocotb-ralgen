@@ -16,4 +16,4 @@ def cocotb_ralgenerator(rdlfile: str, ralfolder: str):
 
 
 if __name__ == "__main__":
-    sys.exit(dyu_ralg())  # pragma: no cover
+    sys.exit(cocotb_ralgenerator())  # pragma: no cover

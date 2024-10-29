@@ -19,9 +19,9 @@ requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
 [project.entry-points."peakrdl.exporters"]
-cocotb_ralgenerator = "peakrdl_cocotb_ralgenerator.__peakrdl__:Exporter"
+mkcocotb_ral = "peakrdl_cocotb_ralgenerator.__peakrdl__:Exporter"
 [project.scripts]
-cocotb_ralgenerator = "peakrdl_cocotb_ralgenerator.cli:cocotb_ralgenerator"
+mkcocotb_ral = "peakrdl_cocotb_ralgenerator.cli:cocotb_ralgenerator"
 
 [project.urls]
 Homepage = "https://dyumnin.com/cocotb_ralgenerator"
