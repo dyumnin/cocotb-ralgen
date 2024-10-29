@@ -1,5 +1,5 @@
 [project]
-name = "peakrdl-cocotb-ralgen"
+name = "peakrdl-cocotb-ralgenerator"
 dynamic = ["version"]
 description = "Generate RAL tests from systemRDL."
 authors = [
@@ -19,13 +19,15 @@ requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
 [project.entry-points."peakrdl.exporters"]
-cocotb_ralgen = "peakrdl_cocotb_ralgen.__peakrdl__:Exporter"
+cocotb_ralgenerator = "peakrdl_cocotb_ralgenerator.__peakrdl__:Exporter"
+[project.scripts]
+cocotb_ralgenerator = "peakrdl_cocotb_ralgenerator.cli:cocotb_ralgenerator"
 
 [project.urls]
-Homepage = "https://dyumnin.com/cocotb_ralgen"
-Repository = "https://github.com/dyumnin/cocotb-ralgen.git"
-Issues = "https://github.com/dyumnin/cocotb-ralgen/issues"
-Documentation = "https://dyumnin.github.io/cocotb-ralgen"
+Homepage = "https://dyumnin.com/cocotb_ralgenerator"
+Repository = "https://github.com/dyumnin/cocotb-ralgenerator.git"
+Issues = "https://github.com/dyumnin/cocotb-ralgenerator/issues"
+Documentation = "https://dyumnin.github.io/cocotb-ralgenerator"
 [tool.pdm]
 distribution = true
 
@@ -36,10 +38,10 @@ version_format = "version:format_version"
 [tool.pdm.dev-dependencies]
 duty = ["duty>=0.10"]
 ci-quality = [
-    "peakrdl-cocotb-ralgen[duty,docs,quality,typing,security]",
+    "peakrdl-cocotb-ralgenerator[duty,docs,quality,typing,security]",
     "griffe>=1.5.1",
 ]
-ci-tests = ["peakrdl-cocotb-ralgen[duty,tests]"]
+ci-tests = ["peakrdl-cocotb-ralgenerator[duty,tests,mdextractor]"]
 docs = [
     "black>=23.9",
     "markdown-callouts>=0.3",
@@ -67,6 +69,7 @@ tests = [
     "pytest-cov>=4.1",
     "pytest-randomly>=3.15",
     "pytest-xdist>=3.3",
+"mdextractor",
 ]
 typing = [
     "mypy>=1.5",

@@ -5,7 +5,7 @@
 groups = ["default", "ci-quality", "ci-tests", "docs", "duty", "maintain", "quality", "security", "tests", "typing"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:a6f8f06d6db47e98eda17e00c48f14c7c3b77bcbe417d3402f10248e0b14bf3d"
+content_hash = "sha256:f7cc135d0d10b9ac47f581bcdfd46e8eddc18907fb314435d5e1818e183c1d97"
 
 [[metadata.targets]]
 requires_python = ">=3.10"
@@ -832,6 +832,17 @@ dependencies = [
 files = [
     {file = "marshmallow-3.23.0-py3-none-any.whl", hash = "sha256:82f20a2397834fe6d9611b241f2f7e7b680ed89c49f84728a1ad937be6b4bdf4"},
     {file = "marshmallow-3.23.0.tar.gz", hash = "sha256:98d8827a9f10c03d44ead298d2e99c6aea8197df18ccfad360dae7f89a50da2e"},
+]
+
+[[package]]
+name = "mdextractor"
+version = "0.0.3"
+requires_python = ">=3.6"
+summary = "Extract Markdown code blocks from text strings."
+groups = ["ci-tests", "tests"]
+files = [
+    {file = "mdextractor-0.0.3-py3-none-any.whl", hash = "sha256:230415829692e6d27da4311bf7bf2720c9f1f2ee277f930a230a34dd6431f3f6"},
+    {file = "mdextractor-0.0.3.tar.gz", hash = "sha256:7310fa18267025480bac3a35239fab56eb91129c278bc481837212ac81cf897c"},
 ]
 
 [[package]]

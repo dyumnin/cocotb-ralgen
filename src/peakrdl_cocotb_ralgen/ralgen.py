@@ -78,7 +78,7 @@ logger = cocotb.log
             file=file,
         )
         print(
-            f" Cocotb RALGenerator: SystemRDL to RALtest converter version {il.distribution('peakrdl_cocotb_ralgen').version}.",
+            f" Cocotb RALGenerator: SystemRDL to RALtest converter version {il.distribution('peakrdl_cocotb_ralgenerator').version}.",
         )
         print(
             """
@@ -177,10 +177,10 @@ logger = cocotb.log
         if self.map_count == 0:
             preg = HexPP().pformat(self.registers)
             env = Environment(
-                loader=PackageLoader("peakrdl_cocotb_ralgen"),
+                loader=PackageLoader("peakrdl_cocotb_ralgenerator"),
                 autoescape=select_autoescape(),
             )
-            template = env.get_template("ralgen.j2")
+            template = env.get_template("ralgenerator.j2")
             print(template.render(preg=preg, node=node), file=self.file)
 
 

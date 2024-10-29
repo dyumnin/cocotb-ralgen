@@ -2,8 +2,8 @@
 import cocotb
 from cocotb.triggers import RisingEdge
 from dma_env import DMAEnv
-from peakrdl_cocotb_ralgen.callbacks.bsv import BSVCallback
-from peakrdl_cocotb_ralgen.testcases import rw_test, reset_test
+from peakrdl_cocotb_ralgenerator.callbacks.bsv import BSVCallback
+from peakrdl_cocotb_ralgenerator.testcases import rw_test, reset_test
 from DMA_Reg_RAL import DMA_Reg_RAL_Test as RAL
 
 

@@ -1,9 +1,10 @@
 """Test for verilog simulation."""
 import cocotb
 from cocotb.triggers import RisingEdge
+
 from soc_env import SOCEnv
-from peakrdl_cocotb_ralgen.callbacks.callback_base import CallbackBase
-from peakrdl_cocotb_ralgen.testcases import rw_test, reset_test
+from peakrdl_cocotb_ralgenerator.callbacks.callback_base import CallbackBase
+from peakrdl_cocotb_ralgenerator.testcases import rw_test, reset_test
 from soc_RAL import soc_RAL_Test as RAL
 
 
@@ -11,9 +12,12 @@ from soc_RAL import soc_RAL_Test as RAL
 async def test_ral_reset(dut):
     """Ral test reset."""
     env = SOCEnv(dut)
+
     ral = RAL(env.cfg, callback=BSVCallback(dut))
     env.start()
-    await run_ral_reset_check(env, ral)
+    await env.clk_in_reset()
+    await RisingEdge(env.dut.CLK)
+    await reset_test.reset_test(ral, verbose=True)
 
 
 @cocotb.test
@@ -41,13 +45,6 @@ async def test_ral_bgwr_fgrd(dut):
     env.start()
     ral = RAL(env.cfg, callback=BSVCallback(dut))
     await run_ral_rw_check(env, ral, wrfg=False)
-
-
-async def run_ral_reset_check(env, ral, *, wrfg=True, rdfg=True):
-    """Run method of RAL test."""
-    await env.clk_in_reset()
-    await RisingEdge(env.dut.CLK)
-    await reset_test.reset_test(ral, verbose=True)
 
 
 async def run_ral_rw_check(env, ral, *, wrfg=True, rdfg=True):

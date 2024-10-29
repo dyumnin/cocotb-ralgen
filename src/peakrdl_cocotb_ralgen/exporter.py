@@ -1,4 +1,4 @@
-"""PeakRDL cocotb_ralgen exporter."""
+"""PeakRDL cocotb_ralgenerator exporter."""
 
 __authors__ = [
     "Vijayvithal Jahagirdar <jahagirdar.vs@gmail.com>",
@@ -13,7 +13,7 @@ from systemrdl.node import (
     RootNode,
 )
 
-from .ralgen import RALGEN
+from .ralgenerator import RALGEN
 
 
 class CocotbRALExporter:  # pylint: disable=too-few-public-methods

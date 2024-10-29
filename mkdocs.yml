@@ -1,10 +1,10 @@
-site_name: "peakrdl-cocotb-ralgen"
+site_name: "peakrdl-cocotb-ralgenerator"
 site_description: "RAL Code generator for Cocotb"
-site_url: "https://dyumnin.github.io/cocotb-ralgen"
-repo_url: "https://github.com/dyumnin/cocotb-ralgen"
-repo_name: "dyumnin/cocotb-ralgen"
+site_url: "https://dyumnin.github.io/cocotb-ralgenerator"
+repo_url: "https://github.com/dyumnin/cocotb-ralgenerator"
+repo_name: "dyumnin/cocotb-ralgenerator"
 site_dir: "site"
-watch: [mkdocs.yml, README.md, CONTRIBUTING.md, CHANGELOG.md, src/peakrdl_cocotb_ralgen/, src/peakrdl_cocotb_ralgen/templates]
+watch: [mkdocs.yml, README.md, CONTRIBUTING.md, CHANGELOG.md, src/peakrdl_cocotb_ralgenerator/, src/peakrdl_cocotb_ralgenerator/templates]
 copyright: Copyright &copy; 2024 Vijayvithal Jahagirdar
 edit_uri: edit/main/docs/
 
@@ -22,7 +22,7 @@ nav:
   - Plan: ai.md
 # defer to gen-files + literate-nav
 - API reference:
-  - peakrdl-cocotb-ralgen: reference/
+  - peakrdl-cocotb-ralgenerator: reference/
 - Development:
   - Contributing: contributing.md
   - Code of Conduct: code_of_conduct.md
@@ -126,7 +126,7 @@ plugins:
           summary: true
 - git-committers:
     enabled: !ENV [DEPLOY, false]
-    repository: dyumnin/cocotb-ralgen
+    repository: dyumnin/cocotb-ralgenerator
 - minify:
     minify_html: !ENV [DEPLOY, false]
 - group:
@@ -141,4 +141,4 @@ extra:
   - icon: fontawesome/brands/gitter
     link: https://gitter.im/cocotb/community
   - icon: fontawesome/brands/python
-    link: https://pypi.org/project/cocotb-ralgen/
+    link: https://pypi.org/project/cocotb-ralgenerator/

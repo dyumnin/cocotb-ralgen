@@ -1,4 +1,4 @@
-"""Top-level package for PeakRDL cocotb_ralgen."""
+"""Top-level package for PeakRDL cocotb_ralgenerator."""
 
 __author__ = ["Vijayvithal"]
 __email__ = "jahagirdar.vs@gmail.com"

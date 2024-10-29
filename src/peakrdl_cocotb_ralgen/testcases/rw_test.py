@@ -15,8 +15,22 @@ async def rw_test(
 ):
     """Read Write Test.
 
+    The read write test performs the following function.
+
+    1. Performs a background read of all registers.
+    2. Masks any bits marked `donttest`
+    3. Stores the read values in `default_read` dict
+    4. Performs a transaction on each register with the following steps:
+        1. Write random/user selected value to register:
+                1. If the write is background update entry for register in `default_read` dict with `wdata & donttest_mask`
+                2. If the write is foreground update entry for register in `default_read` dict with `wdata & write_mask &donttest_mask`
+        2. Perform a background read of all register spaces and ensure that there are no mismatches.
+        3. Read the register:
+                1. If the read is foreground ensure that the read data matches `default_read[reg] & read_mask`
+                2. If the read is background ensure that the read data matches `default_read[reg]
+
     params:
-     RAL (RAL_Test): Instance of ral model generated using peakrdl_cocotb_ralgen
+     RAL (RAL_Test): Instance of ral model generated using peakrdl_cocotb_ralgenerator
      foreground_write (bool): Boolean True/False
      foreground_read (bool): Boolean True/False
      count (int): The number of time read/write operation has to be done to a register.
@@ -25,6 +39,9 @@ async def rw_test(
     """
     # TODO Handle background oprations
     # assert foreground_write and foreground_read, "Error Background operations are not yet defined"
+    default_read = read_all_reg(RAL)
+    for key, reg in RAL.masks.items():
+        default_read[reg] = bg_read_reg(RAL, reg)
     for key, reg in RAL.masks.items():
         if "rw" in reg["disable"]:
             continue
@@ -49,19 +66,22 @@ async def rw_test(
                     reg["width"],
                     wval,
                 )
+                default_read[reg] = wval & wmask
             else:
+                default_read[reg] = wval
                 for sighash in reg["signals"]:
                     RAL.background.write(
                         sighash,
                         (wval >> sighash["low"])
                         & int("1" * (sighash["high"] - sighash["low"] + 1), 2),
                     )
+            assert default_read == read_all_reg(
+                RAL
+            ), "Post write background read verification failed"
             if foreground_read:
                 rv = await r.read(addr, reg["width"], reg["width"])
             else:
-                rv = 0
-                for sighash in reg["signals"]:
-                    rv |= RAL.background.read(sighash) << sighash["low"]
+                rv = bg_read_reg(RAL, reg)
             actual = rv & wmask & ~donttest
             assert (
                 actual == expected
@@ -70,3 +90,18 @@ async def rw_test(
             logger.info(
                 f"Test RW: {key} wval {wval:x} rv {rv:x} expected {expected:x} actual {actual:x}",
             )
+
+
+def bg_read_reg(RAL, reg):
+    """Performs a background read of the register."""
+    rv = 0
+    for sighash in reg["signals"]:
+        rv |= RAL.background.read(sighash) << sighash["low"]
+    return rv
+
+
+def read_all_reg(RAL):
+    all_reg = {}
+    for key, reg in RAL.masks.items():
+        all_reg[reg] = bg_read_reg(RAL, reg)
+    return all_reg

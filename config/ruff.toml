@@ -91,7 +91,7 @@ ignore = [
 ]
 
 [per-file-ignores]
-"src/peakrdl_cocotb_ralgen/testcases/*.py"=[
+"src/peakrdl_cocotb_ralgenerator/testcases/*.py"=[
 "S101",
 "S311",
 "FBT002",
@@ -101,7 +101,7 @@ ignore = [
 "src/*/cli.py" = [
     "T201",  # Print statement
 ]
-"src/*/ralgen.py" = [
+"src/*/ralgenerator.py" = [
     "T201",  # Print statement
 ]
 "src/*/debug.py" = [

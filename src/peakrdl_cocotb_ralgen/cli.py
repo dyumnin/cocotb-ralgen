@@ -1,20 +1,19 @@
-"""Console script for peakrdl_cocotb_ralgen."""
+"""Console script for peakrdl_cocotb_ralgenerator."""
 
 import sys
+import subprocess
 
 import click
 
 
 @click.command()
-def main(args=None):
-    """Console script for peakrdl_bsv."""
-    click.echo(
-        "Replace this message by putting your code into "
-        "peakrdl_cocotb_ralgen.cli.main",
-    )
-    click.echo("See click documentation at https://click.palletsprojects.com/")
+@click.option("-i", "--rdlfile", help="Input systemrdl file")
+@click.option("-o", "--ralfolder", help="Output cocotb ral folder")
+def cocotb_ralgenerator(rdlfile: str, ralfolder: str):
+    """Console script for cocotb ral generator."""
+    subprocess.Popen(["peakrdl", "cocotb_ralgenerator", rdlfile, "-o", ralfolder])
     return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())  # pragma: no cover
+    sys.exit(dyu_ralg())  # pragma: no cover

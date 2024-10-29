@@ -1,5 +1,5 @@
-cocotbext_axi
 cocotb
-peakrdl_python
-#peakrdl_cocotb_ralgen
+cocotbext_axi
+#peakrdl_cocotb_ralgenerator
 cocotbext_dyulib
+peakrdl_python
