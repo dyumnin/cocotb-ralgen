@@ -20,6 +20,8 @@ build-backend = "pdm.backend"
 
 [project.entry-points."peakrdl.exporters"]
 cocotb_ralgen = "peakrdl_cocotb_ralgen.__peakrdl__:Exporter"
+[project.scripts]
+cocotb_ralgen = "peakrdl_cocotb_ralgen.cli:cocotb_ralgenerator"
 
 [project.urls]
 Homepage = "https://dyumnin.com/cocotb_ralgen"
