@@ -16,11 +16,7 @@ async def walking_ones_test(
         addr = reg["address"]
         rv = None
         donttest = reg["donttest"]
-        #convert regwidth from wrong hex to correct decimal
-        regwidth = int(str(hex(reg["regwidth"]))[2:])
-        #reghex = reg["regwidth"]
-        #logger.info(f"regwidth in decimal and hex {regwidth} {reghex}")
-        for shift_amount in range(regwidth):
+        for shift_amount in range(reg["regwidth"]):
             wrval = 1 << shift_amount
             logger.info(f"wrval:{shift_amount}")
             wval = wrval & ~reg["donttest"]
