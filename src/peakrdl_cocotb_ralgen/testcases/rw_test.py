@@ -4,69 +4,146 @@ import random
 
 logger = cocotb.log
 
+async def rw_test_base(RAL, addr, reg, wrval, donttest, wmask, rmask, key, verbose, foreground_write, foreground_read,):
+    """Base function to perform read-write tests on a given register.
+
+    Params:
+        r: The RAL interface for read/write operations.
+        addr (int): Address of the register being tested.
+        reg (dict): Register metadata containing width and masks.
+        wrval (int): The value to write to the register.
+        donttest (int): Mask indicating bits to exclude from testing.
+        wmask (int): Write mask of the register.
+        rmask (int): Read mask of the register.
+        key (str): Key or identifier for the register.
+        verbose (bool): If True, logs the read-write results.
+        foreground_write (bool): If True, use foreground write; otherwise, use background write.
+        foreground_read (bool): If True, use foreground read; otherwise, use background read.
+        RAL: The RAL instance, required for background operations.
+
+    Raises:
+        AssertionError: If the actual value read does not match the expected value.
+    """
+    r = RAL.ifc
+    expected = wrval & ~donttest & wmask & rmask
+
+    if foreground_write:
+        await r.write(addr, reg["width"], reg["width"], wrval)
+    else:
+        for sighash in reg["signals"]:
+            RAL.background.write(
+                sighash,
+                (wrval >> sighash["low"]) & int("1" * (sighash["high"] - sighash["low"] + 1), 2),
+            )
+
+    if foreground_read:
+        rv = await r.read(addr, reg["width"], reg["width"])
+    else:
+        rv = 0
+        for sighash in reg["signals"]:
+            rv |= RAL.background.read(sighash) << sighash["low"]
+
+    actual = rv & ~donttest & wmask
+
+    assert (
+        actual == expected
+    ), f"{key}:: Read Write Written {wrval:x}, actual(Read) {actual:x}, Expected {expected:x}, wrMask {wmask:x}, rdmask {rmask:x}, donttest = {donttest:x}"
+
+    if verbose:
+        logger.info(
+            f"Test RW: {key} wval {wrval:x} rv {rv:x} expected {expected:x} actual {actual:x}",
+        )
 
 async def rw_test(
     RAL,
-    foreground_write=True,
-    foreground_read=True,
     count=10,
     default_value=None,
     verbose=False,
+    foreground_write=True,
+    foreground_read=True,
 ):
-    """Read Write Test.
+    """Performs read-write tests using random or default values.
 
-    params:
-     RAL (RAL_Test): Instance of ral model generated using peakrdl_cocotb_ralgen
-     foreground_write (bool): Boolean True/False
-     foreground_read (bool): Boolean True/False
-     count (int): The number of time read/write operation has to be done to a register.
-     default_value (int): If None, a random value will be used, else this value will be used for read/write.
-     verbose (bool): Print results of each operation.
+    Params:
+        RAL (RAL_Test): Instance of RAL model generated using peakrdl_cocotb_ralgen.
+        count (int): Number of read-write operations to perform per register.
+        default_value (int): If provided, this value is used for writes; otherwise, random values are used.
+        verbose (bool): If True, logs the results of each operation.
+        foreground_write (bool): If True, use foreground write; otherwise, use background write.
+        foreground_read (bool): If True, use foreground read; otherwise, use background read.
     """
-    # TODO Handle background oprations
-    # assert foreground_write and foreground_read, "Error Background operations are not yet defined"
     for key, reg in RAL.masks.items():
         if "rw" in reg["disable"]:
             continue
+
         r = RAL.ifc
         addr = reg["address"]
-        rv = None
         donttest = reg["donttest"]
+        wmask = reg["write_mask"]
+        rmask = reg["read_mask"]
+
         for _ in range(count):
             wrval = (
                 default_value
-                if default_value
+                if default_value is not None
                 else random.randint(0, 2 ** reg["regwidth"])
             )
-            wval = wrval & ~reg["donttest"]
-            wmask = reg["write_mask"]
-            rmask = reg["read_mask"]
-            expected = wval & wmask & rmask
-            if foreground_write:
-                await r.write(
-                    addr,
-                    reg["width"],
-                    reg["width"],
-                    wval,
-                )
-            else:
-                for sighash in reg["signals"]:
-                    RAL.background.write(
-                        sighash,
-                        (wval >> sighash["low"])
-                        & int("1" * (sighash["high"] - sighash["low"] + 1), 2),
-                    )
-            if foreground_read:
-                rv = await r.read(addr, reg["width"], reg["width"])
-            else:
-                rv = 0
-                for sighash in reg["signals"]:
-                    rv |= RAL.background.read(sighash) << sighash["low"]
-            actual = rv & wmask & ~donttest
-            assert (
-                actual == expected
-            ), f"{key}:: Read Write Written {wval:x}, actual(Read) {actual:x}, Expected {expected:x}, wrMask {wmask:x}, rdmask {rmask:x}, donttest = {donttest:x}"
-        if verbose:
-            logger.info(
-                f"Test RW: {key} wval {wval:x} rv {rv:x} expected {expected:x} actual {actual:x}",
-            )
+            await rw_test_base(RAL, addr, reg, wrval, donttest, wmask, rmask, key, verbose, foreground_write, foreground_read)
+
+async def walking_ones_test(
+    RAL,
+    verbose=False,
+    foreground_write=True,
+    foreground_read=True,
+):
+    """Performs walking ones test on the registers.
+
+    Params:
+        RAL (RAL_Test): Instance of RAL model generated using peakrdl_cocotb_ralgen.
+        verbose (bool): If True, logs the results of each operation.
+        foreground_write (bool): If True, use foreground write; otherwise, use background write.
+        foreground_read (bool): If True, use foreground read; otherwise, use background read.
+    """
+    for key, reg in RAL.masks.items():
+        if "rw" in reg["disable"]:
+            continue
+
+        r = RAL.ifc
+        addr = reg["address"]
+        donttest = reg["donttest"]
+        wmask = reg["write_mask"]
+        rmask = reg["read_mask"]
+        reg_width = reg["regwidth"]
+
+        for bit in range(reg_width):
+            wrval = 1 << bit
+            await rw_test_base(RAL, addr, reg, wrval, donttest, wmask, rmask, key, verbose, foreground_write, foreground_read)
+
+async def walking_zeros_test(
+    RAL,
+    verbose=False,
+    foreground_write=True,
+    foreground_read=True,
+):
+    """Performs walking zeros test on the registers.
+
+    Params:
+        RAL (RAL_Test): Instance of RAL model generated using peakrdl_cocotb_ralgen.
+        verbose (bool): If True, logs the results of each operation.
+        foreground_write (bool): If True, use foreground write; otherwise, use background write.
+        foreground_read (bool): If True, use foreground read; otherwise, use background read.
+    """
+    for key, reg in RAL.masks.items():
+        if "rw" in reg["disable"]:
+            continue
+
+        r = RAL.ifc
+        addr = reg["address"]
+        donttest = reg["donttest"]
+        wmask = reg["write_mask"]
+        rmask = reg["read_mask"]
+        reg_width = reg["regwidth"]
+
+        for bit in range(reg_width):
+            wrval = ~(1 << bit) & (2 ** reg["regwidth"] - 1)
+            await rw_test_base(RAL, addr, reg, wrval, donttest, wmask, rmask, key, verbose, foreground_write, foreground_read)
