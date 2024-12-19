@@ -4,27 +4,28 @@ import random
 
 logger = cocotb.log
 
-async def rw_test_base(RAL, addr, reg, wrval, donttest, wmask, rmask, key, verbose, foreground_write, foreground_read,):
+
+async def rw_test_base(RAL, key, reg, wrval, verbose, foreground_write, foreground_read,):
     """Base function to perform read-write tests on a given register.
 
     Params:
-        r: The RAL interface for read/write operations.
-        addr (int): Address of the register being tested.
+        RAL: The RAL instance, required for background operations.
         reg (dict): Register metadata containing width and masks.
         wrval (int): The value to write to the register.
-        donttest (int): Mask indicating bits to exclude from testing.
-        wmask (int): Write mask of the register.
-        rmask (int): Read mask of the register.
         key (str): Key or identifier for the register.
         verbose (bool): If True, logs the read-write results.
         foreground_write (bool): If True, use foreground write; otherwise, use background write.
         foreground_read (bool): If True, use foreground read; otherwise, use background read.
-        RAL: The RAL instance, required for background operations.
 
     Raises:
         AssertionError: If the actual value read does not match the expected value.
     """
     r = RAL.ifc
+    addr = reg["address"]
+    donttest = reg["donttest"]
+    wmask = reg["write_mask"]
+    rmask = reg["read_mask"]
+
     expected = wrval & ~donttest & wmask & rmask
 
     if foreground_write:
@@ -33,7 +34,8 @@ async def rw_test_base(RAL, addr, reg, wrval, donttest, wmask, rmask, key, verbo
         for sighash in reg["signals"]:
             RAL.background.write(
                 sighash,
-                (wrval >> sighash["low"]) & int("1" * (sighash["high"] - sighash["low"] + 1), 2),
+                (wrval >> sighash["low"]) & int(
+                    "1" * (sighash["high"] - sighash["low"] + 1), 2),
             )
 
     if foreground_read:
@@ -53,6 +55,7 @@ async def rw_test_base(RAL, addr, reg, wrval, donttest, wmask, rmask, key, verbo
         logger.info(
             f"Test RW: {key} wval {wrval:x} rv {rv:x} expected {expected:x} actual {actual:x}",
         )
+
 
 async def rw_test(
     RAL,
@@ -76,19 +79,14 @@ async def rw_test(
         if "rw" in reg["disable"]:
             continue
 
-        r = RAL.ifc
-        addr = reg["address"]
-        donttest = reg["donttest"]
-        wmask = reg["write_mask"]
-        rmask = reg["read_mask"]
-
         for _ in range(count):
             wrval = (
                 default_value
                 if default_value is not None
                 else random.randint(0, 2 ** reg["regwidth"])
             )
-            await rw_test_base(RAL, addr, reg, wrval, donttest, wmask, rmask, key, verbose, foreground_write, foreground_read)
+            await rw_test_base(RAL, key, reg, wrval, verbose, foreground_write, foreground_read)
+
 
 async def walking_ones_test(
     RAL,
@@ -108,16 +106,12 @@ async def walking_ones_test(
         if "rw" in reg["disable"]:
             continue
 
-        r = RAL.ifc
-        addr = reg["address"]
-        donttest = reg["donttest"]
-        wmask = reg["write_mask"]
-        rmask = reg["read_mask"]
         reg_width = reg["regwidth"]
 
         for bit in range(reg_width):
             wrval = 1 << bit
-            await rw_test_base(RAL, addr, reg, wrval, donttest, wmask, rmask, key, verbose, foreground_write, foreground_read)
+            await rw_test_base(RAL, key, reg, wrval, verbose, foreground_write, foreground_read)
+
 
 async def walking_zeros_test(
     RAL,
@@ -137,13 +131,8 @@ async def walking_zeros_test(
         if "rw" in reg["disable"]:
             continue
 
-        r = RAL.ifc
-        addr = reg["address"]
-        donttest = reg["donttest"]
-        wmask = reg["write_mask"]
-        rmask = reg["read_mask"]
         reg_width = reg["regwidth"]
 
         for bit in range(reg_width):
             wrval = ~(1 << bit) & (2 ** reg["regwidth"] - 1)
-            await rw_test_base(RAL, addr, reg, wrval, donttest, wmask, rmask, key, verbose, foreground_write, foreground_read)
+            await rw_test_base(RAL, key, reg, wrval, verbose, foreground_write, foreground_read)
