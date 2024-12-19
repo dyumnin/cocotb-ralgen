@@ -10,9 +10,9 @@ async def rw_test_base(RAL, key, reg, wrval, verbose, foreground_write, foregrou
 
     Params:
         RAL: The RAL instance, required for background operations.
+        key (str): Key or identifier for the register.
         reg (dict): Register metadata containing width and masks.
         wrval (int): The value to write to the register.
-        key (str): Key or identifier for the register.
         verbose (bool): If True, logs the read-write results.
         foreground_write (bool): If True, use foreground write; otherwise, use background write.
         foreground_read (bool): If True, use foreground read; otherwise, use background read.
