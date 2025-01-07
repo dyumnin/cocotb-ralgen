@@ -24,6 +24,21 @@ async def test_ral_fgwr_fgrd(dut):
     ral = RAL(env.cfg)
     await run_ral_rw_check(env, ral)
 
+@cocotb.test
+async def test_walking_ones(dut):
+    """Ral test foreground walking ones."""
+    env = DMAEnv(dut)
+    env.start()
+    ral = RAL(env.cfg)
+    await run_walking_ones_check(env, ral)
+
+@cocotb.test
+async def test_walking_zeros(dut):
+    """Ral test foreground walking zeros."""
+    env = DMAEnv(dut)
+    env.start()
+    ral = RAL(env.cfg)
+    await run_walking_zeros_check(env, ral)
 
 @cocotb.test
 async def test_ral_fgwr_bgrd(dut):
@@ -59,5 +74,25 @@ async def run_ral_rw_check(env, ral, *, wrfg=True, rdfg=True):
         foreground_read=rdfg,
         foreground_write=wrfg,
         count=1,
+        verbose=True,
+    )
+
+async def run_walking_ones_check(env, ral, *, wrfg=True, rdfg=True):
+    await env.reset_done()
+    await RisingEdge(env.dut.CLK)
+    await rw_test.walking_ones_test(
+        ral,
+        foreground_read=rdfg,
+        foreground_write=wrfg,
+        verbose=True,
+    )
+
+async def run_walking_zeros_check(env, ral, *, wrfg=True, rdfg=True):
+    await env.reset_done()
+    await RisingEdge(env.dut.CLK)
+    await rw_test.walking_zeros_test(
+        ral,
+        foreground_read=rdfg,
+        foreground_write=wrfg,
         verbose=True,
     )
