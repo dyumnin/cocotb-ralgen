@@ -8,6 +8,31 @@ from DMA_Reg_RAL import DMA_Reg_RAL_Test as RAL
 
 
 @cocotb.test
+async def random_test(dut, tomlfile=os.getenv(TOML_TESTCASE, None)):
+    env = DMAEnv(dut)
+    vscregs = DMA_REG_VSC()
+    if tomlfile is not None:
+        vscregs.constraints(tomlfile)
+    vscregs.randomize()
+    env.initialize(vsc_regs)
+    env.run_random_test()
+
+
+async def random_test_alt_syntax(dut, tomlfile=os.getenv(TOML_TESTCASE, None)):
+    env = DMAEnv(dut)
+    if tomlfile is not None:
+        from tomlfile import DMA_REG_VSC_TOML
+
+        vscregs = DMA_REG_VSC_TOML()
+    else:
+        vscregs = DMA_REG_VSC()
+    if tomlfile is not None:
+        vscregs.constraints(tomlfile)
+    vscregs.randomize()
+    env.initialize(vsc_regs)
+
+
+@cocotb.test
 async def test_ral_reset(dut):
     """Ral test reset."""
     env = DMAEnv(dut)

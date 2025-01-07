@@ -14,6 +14,8 @@ from systemrdl.node import (
 )
 
 from .ralgen import RALGEN
+from .printpyvsc import PrintPyVsc
+from .printtoml import PrintTOML
 
 
 class CocotbRALExporter:  # pylint: disable=too-few-public-methods
@@ -36,7 +38,17 @@ class CocotbRALExporter:  # pylint: disable=too-few-public-methods
                 root = rdlc.elaborate()
         except:
             sys.exit()
-        with open(f"{outputpath}/{top_node.inst.inst_name}_RAL.py", "w") as file:
+        fileprefix = f"{outputpath}/{top_node.inst.inst_name}"
+        self.walk(fileprefix + "_RAL.py", RALGEN, root)
+        self.walk(fileprefix + "_VSC.py", PrintPyVsc, root)
+        self.walk(fileprefix + "_TOML.py", PrintTOML, root)
+        # with open(f"{outputpath}/{top_node.inst.inst_name}_RAL.py", "w") as file:
+        #     walker = RDLWalker(unroll=True)
+        #     listener = RALGEN(file)
+        #     walker.walk(root, listener)
+
+    def walk(self, filename, lst, root):
+        with open(filename, "w") as file:
             walker = RDLWalker(unroll=True)
-            listener = RALGEN(file)
+            listener = lst(file)
             walker.walk(root, listener)

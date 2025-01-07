@@ -27,6 +27,10 @@ class DMAEnv:
         cocotb.start_soon(reset_n(dut.CLK, dut.RST_N, clock_cycles_in_reset=10))
         cocotb.start_soon(self.clock())
 
+    def initialize(self, vsc):
+        reg.ctrl.write(vsc.ctrl.to_int())
+        reg.PD_Count.write_fields(vsc.pd_count.to_int())
+
     async def clock(self):
         """Clock generator.
 
