@@ -1,35 +1,36 @@
 """Test for verilog simulation."""
 import cocotb
+import os
 from cocotb.triggers import RisingEdge
 from dma_env import DMAEnv
 from peakrdl_cocotb_ralgen.callbacks.bsv import BSVCallback
 from peakrdl_cocotb_ralgen.testcases import rw_test, reset_test
 from DMA_Reg_RAL import DMA_Reg_RAL_Test as RAL
-
+from DMA_REG_VSC import *
 
 @cocotb.test
-async def random_test(dut, tomlfile=os.getenv(TOML_TESTCASE, None)):
+async def random_test(dut, tomlfile=os.getenv("TOML_TESTCASE", None)):
     env = DMAEnv(dut)
     vscregs = DMA_REG_VSC()
     if tomlfile is not None:
         vscregs.constraints(tomlfile)
     vscregs.randomize()
-    env.initialize(vsc_regs)
+    env.initialize(vscregs)
     env.run_random_test()
 
 
-async def random_test_alt_syntax(dut, tomlfile=os.getenv(TOML_TESTCASE, None)):
+async def random_test_alt_syntax(dut, tomlfile=os.getenv("TOML_TESTCASE", None)):
     env = DMAEnv(dut)
     if tomlfile is not None:
-        from tomlfile import DMA_REG_VSC_TOML
-
-        vscregs = DMA_REG_VSC_TOML()
+        #from tomlfile import DMA_REG_VSC_TOML
+        #vscregs = DMA_REG_VSC_TOML()
+        pass
     else:
         vscregs = DMA_REG_VSC()
     if tomlfile is not None:
         vscregs.constraints(tomlfile)
     vscregs.randomize()
-    env.initialize(vsc_regs)
+    env.initialize(vscregs)
 
 
 @cocotb.test
