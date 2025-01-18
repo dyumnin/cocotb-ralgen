@@ -1,0 +1,9 @@
+[DMA_Reg]
+
+[DMA_Reg.Cfg]
+constraints = [
+    "self.a_burst_length > 100",
+    "self.a_burst_length > self.b_burst_length"
+]
+
+

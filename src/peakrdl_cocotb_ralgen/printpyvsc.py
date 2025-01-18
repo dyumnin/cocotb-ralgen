@@ -1,5 +1,6 @@
 import sys
 import os
+import toml
 from systemrdl import RDLCompiler, RDLCompileError, RDLWalker
 
 
@@ -13,12 +14,14 @@ class PrintPyVsc(RDLListener):
     def indent(self):
         return " " * 4 * self.indent_count
 
-    def __init__(self, file):
+    def __init__(self, file, constraints=None):
         self.indent_count = 0
         self.file = file
+        self.constraints = constraints or {}
         self.RegMap = {}
         self.AddrMap = []
         self.val_func = []
+        print(constraints)
         print("import vsc\n", file=self.file)
 
     def isPrintable(self, node):
@@ -35,6 +38,15 @@ class PrintPyVsc(RDLListener):
     def exit_Reg(self, node):
         print(self.indent(), "pass", file=self.file)
         self.indent_count -= 1
+        reg_constraints = self.constraints.get(self.get_addrmap(), {}).get(self.Reg, {}).get("constraints", [])
+        print(reg_constraints)
+        if reg_constraints:
+            print(self.indent(), f"@vsc.constraint",file=self.file)
+            print(self.indent(), f"def {self.Reg}_constraints(self):", file=self.file)
+            self.indent_count += 1
+            for constraint in reg_constraints:
+                print(self.indent(), f"{constraint}" ,file=self.file)
+            self.indent_count -= 1
         print(self.indent(), "def get_val(self):", file=self.file)
         self.indent_count += 1
         print(self.indent(), "return {", ",\n".join(self.val_func), "}", file=self.file)
@@ -82,7 +94,15 @@ if __name__ == "__main__":
 
 
 if __name__ == "__main__":
-    input_files = sys.argv[1:]
+    input_files = [f for f in sys.argv[1:] if not f.endswith(".toml")]
+
+    toml_file = sys.argv[-1] if sys.argv[-1].endswith(".toml") else None
+
+    constraints = {}
+    if toml_file:
+        with open(toml_file, "r") as f:
+            constraints = toml.load(f)
+    print(f"toml_file {toml_file}")
     rdlc = RDLCompiler()
     try:
         for input_file in input_files:
@@ -91,8 +111,8 @@ if __name__ == "__main__":
     except:
         sys.exit(1)
     walker = RDLWalker(unroll=True)
-    with open("default.toml", "w") as file:
-        listener = PrintTOML(file)
+    with open("default.py", "w") as file:
+        listener = PrintPyVsc(file, constraints=constraints)
         walker.walk(root, listener)
     # listener = PrintWriteReg()
     # walker.walk(root, listener)

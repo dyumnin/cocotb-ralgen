@@ -4,7 +4,8 @@ from cocotb.clock import Clock
 from cocotb.triggers import Timer
 from cocotbext.axi import AxiLiteBus, AxiLiteMaster
 from cocotbext.dyulib.reset import clock_in_reset_start, reset_end, reset_n
-
+from DMA_Reg.lib.callbacks import AsyncReadBlockCallback
+from DMA_Reg.reg_model.DMA_Reg import Reg
 
 class DMAEnv:
     """Environment for cocotb testcases."""
@@ -28,6 +29,7 @@ class DMAEnv:
         cocotb.start_soon(self.clock())
 
     def initialize(self, vsc):
+        reg = Reg(AsyncReadBlockCallback)
         reg.ctrl.write(vsc.ctrl.to_int())
         reg.PD_Count.write_fields(vsc.pd_count.to_int())
 
