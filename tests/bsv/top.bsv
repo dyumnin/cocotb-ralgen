@@ -1,4 +1,4 @@
-import AXI4_Lite_Types      :: *;
+import axi4_types      :: *;
 import AXI4_Lite_Fabric_dyu::*;
 import fabric::*;
 import DMA_Reg::*;

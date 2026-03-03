@@ -14,6 +14,13 @@ from systemrdl.node import (
 )
 
 from .ralgen import RALGEN
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(module)s %(funcName)s %(lineno)d %(levelname)s:: %(message)s",
+)
+logger = logging.getLogger(__name__)
 
 
 class CocotbRALExporter:  # pylint: disable=too-few-public-methods
@@ -26,8 +33,12 @@ class CocotbRALExporter:  # pylint: disable=too-few-public-methods
         input_files: Optional[List[str]] = None,
         rename: Optional[str] = None,
         depth: int = 0,
+        default_regwidth=None,
     ):
         """Interface stub required by peakrdl."""
+        logger.info(
+            f"Options {top_node=}, {outputpath=}, {input_files=}, {rename=}, {depth=}, {default_regwidth=}",
+        )
         # print(f"{top_node.inst.inst_name} {input_files} {outputpath}")
         rdlc = RDLCompiler()
         try:
@@ -38,5 +49,5 @@ class CocotbRALExporter:  # pylint: disable=too-few-public-methods
             sys.exit()
         with open(f"{outputpath}/{top_node.inst.inst_name}_RAL.py", "w") as file:
             walker = RDLWalker(unroll=True)
-            listener = RALGEN(file)
+            listener = RALGEN(file, default_regwidth)
             walker.walk(root, listener)

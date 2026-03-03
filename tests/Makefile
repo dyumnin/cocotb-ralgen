@@ -13,11 +13,11 @@ TOPLEVEL=mkDMACsr_6_32
 MODULE=cocotbtest_dma
 
 soc: clean
-	peakrdl cocotb_ralgen soc.rdl -o .
-	$(MAKE) sim WAVES=1 TOPLEVEL=mkMDMA MODULE=cocotbtest_soc
+	peakrdl cocotb_ralgen soc.rdl -o . --default_regwidth=32
+	# $(MAKE) sim WAVES=1 TOPLEVEL=mkMDMA MODULE=cocotbtest_soc
 dma: clean
-	peakrdl cocotb_ralgen dma.rdl -o .
-	$(MAKE) sim WAVES=1 TOPLEVEL=mkDMACsr_6_32 MODULE=cocotbtest_dma
+	peakrdl cocotb_ralgen dma.rdl -o . --default_regwidth=32
+	#$(MAKE) sim WAVES=1 TOPLEVEL=mkDMACsr_6_32 MODULE=cocotbtest_dma
 include $(shell cocotb-config --makefiles)/Makefile.sim
 .venv:
 	python3 -m venv .venv

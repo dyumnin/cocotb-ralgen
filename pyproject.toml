@@ -10,7 +10,7 @@ dependencies = [
     "jinja2>=3.1.4",
     "peakrdl>=1.1.0",
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 readme = "README.md"
 license = {text = "MIT"}
 
@@ -64,12 +64,6 @@ maintain = [
 quality = [
     "ruff>=0.0",
 ]
-tests = [
-    "pytest>=7.4",
-    "pytest-cov>=4.1",
-    "pytest-randomly>=3.15",
-    "pytest-xdist>=3.3",
-]
 typing = [
     "mypy>=1.5",
     "types-markdown>=3.5",
@@ -77,4 +71,15 @@ typing = [
 ]
 security = [
     "safety>=2.3",
+]
+
+[dependency-groups]
+tests = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "pytest-randomly>=3.15",
+    "pytest-xdist>=3.3",
+    "cocotb>=2.0.1",
+    "cocotbext-axi>=0.1.26",
+    "cocotbext-dyulib>=0.0.4",
 ]

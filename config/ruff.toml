@@ -5,7 +5,7 @@ exclude = [
 	"site",
 	"tests",
 ]
-select = [
+lint.select = [
     "A",
     "ANN",
     "ARG",
@@ -53,10 +53,12 @@ select = [
     "W",
     "YTT",
 ]
-ignore = [
-    "A001",  # Variable is shadowing a Python builtin
+lint.ignore = [
+    "S101",
     "ANN101",  # Missing type annotation for self
     "ANN102",  # Missing type annotation for cls
+
+    "A001",  # Variable is shadowing a Python builtin
     "ANN204",  # Missing return type annotation for special method __str__
     "ANN401",  # Dynamically typed expressions (typing.Any) are disallowed
     "ARG005",  # Unused lambda argument
@@ -91,7 +93,7 @@ ignore = [
 "S607",
 ]
 
-[per-file-ignores]
+[lint.per-file-ignores]
 "src/peakrdl_cocotb_ralgen/testcases/*.py"=[
 "S101",
 "S311",
@@ -120,16 +122,16 @@ ignore = [
 #     "S101",  # Use of assert detected
 # ]
 
-[flake8-quotes]
+[lint.flake8-quotes]
 docstring-quotes = "double"
 
-[flake8-tidy-imports]
+[lint.flake8-tidy-imports]
 ban-relative-imports = "all"
 
-[isort]
+[lint.isort]
 known-first-party = ["cocotbext_dyulib"]
 
-[pydocstyle]
+[lint.pydocstyle]
 convention = "google"
 
 [format]
