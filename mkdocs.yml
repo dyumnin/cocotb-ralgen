@@ -7,7 +7,6 @@ site_dir: "site"
 watch: [mkdocs.yml, README.md, CONTRIBUTING.md, CHANGELOG.md, src/peakrdl_cocotb_ralgen/, src/peakrdl_cocotb_ralgen/templates]
 copyright: Copyright &copy; 2024 Vijayvithal Jahagirdar
 edit_uri: edit/main/docs/
-strict: false
 
 validation:
   omitted_files: warn

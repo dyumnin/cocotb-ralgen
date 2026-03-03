@@ -1,19 +1,20 @@
 """Read Write Test."""
 import cocotb
 import random
+from typing import Any
 
 logger = cocotb.log
 
 
 async def rw_test_base(
-    RAL,
-    key,
-    reg, 
-    wrval, 
-    foreground_write, 
-    foreground_read,
-    test_type,
-    verbose, 
+    RAL: Any,
+    key: str,
+    reg: dict,
+    wrval: int,
+    foreground_write: bool,
+    foreground_read: bool,
+    test_type: str,
+    verbose: bool,
 ):
     """Base function to perform read-write tests on a given register.
 
@@ -44,8 +45,8 @@ async def rw_test_base(
         for sighash in reg["signals"]:
             RAL.background.write(
                 sighash,
-                (wrval >> sighash["low"]) & int(
-                    "1" * (sighash["high"] - sighash["low"] + 1), 2),
+                (wrval >> sighash["low"])
+                & int("1" * (sighash["high"] - sighash["low"] + 1), 2),
             )
 
     if foreground_read:
@@ -97,14 +98,14 @@ async def rw_test(
                 else random.randint(0, 2 ** reg["regwidth"])
             )
             await rw_test_base(
-                RAL, 
-                key, 
-                reg, 
-                wrval, 
-                foreground_write, 
+                RAL,
+                key,
+                reg,
+                wrval,
+                foreground_write,
                 foreground_read,
                 test_type,
-                verbose, 
+                verbose,
             )
 
 
@@ -132,14 +133,14 @@ async def walking_ones_test(
         for bit in range(reg_width):
             wrval = 1 << bit
             await rw_test_base(
-                RAL, 
-                key, 
-                reg, 
-                wrval, 
-                foreground_write, 
+                RAL,
+                key,
+                reg,
+                wrval,
+                foreground_write,
                 foreground_read,
                 test_type,
-                verbose, 
+                verbose,
             )
 
 
@@ -167,12 +168,12 @@ async def walking_zeros_test(
         for bit in range(reg_width):
             wrval = ~(1 << bit) & (2 ** reg["regwidth"] - 1)
             await rw_test_base(
-                RAL, 
-                key, 
-                reg, 
-                wrval, 
-                foreground_write, 
+                RAL,
+                key,
+                reg,
+                wrval,
+                foreground_write,
                 foreground_read,
                 test_type,
-                verbose, 
+                verbose,
             )
