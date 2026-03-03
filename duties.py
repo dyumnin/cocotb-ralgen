@@ -16,7 +16,7 @@ if TYPE_CHECKING:
     from duty.context import Context
 
 
-PY_SRC_PATHS = (Path(_) for _ in ("src"))
+PY_SRC_PATHS = (Path(_) for _ in ("src",))
 PY_SRC_LIST = tuple(str(_) for _ in PY_SRC_PATHS)
 PY_SRC = " ".join(PY_SRC_LIST)
 CI = os.environ.get("CI", "0") in {"1", "true", "yes", ""}
