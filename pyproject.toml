@@ -5,14 +5,15 @@ description = "Generate RAL tests from systemRDL."
 authors = [
     {name = "Vijayvithal Jahagirdar", email = "jahagirdar.vs@gmail.com"},
 ]
+# Updated to Python 3.12
+requires-python = ">=3.12"
+readme = "README.md"
+license = {text = "MIT"}
 dependencies = [
     "systemrdl-compiler>=1.27.3",
     "jinja2>=3.1.4",
     "peakrdl>=1.1.0",
 ]
-requires-python = ">=3.10"
-readme = "README.md"
-license = {text = "MIT"}
 
 [build-system]
 requires = ["pdm-backend"]
@@ -20,6 +21,7 @@ build-backend = "pdm.backend"
 
 [project.entry-points."peakrdl.exporters"]
 cocotb_ralgen = "peakrdl_cocotb_ralgen.__peakrdl__:Exporter"
+
 [project.scripts]
 cocotb_ralgen = "peakrdl_cocotb_ralgen.cli:cocotb_ralgenerator"
 
@@ -28,22 +30,40 @@ Homepage = "https://dyumnin.com/cocotb_ralgen"
 Repository = "https://github.com/dyumnin/cocotb-ralgen.git"
 Issues = "https://github.com/dyumnin/cocotb-ralgen/issues"
 Documentation = "https://dyumnin.github.io/cocotb-ralgen"
+
 [tool.pdm]
 distribution = true
 
 [tool.pdm.version]
 source = "scm"
-version_format = "version:format_version"
 
 [tool.pdm.dev-dependencies]
-duty = ["duty>=0.10"]
-ci-quality = [
-    "peakrdl-cocotb-ralgen[duty,docs,quality,typing,security]",
-    "griffe>=1.5.1",
+# Consolidated dev-dependencies for modern PDM usage
+maintain = [
+    "black>=24.0", # Bumped for 3.12 stability
+    "blacken-docs>=1.16",
+    "git-changelog>=2.3",
+    "duty>=0.10",
 ]
-ci-tests = ["peakrdl-cocotb-ralgen[duty,tests]"]
+quality = [
+    "ruff>=0.1.0",
+    "mypy>=1.7",
+    "types-markdown>=3.5",
+    "types-pyyaml>=6.0",
+    "safety>=2.3",
+]
+
+[dependency-groups]
+tests = [
+    "pytest>=8.0", # Pytest 8+ is smoother with 3.12
+    "pytest-cov>=4.1",
+    "pytest-randomly>=3.15",
+    "pytest-xdist>=3.3",
+    "cocotb>=2.0.1",
+    "cocotbext-axi>=0.1.26",
+    "cocotbext-dyulib>=0.0.4",
+]
 docs = [
-    "black>=23.9",
     "markdown-callouts>=0.3",
     "markdown-exec>=1.7",
     "mkdocs>=1.5",
@@ -54,27 +74,5 @@ docs = [
     "mkdocs-material>=9.4",
     "mkdocs-minify-plugin>=0.7",
     "mkdocstrings[python]>=0.23",
-    "tomli>=2.0; python_version < '3.11'",
-]
-maintain = [
-    "black>=23.9",
-    "blacken-docs>=1.16",
-    "git-changelog>=2.3",
-]
-quality = [
-    "ruff>=0.0",
-]
-tests = [
-    "pytest>=7.4",
-    "pytest-cov>=4.1",
-    "pytest-randomly>=3.15",
-    "pytest-xdist>=3.3",
-]
-typing = [
-    "mypy>=1.5",
-    "types-markdown>=3.5",
-    "types-pyyaml>=6.0",
-]
-security = [
-    "safety>=2.3",
+    # Removed tomli as python 3.12 has tomllib builtin
 ]
