@@ -1,7 +1,6 @@
 `include "dma.rdl"
 
 addrmap three_DMA{
-default regwidth=32;
 name = "3 instances of dma";
 DMA_Reg dma0 @0x0;
 DMA_Reg dma1 @0x1000;

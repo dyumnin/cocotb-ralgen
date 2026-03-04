@@ -57,7 +57,7 @@ class RALGEN(RDLListener):
     3. Read mask
     """
 
-    def __init__(self, file, default_regwidth=None):
+    def __init__(self, file):
         """Constructor."""
         self.file = file
         self.registers = {}
@@ -65,7 +65,6 @@ class RALGEN(RDLListener):
         self.map_count = 0
         self.map_offset = []
         self.addressmap = []
-        self.default_regwidth = default_regwidth
         print(
             '"""Generated using Cocotb RALGenerator.  Copyright © 2024 Dyumnin Semiconductors."""',
             file=file,
@@ -99,13 +98,9 @@ logger = cocotb.log
         """Overriding builtin method."""
         self.current_register = "_".join([*self.addressmap, node.get_path_segment()])
         self.hier_path = [*self.addressmap, node.get_path_segment()]
-        if "regwidth" in node.inst.properties:
-            width = node.inst.properties["regwidth"]
-        elif self.default_regwidth is not None:
-            width = self.default_regwidth
         self.registers[self.current_register] = {
             "name": node.get_path_segment(),
-            "width": width,
+            "width": node.inst.properties["regwidth"],
             "reset_value": 0,
             "reset_mask": 0,
             "write_mask": 0,
@@ -166,11 +161,9 @@ logger = cocotb.log
 
     def exit_Reg(self, node):
         """Overriding builtin method."""
-        width = node.get_property("regwidth")
-        if width is None:
-            width = self.default_regwidth
-        assert width, f"{node=}"
-        self.registers[self.current_register]["regwidth"] = width
+        self.registers[self.current_register]["regwidth"] = node.get_property(
+            "regwidth",
+        )
         if not node.has_sw_writable:
             self.registers[self.current_register]["disable"].append("rw")
         if not node.has_sw_readable:
@@ -202,5 +195,5 @@ if __name__ == "__main__":
         sys.exit(1)
     walker = RDLWalker(unroll=True)
     with open("out.txt", "w") as of:
-        listener = RALGEN(of, default_regwidth=None)
+        listener = RALGEN(of)
         walker.walk(root, listener)

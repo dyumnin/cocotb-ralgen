@@ -8,7 +8,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 ## [0.1.7] - 2024-10-27
 ### Added
 - v0.1.7 Support for Hierarchial RAL
-- v0.1.8 Added default regwidth
 
 ## [0.1.6] - 2024-10-23
 ### Changed

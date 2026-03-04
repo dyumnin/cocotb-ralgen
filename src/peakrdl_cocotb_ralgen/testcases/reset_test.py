@@ -15,7 +15,7 @@ def reset_test(RAL, *, verbose=False):
             continue
         rv = 0
         for hsh in val["signals"]:
-            rv |= int(RAL.background.read(hsh)) << hsh["low"]
+            rv |= RAL.background.read(hsh) << hsh["low"]
         try:
             actual = rv & val["reset_mask"]
             expected = val["reset_value"]
