@@ -3,6 +3,7 @@
 # This software is licensed under the MIT License.
 # For more information, please visit https://dyumnin.com
 import logging
+import json
 import importlib.metadata as il
 
 logging.basicConfig(
@@ -65,6 +66,7 @@ class RALGEN(RDLListener):
         self.map_count = 0
         self.map_offset = []
         self.addressmap = []
+        self.not_supported = {"singlepulse": [], "rclr": [], "woclr": []}
         self.default_regwidth = default_regwidth
         print(
             '"""Generated using Cocotb RALGenerator.  Copyright © 2024 Dyumnin Semiconductors."""',
@@ -149,20 +151,28 @@ logger = cocotb.log
                 int("1" * (node.high - node.low + 1), 2) << node.low
             )
         if "woclr" in node.inst.properties:
-            print("Error: Unsupported feature. Not testing woclr bits")
+            # print("Error: Unsupported feature. Not testing woclr bits")
+            self._not_supported(node, "woclr")
             self.registers[self.current_register]["donttest"] |= (
                 int("1" * (node.high - node.low + 1), 2) << node.low
             )
         if "rclr" in node.inst.properties:
-            print("Error: Unsupported feature. Not testing rclr bits")
+            # print("Error: Unsupported feature. Not testing rclr bits")
+            self._not_supported(node, "rclr")
             self.registers[self.current_register]["donttest"] |= (
                 int("1" * (node.high - node.low + 1), 2) << node.low
             )
         if "singlepulse" in node.inst.properties:
-            print("Error: Unsupported feature. Not testing SinglePulse bits")
+            # print("Error: Unsupported feature. Not testing SinglePulse bits")
+            self._not_supported(node, "singlepulse")
             self.registers[self.current_register]["donttest"] |= (
                 int("1" * (node.high - node.low + 1), 2) << node.low
             )
+
+    def _not_supported(self, node, cause):
+        self.not_supported[cause].append(
+            f"{'.'.join(self.hier_path)} -> {node.get_path_segment()}"
+        )
 
     def exit_Reg(self, node):
         """Overriding builtin method."""
@@ -176,12 +186,27 @@ logger = cocotb.log
         if not node.has_sw_readable:
             self.registers[self.current_register]["disable"].extend(["rw", "reset"])
 
+    def _print_not_supported(self):
+        if len(self.not_supported["singlepulse"]) > 0:
+            print(
+                f"Single pulse is not supported. Affected bits -> {json.dumps(self.not_supported['singlepulse'], indent=2)}"
+            )
+        if len(self.not_supported["woclr"]) > 0:
+            print(
+                f"woclr is not supported. Affected bits -> {json.dumps(self.not_supported['woclr'], indent=2)}"
+            )
+        if len(self.not_supported["rclr"]) > 0:
+            print(
+                f"rclr is not supported. Affected bits -> {json.dumps(self.not_supported['rclr'], indent=2)}"
+            )
+
     def exit_Addrmap(self, node):
         """Overriding builtin method."""
         self.map_count -= 1
         self.addressmap.pop()
         self.map_offset.pop()
         if self.map_count == 0:
+            self._print_not_supported()
             preg = HexPP().pformat(self.registers)
             env = Environment(
                 loader=PackageLoader("peakrdl_cocotb_ralgen"),

@@ -59,6 +59,7 @@ async def test_ral_readwrite(dut):
 For interfacing your RTL Generator generated code, ralgen needs to know the pattern used by you for signal naming.
 You can provide this information by passing a Callback function which maps the signal from systemRDL to RTL and provides methods to read & write to it.
 
+
 # Adding new tests.
 
 New tests can be added to the testcases folder.
