@@ -4,7 +4,7 @@ import cocotb
 logger = cocotb.log
 
 
-def reset_test(RAL, *, verbose=False):
+def reset_test(RAL, *, verbose=False, expected_error=0):
     """Reset Testcase.
 
     This testcase reads the value of all fields during reset and checks for match with the defined reset value.
@@ -15,18 +15,25 @@ def reset_test(RAL, *, verbose=False):
             continue
         rv = 0
         for hsh in val["signals"]:
-            rv |= int(RAL.background.read(hsh)) << hsh["low"]
-        try:
-            actual = rv & val["reset_mask"]
-            expected = val["reset_value"]
-            assert (
-                actual == expected
-            ), f"{key} Resetvalue mismatch Actual {actual:x},Expected {expected:x},"
-        except:
-            cocotb.log.error(
-                f"Reset Read Reg:{key}, actual {rv:x} expected {expected:x}",
-            )
-            error_count += 1
-        if verbose:
-            logger.info(f"Reset Read Reg:{key}, Value {rv:x}")
-    assert error_count == 0, f"Test exited with {error_count} Error"
+            hshval = RAL.background.read(hsh)
+            if hshval is not None:
+                rv |= int(hshval) << hsh["low"]
+                try:
+                    actual = rv & val["reset_mask"]
+                    expected = val["reset_value"]
+                    assert (
+                        actual == expected
+                    ), f"{key} Resetvalue mismatch Actual {actual:x},Expected {expected:x},"
+                except:
+                    cocotb.log.error(
+                        f"Reset Read Reg:{key}, actual {rv:x} expected {expected:x}",
+                    )
+                    error_count += 1
+            else:
+                logger.info(f"Error: Unable to access {hsh}")
+                error_count += 1
+            if verbose:
+                logger.info(f"Reset Read Reg:{key}, Value {rv:x}")
+        assert (
+            error_count == expected_error
+        ), f"Test exited with {error_count} Error, expected {expected_error}"

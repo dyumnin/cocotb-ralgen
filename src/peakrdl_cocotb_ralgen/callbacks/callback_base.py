@@ -26,7 +26,9 @@ class CallbackBase:
                  }
             wr (int): Integer value to write to the signal
         """
-        self.sig(sigHash).value = Force(wr)
+
+        if self.sig(sigHash):
+            self.sig(sigHash).value = Force(wr)
 
     def read(self, sigHash):
         """Finds the actual signal in RTL and returns its value.
@@ -39,6 +41,9 @@ class CallbackBase:
                 "high": signal's high index in the register,
                  }
         """
-        rv = self.sig(sigHash).value
+        if self.sig(sigHash) is not None:
+            rv = self.sig(sigHash).value
+        else:
+            rv = None
         cocotb.log.debug(f"{sigHash} rv={rv}")
         return rv
