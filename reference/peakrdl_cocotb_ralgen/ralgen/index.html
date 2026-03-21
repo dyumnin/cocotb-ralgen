@@ -580,6 +580,8 @@
       
         
       
+        
+      
     
     
       
@@ -701,6 +703,8 @@
       
         
       
+        
+      
     
     
       
@@ -777,6 +781,27 @@
   
   <span class="md-ellipsis">
     <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> callback_base
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../callbacks/regblock/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> regblock
   </span>
   
 
@@ -1095,6 +1120,79 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> peakrdl_cocotb_ralgenerator
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> peakrdl_cocotb_ralgenerator
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../peakrdl_cocotb_ralgenerator/cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> cli
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1513,11 +1611,11 @@
 
             <details class="quote">
               <summary>Source code in <code>src/peakrdl_cocotb_ralgen/ralgen.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
-<span class="normal">25</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
 <span class="normal">26</span>
 <span class="normal">27</span>
-<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">maxlevels</span><span class="p">,</span> <span class="n">level</span><span class="p">):</span>
+<span class="normal">28</span>
+<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">maxlevels</span><span class="p">,</span> <span class="n">level</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extends PrettyPrinter&#39;s format to support printing numbers in hex.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;0x</span><span class="si">{</span><span class="n">obj</span><span class="si">:</span><span class="s2">_X</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span>
@@ -1545,7 +1643,7 @@
 
 
 <a href="#peakrdl_cocotb_ralgen.ralgen.RALGEN" class="headerlink" title="Permanent link">&para;</a></h2>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">RALGEN</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">RALGEN</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">default_regwidth</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1644,8 +1742,7 @@ e.g.</p>
 
                   <details class="quote">
                     <summary>Source code in <code>src/peakrdl_cocotb_ralgen/ralgen.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">60</span>
-<span class="normal">61</span>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">61</span>
 <span class="normal">62</span>
 <span class="normal">63</span>
 <span class="normal">64</span>
@@ -1672,7 +1769,10 @@ e.g.</p>
 <span class="normal">85</span>
 <span class="normal">86</span>
 <span class="normal">87</span>
-<span class="normal">88</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">):</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span></pre></div></td><td class="code"><div><pre><span></span><code>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">default_regwidth</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Constructor.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="n">file</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">registers</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1680,6 +1780,8 @@ e.g.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">map_count</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">map_offset</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">addressmap</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">not_supported</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;singlepulse&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;rclr&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;woclr&quot;</span><span class="p">:</span> <span class="p">[]}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_regwidth</span> <span class="o">=</span> <span class="n">default_regwidth</span>
         <span class="nb">print</span><span class="p">(</span>
             <span class="s1">&#39;&quot;&quot;&quot;Generated using Cocotb RALGenerator.  Copyright © 2024 Dyumnin Semiconductors.&quot;&quot;&quot;&#39;</span><span class="p">,</span>
             <span class="n">file</span><span class="o">=</span><span class="n">file</span><span class="p">,</span>
@@ -1733,11 +1835,11 @@ e.g.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/peakrdl_cocotb_ralgen/ralgen.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span>
-<span class="normal">94</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">enter_Addrmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">enter_Addrmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Overriding builtin method.&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">map_count</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">addressmap</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">get_path_segment</span><span class="p">())</span>
@@ -1765,14 +1867,7 @@ e.g.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/peakrdl_cocotb_ralgen/ralgen.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">117</span>
-<span class="normal">118</span>
-<span class="normal">119</span>
-<span class="normal">120</span>
-<span class="normal">121</span>
-<span class="normal">122</span>
-<span class="normal">123</span>
-<span class="normal">124</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">124</span>
 <span class="normal">125</span>
 <span class="normal">126</span>
 <span class="normal">127</span>
@@ -1808,7 +1903,17 @@ e.g.</p>
 <span class="normal">157</span>
 <span class="normal">158</span>
 <span class="normal">159</span>
-<span class="normal">160</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">enter_Field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">enter_Field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Overriding builtin method.&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_register</span><span class="p">][</span><span class="s2">&quot;signals&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
         <span class="p">{</span>
@@ -1838,17 +1943,20 @@ e.g.</p>
             <span class="nb">int</span><span class="p">(</span><span class="s2">&quot;1&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">high</span> <span class="o">-</span> <span class="n">node</span><span class="o">.</span><span class="n">low</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">low</span>
         <span class="p">)</span>
     <span class="k">if</span> <span class="s2">&quot;woclr&quot;</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">inst</span><span class="o">.</span><span class="n">properties</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Unsupported feature. Not testing woclr bits&quot;</span><span class="p">)</span>
+        <span class="c1"># print(&quot;Error: Unsupported feature. Not testing woclr bits&quot;)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_not_supported</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;woclr&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_register</span><span class="p">][</span><span class="s2">&quot;donttest&quot;</span><span class="p">]</span> <span class="o">|=</span> <span class="p">(</span>
             <span class="nb">int</span><span class="p">(</span><span class="s2">&quot;1&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">high</span> <span class="o">-</span> <span class="n">node</span><span class="o">.</span><span class="n">low</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">low</span>
         <span class="p">)</span>
     <span class="k">if</span> <span class="s2">&quot;rclr&quot;</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">inst</span><span class="o">.</span><span class="n">properties</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Unsupported feature. Not testing rclr bits&quot;</span><span class="p">)</span>
+        <span class="c1"># print(&quot;Error: Unsupported feature. Not testing rclr bits&quot;)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_not_supported</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;rclr&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_register</span><span class="p">][</span><span class="s2">&quot;donttest&quot;</span><span class="p">]</span> <span class="o">|=</span> <span class="p">(</span>
             <span class="nb">int</span><span class="p">(</span><span class="s2">&quot;1&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">high</span> <span class="o">-</span> <span class="n">node</span><span class="o">.</span><span class="n">low</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">low</span>
         <span class="p">)</span>
     <span class="k">if</span> <span class="s2">&quot;singlepulse&quot;</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">inst</span><span class="o">.</span><span class="n">properties</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Unsupported feature. Not testing SinglePulse bits&quot;</span><span class="p">)</span>
+        <span class="c1"># print(&quot;Error: Unsupported feature. Not testing SinglePulse bits&quot;)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_not_supported</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;singlepulse&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_register</span><span class="p">][</span><span class="s2">&quot;donttest&quot;</span><span class="p">]</span> <span class="o">|=</span> <span class="p">(</span>
             <span class="nb">int</span><span class="p">(</span><span class="s2">&quot;1&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">high</span> <span class="o">-</span> <span class="n">node</span><span class="o">.</span><span class="n">low</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">low</span>
         <span class="p">)</span>
@@ -1875,10 +1983,7 @@ e.g.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/peakrdl_cocotb_ralgen/ralgen.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 97</span>
-<span class="normal"> 98</span>
-<span class="normal"> 99</span>
-<span class="normal">100</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">100</span>
 <span class="normal">101</span>
 <span class="normal">102</span>
 <span class="normal">103</span>
@@ -1891,13 +1996,24 @@ e.g.</p>
 <span class="normal">110</span>
 <span class="normal">111</span>
 <span class="normal">112</span>
-<span class="normal">113</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">enter_Reg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">enter_Reg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Overriding builtin method.&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">current_register</span> <span class="o">=</span> <span class="s2">&quot;_&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">addressmap</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">get_path_segment</span><span class="p">()])</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">hier_path</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">addressmap</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">get_path_segment</span><span class="p">()]</span>
+    <span class="k">if</span> <span class="s2">&quot;regwidth&quot;</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">inst</span><span class="o">.</span><span class="n">properties</span><span class="p">:</span>
+        <span class="n">width</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">inst</span><span class="o">.</span><span class="n">properties</span><span class="p">[</span><span class="s2">&quot;regwidth&quot;</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_regwidth</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_regwidth</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_register</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">node</span><span class="o">.</span><span class="n">get_path_segment</span><span class="p">(),</span>
-        <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="n">node</span><span class="o">.</span><span class="n">inst</span><span class="o">.</span><span class="n">properties</span><span class="p">[</span><span class="s2">&quot;regwidth&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="n">width</span><span class="p">,</span>
         <span class="s2">&quot;reset_value&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="s2">&quot;reset_mask&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="s2">&quot;write_mask&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
@@ -1931,24 +2047,26 @@ e.g.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/peakrdl_cocotb_ralgen/ralgen.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">172</span>
-<span class="normal">173</span>
-<span class="normal">174</span>
-<span class="normal">175</span>
-<span class="normal">176</span>
-<span class="normal">177</span>
-<span class="normal">178</span>
-<span class="normal">179</span>
-<span class="normal">180</span>
-<span class="normal">181</span>
-<span class="normal">182</span>
-<span class="normal">183</span>
-<span class="normal">184</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">exit_Addrmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">exit_Addrmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Overriding builtin method.&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">map_count</span> <span class="o">-=</span> <span class="mi">1</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">addressmap</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">map_offset</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">map_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_print_not_supported</span><span class="p">()</span>
         <span class="n">preg</span> <span class="o">=</span> <span class="n">HexPP</span><span class="p">()</span><span class="o">.</span><span class="n">pformat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="p">)</span>
         <span class="n">env</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">(</span>
             <span class="n">loader</span><span class="o">=</span><span class="n">PackageLoader</span><span class="p">(</span><span class="s2">&quot;peakrdl_cocotb_ralgen&quot;</span><span class="p">),</span>
@@ -1979,19 +2097,23 @@ e.g.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/peakrdl_cocotb_ralgen/ralgen.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">162</span>
-<span class="normal">163</span>
-<span class="normal">164</span>
-<span class="normal">165</span>
-<span class="normal">166</span>
-<span class="normal">167</span>
-<span class="normal">168</span>
-<span class="normal">169</span>
-<span class="normal">170</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">exit_Reg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">exit_Reg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Overriding builtin method.&quot;&quot;&quot;</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_register</span><span class="p">][</span><span class="s2">&quot;regwidth&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get_property</span><span class="p">(</span>
-        <span class="s2">&quot;regwidth&quot;</span><span class="p">,</span>
-    <span class="p">)</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">get_property</span><span class="p">(</span><span class="s2">&quot;regwidth&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">width</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_regwidth</span>
+    <span class="k">assert</span> <span class="n">width</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">node</span><span class="si">=}</span><span class="s2">&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_register</span><span class="p">][</span><span class="s2">&quot;regwidth&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">width</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="o">.</span><span class="n">has_sw_writable</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">registers</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">current_register</span><span class="p">][</span><span class="s2">&quot;disable&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;rw&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="o">.</span><span class="n">has_sw_readable</span><span class="p">:</span>

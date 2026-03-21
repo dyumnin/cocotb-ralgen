@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://dyumnin.github.io/cocotb-ralgen/reference/peakrdl_cocotb_ralgen/cli/">
       
       
-        <link rel="prev" href="../callbacks/callback_base/">
+        <link rel="prev" href="../callbacks/regblock/">
       
       
         <link rel="next" href="../exporter/">
@@ -580,6 +580,8 @@
       
         
       
+        
+      
     
     
       
@@ -701,6 +703,8 @@
       
         
       
+        
+      
     
     
       
@@ -786,6 +790,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../callbacks/regblock/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> regblock
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -847,9 +872,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#peakrdl_cocotb_ralgen.cli.main" class="md-nav__link">
+  <a href="#peakrdl_cocotb_ralgen.cli.cocotb_ralgenerator" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;main
+      <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;cocotb_ralgenerator
     </span>
   </a>
   
@@ -1024,6 +1049,79 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> peakrdl_cocotb_ralgenerator
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> peakrdl_cocotb_ralgenerator
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../peakrdl_cocotb_ralgenerator/cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> cli
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1184,9 +1282,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#peakrdl_cocotb_ralgen.cli.main" class="md-nav__link">
+  <a href="#peakrdl_cocotb_ralgen.cli.cocotb_ralgenerator" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;main
+      <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;cocotb_ralgenerator
     </span>
   </a>
   
@@ -1235,7 +1333,7 @@
 
     <div class="doc doc-contents first">
 
-        <p>Console script for peakrdl_cocotb_ralgen.</p>
+        <p>Console script for peakrdl_cocotb_ralgenerator.</p>
 
 
 
@@ -1248,10 +1346,10 @@
 <p><span class="doc-section-title">Functions:</span></p>
     <ul>
           <li class="doc-section-item field-body">
-            <b><code><a class="autorefs autorefs-internal" title="peakrdl_cocotb_ralgen.cli.main" href="#peakrdl_cocotb_ralgen.cli.main">main</a></code></b>
+            <b><code><a class="autorefs autorefs-internal" title="peakrdl_cocotb_ralgen.cli.cocotb_ralgenerator" href="#peakrdl_cocotb_ralgen.cli.cocotb_ralgenerator">cocotb_ralgenerator</a></code></b>
             –
             <div class="doc-md-description">
-              <p>Console script for peakrdl_bsv.</p>
+              <p>Console script for cocotb ral generator.</p>
             </div>
           </li>
     </ul>
@@ -1273,36 +1371,32 @@
 <div class="doc doc-object doc-function">
 
 
-<h2 id="peakrdl_cocotb_ralgen.cli.main" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <span class="doc doc-object-name doc-function-name">main</span>
+<h2 id="peakrdl_cocotb_ralgen.cli.cocotb_ralgenerator" class="doc doc-heading">
+<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <span class="doc doc-object-name doc-function-name">cocotb_ralgenerator</span>
 
 
-<a href="#peakrdl_cocotb_ralgen.cli.main" class="headerlink" title="Permanent link">&para;</a></h2>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<a href="#peakrdl_cocotb_ralgen.cli.cocotb_ralgenerator" class="headerlink" title="Permanent link">&para;</a></h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">cocotb_ralgenerator</span><span class="p">(</span><span class="n">rdlfile</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">,</span> <span class="n">ralfolder</span><span class="p">:</span> <span class="n"><a class="autorefs autorefs-external" href="https://docs.python.org/3/library/stdtypes.html#str">str</a></span><span class="p">)</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
 
-        <p>Console script for peakrdl_bsv.</p>
+        <p>Console script for cocotb ral generator.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/peakrdl_cocotb_ralgen/cli.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 8</span>
-<span class="normal"> 9</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 9</span>
 <span class="normal">10</span>
 <span class="normal">11</span>
 <span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Console script for peakrdl_bsv.&quot;&quot;&quot;</span>
-    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span>
-        <span class="s2">&quot;Replace this message by putting your code into &quot;</span>
-        <span class="s2">&quot;peakrdl_cocotb_ralgen.cli.main&quot;</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">click</span><span class="o">.</span><span class="n">echo</span><span class="p">(</span><span class="s2">&quot;See click documentation at https://click.palletsprojects.com/&quot;</span><span class="p">)</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@click</span><span class="o">.</span><span class="n">command</span><span class="p">()</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;-i&quot;</span><span class="p">,</span> <span class="s2">&quot;--rdlfile&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Input systemrdl file&quot;</span><span class="p">)</span>
+<span class="nd">@click</span><span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;--ralfolder&quot;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Output cocotb ral folder&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">cocotb_ralgenerator</span><span class="p">(</span><span class="n">rdlfile</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ralfolder</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Console script for cocotb ral generator.&quot;&quot;&quot;</span>
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="s2">&quot;peakrdl&quot;</span><span class="p">,</span> <span class="s2">&quot;cocotb_ralgen&quot;</span><span class="p">,</span> <span class="n">rdlfile</span><span class="p">,</span> <span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="n">ralfolder</span><span class="p">])</span>
     <span class="k">return</span> <span class="mi">0</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1352,7 +1446,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../callbacks/callback_base/" class="md-footer__link md-footer__link--prev" aria-label="Previous: &lt;code class=&#34;doc-symbol doc-symbol-nav doc-symbol-module&#34;&gt;&lt;/code&gt; callback_base">
+          <a href="../callbacks/regblock/" class="md-footer__link md-footer__link--prev" aria-label="Previous: &lt;code class=&#34;doc-symbol doc-symbol-nav doc-symbol-module&#34;&gt;&lt;/code&gt; regblock">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1362,7 +1456,7 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> callback_base
+                <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> regblock
               </div>
             </div>
           </a>

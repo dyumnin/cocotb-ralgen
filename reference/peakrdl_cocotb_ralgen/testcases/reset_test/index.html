@@ -580,6 +580,8 @@
       
         
       
+        
+      
     
     
       
@@ -701,6 +703,8 @@
       
         
       
+        
+      
     
     
       
@@ -777,6 +781,27 @@
   
   <span class="md-ellipsis">
     <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> callback_base
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../callbacks/regblock/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> regblock
   </span>
   
 
@@ -1013,6 +1038,79 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_2" id="__nav_2_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> peakrdl_cocotb_ralgenerator
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> peakrdl_cocotb_ralgenerator
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../peakrdl_cocotb_ralgenerator/cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <code class="doc-symbol doc-symbol-nav doc-symbol-module"></code> cli
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1280,7 +1378,7 @@
 
 
 <a href="#peakrdl_cocotb_ralgen.testcases.reset_test.reset_test" class="headerlink" title="Permanent link">&para;</a></h2>
-<div class="doc-signature highlight"><pre><span></span><code><span class="nf">reset_test</span><span class="p">(</span><span class="n">RAL</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">reset_test</span><span class="p">(</span><span class="n">RAL</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">expected_error</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </code></pre></div>
 
     <div class="doc doc-contents ">
@@ -1315,7 +1413,14 @@
 <span class="normal">29</span>
 <span class="normal">30</span>
 <span class="normal">31</span>
-<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">reset_test</span><span class="p">(</span><span class="n">RAL</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">reset_test</span><span class="p">(</span><span class="n">RAL</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">expected_error</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Reset Testcase.</span>
 
 <span class="sd">    This testcase reads the value of all fields during reset and checks for match with the defined reset value.</span>
@@ -1326,21 +1431,28 @@
             <span class="k">continue</span>
         <span class="n">rv</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">hsh</span> <span class="ow">in</span> <span class="n">val</span><span class="p">[</span><span class="s2">&quot;signals&quot;</span><span class="p">]:</span>
-            <span class="n">rv</span> <span class="o">|=</span> <span class="n">RAL</span><span class="o">.</span><span class="n">background</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">hsh</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">hsh</span><span class="p">[</span><span class="s2">&quot;low&quot;</span><span class="p">]</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">actual</span> <span class="o">=</span> <span class="n">rv</span> <span class="o">&amp;</span> <span class="n">val</span><span class="p">[</span><span class="s2">&quot;reset_mask&quot;</span><span class="p">]</span>
-            <span class="n">expected</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="s2">&quot;reset_value&quot;</span><span class="p">]</span>
-            <span class="k">assert</span> <span class="p">(</span>
-                <span class="n">actual</span> <span class="o">==</span> <span class="n">expected</span>
-            <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> Resetvalue mismatch Actual </span><span class="si">{</span><span class="n">actual</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">,Expected </span><span class="si">{</span><span class="n">expected</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">,&quot;</span>
-        <span class="k">except</span><span class="p">:</span>
-            <span class="n">cocotb</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Reset Read Reg:</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">, actual </span><span class="si">{</span><span class="n">rv</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2"> expected </span><span class="si">{</span><span class="n">expected</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="p">)</span>
-            <span class="n">error_count</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reset Read Reg:</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">, Value </span><span class="si">{</span><span class="n">rv</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="k">assert</span> <span class="n">error_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Test exited with </span><span class="si">{</span><span class="n">error_count</span><span class="si">}</span><span class="s2"> Error&quot;</span>
+            <span class="n">hshval</span> <span class="o">=</span> <span class="n">RAL</span><span class="o">.</span><span class="n">background</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">hsh</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">hshval</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">rv</span> <span class="o">|=</span> <span class="nb">int</span><span class="p">(</span><span class="n">hshval</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">hsh</span><span class="p">[</span><span class="s2">&quot;low&quot;</span><span class="p">]</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">actual</span> <span class="o">=</span> <span class="n">rv</span> <span class="o">&amp;</span> <span class="n">val</span><span class="p">[</span><span class="s2">&quot;reset_mask&quot;</span><span class="p">]</span>
+                    <span class="n">expected</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="s2">&quot;reset_value&quot;</span><span class="p">]</span>
+                    <span class="k">assert</span> <span class="p">(</span>
+                        <span class="n">actual</span> <span class="o">==</span> <span class="n">expected</span>
+                    <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> Resetvalue mismatch Actual </span><span class="si">{</span><span class="n">actual</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">,Expected </span><span class="si">{</span><span class="n">expected</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">,&quot;</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">cocotb</span><span class="o">.</span><span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Reset Read Reg:</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">, actual </span><span class="si">{</span><span class="n">rv</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2"> expected </span><span class="si">{</span><span class="n">expected</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                    <span class="p">)</span>
+                    <span class="n">error_count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: Unable to access </span><span class="si">{</span><span class="n">hsh</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">error_count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reset Read Reg:</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">, Value </span><span class="si">{</span><span class="n">rv</span><span class="si">:</span><span class="s2">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="p">(</span>
+            <span class="n">error_count</span> <span class="o">==</span> <span class="n">expected_error</span>
+        <span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;Test exited with </span><span class="si">{</span><span class="n">error_count</span><span class="si">}</span><span class="s2"> Error, expected </span><span class="si">{</span><span class="n">expected_error</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
