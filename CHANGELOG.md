@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 
+## [0.1.10] - 2024-10-27
+### Added
+- v0.1.10 callback for regblock
 ## [0.1.7] - 2024-10-27
 ### Added
 - v0.1.7 Support for Hierarchial RAL
