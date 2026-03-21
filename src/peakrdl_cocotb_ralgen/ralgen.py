@@ -169,9 +169,10 @@ logger = cocotb.log
                 int("1" * (node.high - node.low + 1), 2) << node.low
             )
 
-    def _not_supported(self, node, cause):
+    def _not_supported(self, node, cause) -> None:
+        """Gather fields not supported."""
         self.not_supported[cause].append(
-            f"{'.'.join(self.hier_path)} -> {node.get_path_segment()}"
+            f"{'.'.join(self.hier_path)} -> {node.get_path_segment()}",
         )
 
     def exit_Reg(self, node):
@@ -186,18 +187,19 @@ logger = cocotb.log
         if not node.has_sw_readable:
             self.registers[self.current_register]["disable"].extend(["rw", "reset"])
 
-    def _print_not_supported(self):
+    def _print_not_supported(self) -> None:
+        """Print fields not supported."""
         if len(self.not_supported["singlepulse"]) > 0:
-            print(
-                f"Single pulse is not supported. Affected bits -> {json.dumps(self.not_supported['singlepulse'], indent=2)}"
+            logger.info(
+                f"Single pulse is not supported. Affected bits -> {json.dumps(self.not_supported['singlepulse'], indent=2)}",
             )
         if len(self.not_supported["woclr"]) > 0:
-            print(
-                f"woclr is not supported. Affected bits -> {json.dumps(self.not_supported['woclr'], indent=2)}"
+            logger.info(
+                f"woclr is not supported. Affected bits -> {json.dumps(self.not_supported['woclr'], indent=2)}",
             )
         if len(self.not_supported["rclr"]) > 0:
-            print(
-                f"rclr is not supported. Affected bits -> {json.dumps(self.not_supported['rclr'], indent=2)}"
+            logger.info(
+                f"rclr is not supported. Affected bits -> {json.dumps(self.not_supported['rclr'], indent=2)}",
             )
 
     def exit_Addrmap(self, node):

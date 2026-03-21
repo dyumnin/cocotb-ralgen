@@ -1,6 +1,14 @@
 """regblock Callback."""
 
 from .callback_base import CallbackBase
+from typing import Any
+import logging
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(module)s %(funcName)s %(lineno)d %(levelname)s:: %(message)s",
+)
+log = logging.getLogger(__name__)
 
 
 class RegblockCallback(CallbackBase):
@@ -11,19 +19,17 @@ class RegblockCallback(CallbackBase):
     field_storage.Bar.Foo.value;
     """
 
-    def _walk_hier(self, dut, sigHash, count):
+    def _walk_hier(self, dut, sigHash, count) -> Any:
         if hasattr(dut, sigHash["path"][count]):
-            print(sigHash["path"][count])
+            log.info(sigHash["path"][count])
             sig = getattr(dut, sigHash["path"][count])
             if count == -1:
                 return sig
-            else:
-                count = count + 1
-                self._walk_hier(sig, sigHash, count)
-        else:
-            return None
+            count = count + 1
+            return self._walk_hier(sig, sigHash, count)
+        return None
 
-    def sig(self, sigHash):
+    def sig(self, sigHash) -> Any:
         """Finds the signal in dut and returns a reference to it.
 
         params:
@@ -34,6 +40,6 @@ class RegblockCallback(CallbackBase):
                 "high": signal's high index in the register,
                  }
         """
-        sig = f"field_storage.{sigHash['path'][-2]}.{sigHash['path'][-1]}"
-        fs = getattr(self.dut, "field_storage")
+        # sig = f"field_storage.{sigHash['path'][-2]}.{sigHash['path'][-1]}"
+        fs = self.dut.field_storage
         return self._walk_hier(fs, sigHash, -2)
